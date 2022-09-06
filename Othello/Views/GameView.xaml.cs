@@ -24,5 +24,32 @@ namespace Othello.Views
         {
             InitializeComponent();
         }
+
+        private void gameBoard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) // testa koordinaterna med klick som när spelpjäser ska läggas ut. Klick på t.ex. 2 = x 120, y 180
+        {
+            Point clickedPosition = e.GetPosition(this);
+            Point boardCoordinates = getCoordinates(clickedPosition);
+            int x = (int)clickedPosition.X;
+            int y = (int)clickedPosition.Y;
+        }
+
+        /// <summary>
+        /// "Get" coordinates for each square in board
+        /// </summary>
+        /// <param name="clickedPosition"></param>
+        /// <returns></returns>
+
+        private Point getCoordinates(Point clickedPosition)
+        {
+            int pieceSize = 60;
+
+            double x = clickedPosition.X;
+            double y = clickedPosition.Y;
+
+            x = Math.Floor(x / pieceSize) * pieceSize;
+            y = Math.Floor(y / pieceSize) * pieceSize;
+
+            return new Point(x, y);
+        }
     }
 }
