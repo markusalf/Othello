@@ -22,7 +22,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ItemsControl Grid.Row="1" x:Name="gameBoard" Margin="40,70,50,20" Grid.RowSpan="2" Background="#5aad67" Grid.ColumnSpan="2" BorderBrush="Gray">
+            <ItemsControl Grid.Row="1" x:Name="gameBoard" ItemsSource="{Binding }" Margin="40,70,50,20" Grid.RowSpan="2" Background="#5aad67" Grid.ColumnSpan="2" BorderBrush="Gray">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Canvas Width="483" Height="482">
