@@ -9,7 +9,7 @@ namespace Othello.ViewModels
 {
     internal class GameViewModel : BaseViewModel
     {
-        //public PlayerViewModel Player1 { get; set; } = new HumanPlayerViewModel();
-        //public PlayerViewModel Player2 { get; set; } = new HumanPlayerViewModel();
+        public PlayerViewModel Player1 { get; set; } = new HumanPlayerViewModel();
+        public PlayerViewModel Player2 { get; set; } = new HumanPlayerViewModel();
     }
 }

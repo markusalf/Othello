@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Othello.ViewModels
 {
-    internal abstract class HumanPlayerViewModel : PlayerViewModel
+    internal class HumanPlayerViewModel : PlayerViewModel
     {
     }
 }
