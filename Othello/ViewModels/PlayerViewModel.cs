@@ -27,6 +27,7 @@ namespace Othello.ViewModels
          
         private void FillBoard()
         {
+            Board = new ObservableCollection<BoardPiece>();
            for (int x = 0; x < _boardSize; x++)
             {
                 for (int y = 0; y < _boardSize; y++) 
