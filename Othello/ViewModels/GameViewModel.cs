@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Othello.ViewModels
 {
-    internal class GameViewModel
+    public class GameViewModel
     {
     }
 }
