@@ -9,10 +9,6 @@
  
   <ItemGroup>
     <PackageReference Include="PropertyChanged.Fody" Version="4.0.1" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="PropertyChanged.Fody" Version="4.0.1" />
-  </ItemGroup>
+  </ItemGroup>  
 
 </Project>
