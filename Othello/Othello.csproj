@@ -6,9 +6,9 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-
+ 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.0.1" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>

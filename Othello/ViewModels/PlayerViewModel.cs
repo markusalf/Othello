@@ -1,9 +1,9 @@
-﻿using Othello.ViewModels.Base;
+using Othello.ViewModels.Base;
 using Othello.Views.Components;
 using Othello.Views.GameTiles;
+using System.Collections.ObjectModel;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +12,7 @@ namespace Othello.ViewModels
 {
     internal abstract class PlayerViewModel : BaseViewModel
     {
+
         public ObservableCollection <BlackTile> Tiles { get; set; } = new ObservableCollection<BlackTile>();
         public ObservableCollection <WhiteTile> WhiteTiles { get; set; } = new ObservableCollection<WhiteTile> ();
 
@@ -35,5 +36,7 @@ namespace Othello.ViewModels
                 }
             }
         }
+
+
     }
 }
