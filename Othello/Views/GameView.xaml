@@ -14,10 +14,10 @@
         BorderThickness="1">
 
         <Grid Background="#d1efff" HorizontalAlignment="Left">
-            <ItemsControl Name="boardPiece" Height="600" Width="600" Grid.Column="0" Grid.Row="0" Background="#d1efff" ItemsSource="{Binding Player1.Board}" MouseLeftButtonDown="boardPiece_MouseLeftButtonDown">
+            <ItemsControl Name="boardPiece" Height="600" Width="600" Background="#d1efff" ItemsSource="{Binding Player1.Board}" MouseLeftButtonDown="boardPiece_MouseLeftButtonDown">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="8" Rows="8" Height="600" Width="600"/>
+                        <UniformGrid Columns="8" Rows="8" MinHeight="600" MinWidth="600"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
