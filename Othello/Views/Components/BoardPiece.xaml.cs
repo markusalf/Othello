@@ -25,24 +25,6 @@ namespace Othello.Views.Components
         {
             InitializeComponent();
         }
- 
-        public int X
-        {
-            get { return (int)GetValue(XProperty); }
-            set { SetValue(XProperty, value); }
-        }
-
-        public static readonly DependencyProperty XProperty =
-            DependencyProperty.Register("X", typeof(int), typeof(BoardPiece), new PropertyMetadata(0));
-
-        public int Y
-        {
-            get { return (int)GetValue(YProperty); }
-            set { SetValue(YProperty, value); }
-        }
-
-        public static readonly DependencyProperty YProperty =
-            DependencyProperty.Register("Y", typeof(int), typeof(BoardPiece), new PropertyMetadata(0));
 
         /// <summary>
         /// Unique Id's for each piece(square) of the board
