@@ -8,16 +8,16 @@
              xmlns:Components="clr-namespace:Othello.Views.Components"
              d:DataContext="{d:DesignInstance vm:GameViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="800" d:DesignWidth="900">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Border
-        BorderBrush="LightGray"
-        BorderThickness="2">
+        BorderBrush="black"
+        BorderThickness="1">
 
-        <Grid Height="800" Width="900" Background="#d1efff">
-            <ItemsControl Grid.Column="0" Grid.Row="0" Height="800" Width="800" Background="#d1efff" HorizontalAlignment="Left" ItemsSource="{Binding Player1.Board}">
+        <Grid Background="#d1efff" HorizontalAlignment="Left">
+            <ItemsControl Name="boardPiece" Height="600" Width="600" Grid.Column="0" Grid.Row="0" Background="#d1efff" ItemsSource="{Binding Player1.Board}" MouseLeftButtonDown="boardPiece_MouseLeftButtonDown">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid Columns="8" Rows="8" Height="800" Width="800" MouseLeftButtonDown="ItemsControl_MouseLeftButtonDown"/>
+                        <UniformGrid Columns="8" Rows="8" Height="600" Width="600"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
