@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Othello.Views"
              xmlns:vm="clr-namespace:Othello.ViewModels"
              xmlns:Components="clr-namespace:Othello.Views.Components"
+             d:DataContext="{d:DesignInstance vm:GameViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="800" d:DesignWidth="900">
     <Border
@@ -13,38 +14,10 @@
         BorderThickness="2">
 
         <Grid Height="800" Width="900" Background="#d1efff">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <ItemsControl Grid.Row="1" x:Name="gameBoard" Margin="40,70,50,20" Grid.RowSpan="2" Background="#5aad67" Grid.ColumnSpan="2" BorderBrush="Gray" MouseLeftButtonDown="gameBoard_MouseLeftButtonDown">
+            <ItemsControl Grid.Column="0" Grid.Row="0" Height="800" Width="800" Background="#d1efff" HorizontalAlignment="Left" ItemsSource="{Binding Player1.Board}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Width="483" Height="482">
-                            <Canvas.Background>
-                                <DrawingBrush TileMode="Tile"
-                                Viewport="60,60,60,60" ViewportUnits="Absolute"
-                                Viewbox="0,0,30,40" ViewboxUnits="Absolute">
-                                    <DrawingBrush.Drawing>
-                                        <GeometryDrawing Geometry="M0,0 L50,0 M0,0 L0,50">
-                                            <GeometryDrawing.Pen>
-                                                <Pen Brush="Black" Thickness="3" DashCap="Flat">
-                                                    <Pen.DashStyle>
-                                                        <DashStyle Dashes="14"/>
-                                                    </Pen.DashStyle>
-                                                </Pen>
-                                            </GeometryDrawing.Pen>
-                                        </GeometryDrawing>
-                                    </DrawingBrush.Drawing>
-                                </DrawingBrush>
-                            </Canvas.Background>
-                        </Canvas>
+                        <UniformGrid Columns="8" Rows="8" Height="800" Width="800" MouseLeftButtonDown="ItemsControl_MouseLeftButtonDown"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
