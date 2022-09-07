@@ -4,11 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Othello.Views.GameTiles"
+             xmlns:converter="clr-namespace:Othello.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:EllipseTileTypeToColorConverter x:Key="EllipseTileTypeToColorConverter"/>
+        <converter:RectangleTileTypeToColorConverter x:Key="RectangleTileTypeToColorConverter"/>
+    </UserControl.Resources>
     <Grid>
-        <Rectangle Fill="Green" Height="100" Width="100"></Rectangle>
-        <Ellipse Fill="Black" Height="100" Width="100" Stroke="White" StrokeThickness="1" >
+        <Rectangle Fill="{Binding Converter={StaticResource RectangleTileTypeToColorConverter}}"  Height="100" Width="100"></Rectangle>
+        <Ellipse Fill="{Binding Converter={StaticResource EllipseTileTypeToColorConverter}}" Height="100" Width="100" Stroke="White" StrokeThickness="1" >
             <Ellipse.BitmapEffect>
                 <DropShadowBitmapEffect Color="Magenta" Direction="-100"
                     ShadowDepth="5" Softness=".9" />
