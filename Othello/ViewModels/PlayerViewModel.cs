@@ -13,7 +13,7 @@ namespace Othello.ViewModels
     internal abstract class PlayerViewModel : BaseViewModel
     {
 
-        public ObservableCollection <Tile> Tiles { get; set; } = new ObservableCollection<Tile>();
+        public ObservableCollection <UCTile> Tiles { get; set; } = new ObservableCollection<UCTile>();
         
 
         public ObservableCollection <BoardPiece> Board { get; set; }

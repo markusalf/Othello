@@ -17,9 +17,9 @@ using System.Windows.Shapes;
 namespace Othello.Views.GameTiles
 {
     /// <summary>
-    /// Interaction logic for Tile.xaml
+    /// Interaction logic for UCTile.xaml
     /// </summary>
-    public partial class Tile : UserControl
+    public partial class UCTile : UserControl
     {
 
 
@@ -31,10 +31,10 @@ namespace Othello.Views.GameTiles
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CurrentTileTypeProperty =
-            DependencyProperty.Register("CurrentTileType", typeof(TileType), typeof(Tile), new PropertyMetadata(0));
+            DependencyProperty.Register("CurrentTileType", typeof(TileType), typeof(UCTile), new PropertyMetadata(0));
 
 
-        public Tile()
+        public UCTile()
         {
             InitializeComponent();
         }
