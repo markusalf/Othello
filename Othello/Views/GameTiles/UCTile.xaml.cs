@@ -23,18 +23,29 @@ namespace Othello.Views.GameTiles
     {
 
 
-        public BoardPieceType CurrentTileType
+        public TileType CurrentTileType
         {
-            get { return (BoardPieceType)GetValue(CurrentTileTypeProperty); }
+            get { return (TileType)GetValue(CurrentTileTypeProperty); }
             set { SetValue(CurrentTileTypeProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CurrentTileTypeProperty =
+        public static readonly DependencyProperty CurrentTileTypeProperty =          
 
-            
+        DependencyProperty.Register("CurrentTileType", typeof(TileType), typeof(UCTile), new PropertyMetadata(null));
 
-            DependencyProperty.Register("CurrentTileType", typeof(TileType), typeof(UCTile), new PropertyMetadata(0));
+
+
+        public BoardPieceType CurrentBoardPieceType
+        {
+            get { return (BoardPieceType)GetValue(CurrentBoadPieceTypeProperty); }
+            set { SetValue(CurrentBoadPieceTypeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CurrentBoardPieceType.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CurrentBoadPieceTypeProperty =
+            DependencyProperty.Register("CurrentBoardPieceType", typeof(BoardPieceType), typeof(UCTile), new PropertyMetadata(null));
+
 
 
 
