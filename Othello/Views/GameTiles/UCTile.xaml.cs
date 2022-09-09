@@ -19,39 +19,14 @@ namespace Othello.Views.GameTiles
     /// <summary>
     /// Interaction logic for UCTile.xaml
     /// </summary>
-    public partial class UCTile : UserControl
+    public partial class UCTile : Tile
     {
-
-
-        public TileType CurrentTileType
-        {
-            get { return (TileType)GetValue(CurrentTileTypeProperty); }
-            set { SetValue(CurrentTileTypeProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CurrentTileTypeProperty =          
-
-        DependencyProperty.Register("CurrentTileType", typeof(TileType), typeof(UCTile), new PropertyMetadata(null));
-
-
-
-        public BoardPieceType CurrentBoardPieceType
-        {
-            get { return (BoardPieceType)GetValue(CurrentBoadPieceTypeProperty); }
-            set { SetValue(CurrentBoadPieceTypeProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for CurrentBoardPieceType.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CurrentBoadPieceTypeProperty =
-            DependencyProperty.Register("CurrentBoardPieceType", typeof(BoardPieceType), typeof(UCTile), new PropertyMetadata(null));
-
-
-
+              
 
         public UCTile()
         {
-            InitializeComponent();
+            
+            //InitializeComponent();
         }
     }
 }
