@@ -20,14 +20,12 @@ namespace Othello.Converters
                 return tileType switch
                 {
                     TileType.Black => new SolidColorBrush(Colors.Black),
-                    TileType.White => new SolidColorBrush(Colors.White),
-                    TileType.PossibleMoveMarker => new SolidColorBrush(Colors.Green),
-                    TileType.NotPossibleMoveMarker => new SolidColorBrush(Colors.Green),
-                    TileType.FlankedTileMarker => new SolidColorBrush(Colors.DimGray),
+                    TileType.White => new SolidColorBrush(Colors.White),                    
+                    
                     _ => new SolidColorBrush(Colors.Magenta),
                 };
             }
-            return new SolidColorBrush(Colors.Pink);
+            return new SolidColorBrush(Colors.Green);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

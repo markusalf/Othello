@@ -17,24 +17,24 @@ using System.Windows.Shapes;
 namespace Othello.Views.GameTiles
 {
     /// <summary>
-    /// Interaction logic for Tile.xaml
+    /// Interaction logic for UCTile.xaml
     /// </summary>
-    public partial class Tile : UserControl
+    public partial class UCTile : UserControl
     {
 
 
-        public TileType CurrentTileType
+        public BoardPieceType CurrentTileType
         {
-            get { return (TileType)GetValue(CurrentTileTypeProperty); }
+            get { return (BoardPieceType)GetValue(CurrentTileTypeProperty); }
             set { SetValue(CurrentTileTypeProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CurrentTileTypeProperty =
-            DependencyProperty.Register("CurrentTileType", typeof(TileType), typeof(Tile), new PropertyMetadata(0));
+            DependencyProperty.Register("CurrentTileType", typeof(BoardPieceType), typeof(UCTile), new PropertyMetadata(null));
 
 
-        public Tile()
+        public UCTile()
         {
             InitializeComponent();
         }

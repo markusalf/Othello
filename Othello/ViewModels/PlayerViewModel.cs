@@ -1,5 +1,4 @@
 using Othello.ViewModels.Base;
-using Othello.Views.Components;
 using Othello.Views.GameTiles;
 using System.Collections.ObjectModel;
 using System;
@@ -13,27 +12,25 @@ namespace Othello.ViewModels
     internal abstract class PlayerViewModel : BaseViewModel
     {
 
-        public ObservableCollection <Tile> Tiles { get; set; } = new ObservableCollection<Tile>();
-        
-
-        public ObservableCollection <BoardPiece> Board { get; set; }
+        public ObservableCollection <UCTile> Tiles { get; set; } = new ObservableCollection<UCTile>();
+               
 
         public const int _boardSize = 8;
 
         public PlayerViewModel()
         {
-            FillBoard();
+            FillTiles();
         }
          
-        private void FillBoard()
+        private void FillTiles()
         {
-            Board = new ObservableCollection<BoardPiece>();
+            Tiles = new ObservableCollection<UCTile>();
            for (int x = 0; x < _boardSize; x++)
             {
                 for (int y = 0; y < _boardSize; y++) 
                 {
-                    var piece = new BoardPiece();
-                    Board.Add(piece); 
+                    var tile = new UCTile();
+                    Tiles.Add(tile); 
                 }
             }
         }
