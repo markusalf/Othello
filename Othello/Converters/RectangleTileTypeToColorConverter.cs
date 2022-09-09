@@ -14,16 +14,15 @@ namespace Othello.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is TileType && value != null)
+            if(value is BoardPieceType && value != null)
             {
-                var tileType = (TileType)value;
-                return tileType switch
+                var boardPieceType = (BoardPieceType)value;
+                return boardPieceType switch
                 {
-                    TileType.Black => new SolidColorBrush(Colors.Green),
-                    TileType.White => new SolidColorBrush(Colors.Green),
-                    TileType.PossibleMoveMarker => new SolidColorBrush(Colors.LightSeaGreen),
-                    TileType.NotPossibleMoveMarker => new SolidColorBrush(Colors.Green),
-                    TileType.FlankedTileMarker => new SolidColorBrush(Colors.Red),
+                    
+                    BoardPieceType.PossibleMoveMarker => new SolidColorBrush(Colors.LightSeaGreen),
+                    BoardPieceType.NotPossibleMoveMarker => new SolidColorBrush(Colors.Green),
+                    BoardPieceType.FlankedTileMarker => new SolidColorBrush(Colors.Red),
                     _ => new SolidColorBrush(Colors.Green),
                 };
             }
