@@ -13,7 +13,13 @@ namespace Othello.ViewModels
     {
 
         public ObservableCollection <UCTile> Tiles { get; set; } = new ObservableCollection<UCTile>();
+
                
+
+        
+
+        
+
 
         public const int _boardSize = 8;
 
