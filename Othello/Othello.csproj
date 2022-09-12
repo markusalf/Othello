@@ -17,6 +17,10 @@
  
   <ItemGroup>
     <Resource Include="Views\CircleScore.png" />
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>  
 
 </Project>

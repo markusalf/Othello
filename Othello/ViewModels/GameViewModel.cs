@@ -1,5 +1,4 @@
-﻿using Othello.Models;
-using Othello.ViewModels.Base;
+﻿using Othello.ViewModels.Base;
 using Othello.Views.GameTiles;
 using System;
 using System.Collections.Generic;
