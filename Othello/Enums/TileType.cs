@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 namespace Othello.Enums
 {
     public enum TileType
-
     {
         Black,
-        White, 
-        
+        White,
+        Empty
     }
 }

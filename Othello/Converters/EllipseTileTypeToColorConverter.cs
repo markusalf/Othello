@@ -16,16 +16,17 @@ namespace Othello.Converters
         {
             if (value is TileType && value != null)
             {
-                var tileType = (TileType)value;
-                return tileType switch
+                var TileType = (TileType)value;
+                return TileType switch
                 {
                     TileType.Black => new SolidColorBrush(Colors.Black),
-                    TileType.White => new SolidColorBrush(Colors.White),                    
+                    TileType.White => new SolidColorBrush(Colors.White),   
+                    TileType.Empty => new SolidColorBrush(Colors.Green),
                     
                     _ => new SolidColorBrush(Colors.Magenta),
                 };
             }
-            return new SolidColorBrush(Colors.Green);
+            return new SolidColorBrush(Colors.Red);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

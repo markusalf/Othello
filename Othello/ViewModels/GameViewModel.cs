@@ -7,21 +7,21 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Othello.Enums;
 
 namespace Othello.ViewModels
 {
     internal class GameViewModel : BaseViewModel
     {
-        public ObservableCollection<Tile> BoardPieces { get; private set; } = new ObservableCollection<Tile>();
-        public ObservableCollection<Tile> Player1Black { get; private set; } = new ObservableCollection<Tile>();
-        public ObservableCollection<Tile> Player2White { get; private set; } = new ObservableCollection<Tile>();
+        public ObservableCollection<UCTile> BoardPieces { get; private set; } = new ObservableCollection<UCTile>();
+
         private const int _gameBoardSize = 8;
 
         public GameViewModel()
         {
             FillBoard();
-            DisplayPlayer1Score();
-            DisplayPlayer2Score();
+            //DisplayPlayer1Score();
+            //DisplayPlayer2Score();
 
         }
 
@@ -32,74 +32,74 @@ namespace Othello.ViewModels
                 {
                     if (x == 3 && y == 3)
                     {
-                        BoardPieces.Add(new Tile
+                        BoardPieces.Add(new UCTile
                         {
                             Coordinates = (x, y),
-                            SquareColor = "Green",
-                            EllipseColor = "Black"
+                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
+                            TypeOfTile = TileType.Black
                         });
                     }
                     else if (x == 4 && y == 3)
                     {
-                        BoardPieces.Add(new Tile
+                        BoardPieces.Add(new UCTile
                         {
                             Coordinates = (x, y),
-                            SquareColor = "Green",
-                            EllipseColor = "White"
+                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
+                            TypeOfTile = TileType.White
                         });
                     }
                     else if (x == 4 && y == 4)
                     {
-                        BoardPieces.Add(new Tile
+                        BoardPieces.Add(new UCTile
                         {
                             Coordinates = (x, y),
-                            SquareColor = "Green",
-                            EllipseColor = "Black"
+                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
+                            TypeOfTile = TileType.Black
                         });
                     }
                     else if (x == 3 && y == 4)
                     {
-                        BoardPieces.Add(new Tile
+                        BoardPieces.Add(new UCTile
                         {
                             Coordinates = (x, y),
-                            SquareColor = "Green",
-                            EllipseColor = "White"
+                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
+                            TypeOfTile = TileType.White
                         });
                     }
                     else
                     {
-                        BoardPieces.Add(new Tile
+                        BoardPieces.Add(new UCTile
                         {
                             Coordinates = (x, y),
-                            SquareColor = "Green",
-                            EllipseColor = "#00FFFFFF"
+                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
+                            TypeOfTile = TileType.Empty
                         });
                     }
                 }
         }
-        private int DisplayPlayer1Score()
-        {
-            foreach (var boardPiece in BoardPieces)
-            {
-                if (boardPiece.EllipseColor == "Black")
-                {
-                    Player1Black.Add(boardPiece);
-                }
-            }
-            return Player1Black.Count;
-        }
+        //private int DisplayPlayer1Score()
+        //{
+        //    foreach (var boardPiece in BoardPieces)
+        //    {
+        //        if (boardPiece.EllipseColor == "Black")
+        //        {
+        //            Player1Black.Add(boardPiece);
+        //        }
+        //    }
+        //    return Player1Black.Count;
+        //}
 
-        private int DisplayPlayer2Score()
-        {
-            foreach (var boardPiece in BoardPieces)
-            {
-                if (boardPiece.EllipseColor == "White")
-                {
-                    Player2White.Add(boardPiece);
-                }
-            }
-            return Player2White.Count;
-        }
+        //private int DisplayPlayer2Score()
+        //{
+        //    foreach (var boardPiece in BoardPieces)
+        //    {
+        //        if (boardPiece.EllipseColor == "White")
+        //        {
+        //            Player2White.Add(boardPiece);
+        //        }
+        //    }
+        //    return Player2White.Count;
+        //}
 
     }
 }
