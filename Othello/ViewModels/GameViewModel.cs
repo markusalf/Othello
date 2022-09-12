@@ -99,6 +99,23 @@ namespace Othello.ViewModels
         //    }
         //    return Player2White.Count;
         //}
+        public bool IsBoardPieceAvailable(UCTile Tile)
+        {
+
+            foreach (UCTile uCTile in BoardPieces)
+            {
+                if (uCTile.Coordinates == Tile.Coordinates)
+                {
+                    if (uCTile.TypeOfTile != TileType.Empty)
+                    {
+                        return false;
+                    }
+                    break;
+                }
+
+            }
+            return true;
+        }
 
     }
 }
