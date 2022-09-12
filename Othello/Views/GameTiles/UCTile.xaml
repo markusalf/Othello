@@ -1,25 +1,25 @@
-﻿<local:Tile x:Class="Othello.Views.GameTiles.UCTile"
+﻿<UserControl x:Class="Othello.Views.GameTiles.UCTile"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:models="clr-namespace:Othello.Models"
              xmlns:local="clr-namespace:Othello.Views.GameTiles"
-             xmlns:converter="clr-namespace:Othello.Converters"
+             d:DataContext="{d:DesignInstance models:Tile}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <converter:EllipseTileTypeToColorConverter x:Key="EllipseTileTypeToColorConverter"/>
-        <converter:RectangleTileTypeToColorConverter x:Key="RectangleTileTypeToColorConverter"/>
-    </UserControl.Resources>
-    <Grid>
-        <Rectangle Fill="{Binding Converter={StaticResource RectangleTileTypeToColorConverter}}"  Height="100" Width="100" Stroke="Black"></Rectangle>
-        <Ellipse Fill="{Binding Converter={StaticResource EllipseTileTypeToColorConverter}}" Height="75" Width="75" Stroke="White" StrokeThickness="1" >
-            <Ellipse.BitmapEffect>
-                <DropShadowBitmapEffect Color="Magenta" Direction="-100"
-                    ShadowDepth="5" Softness=".9" />
-            </Ellipse.BitmapEffect>
-
+    <Grid Height="75" Width="75">
+        <Rectangle
+            Fill="{Binding SquareColor}"
+            Stroke="Black"
+            StrokeThickness="1.3"/>
+        <Ellipse
+            Width="50"
+            Height="50"
+            Fill="{Binding EllipseColor}">
+            <Ellipse.Effect>
+                <DropShadowEffect Color="Gray" ShadowDepth="2" BlurRadius="18"/>
+            </Ellipse.Effect>
         </Ellipse>
-
     </Grid>
-</local:Tile>
+</UserControl>

@@ -19,14 +19,11 @@ namespace Othello.Views.GameTiles
     /// <summary>
     /// Interaction logic for UCTile.xaml
     /// </summary>
-    public partial class UCTile : Tile
+    public partial class UCTile : UserControl
     {
-              
-
         public UCTile()
         {
-            
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }
