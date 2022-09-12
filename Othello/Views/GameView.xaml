@@ -26,14 +26,14 @@
         </ItemsControl>
 
         <ItemsControl VerticalAlignment="Top" x:Name="BlackScoreBoard">
-            <Label Content="{Binding _PlayerBlackScore}" Height="80" Width="80" HorizontalAlignment="Left" Margin="60, 30" >
+            <Label Content="{Binding PlayerBlackScore}" Height="80" Width="80" HorizontalAlignment="Left" Margin="60, 30" >
                 <Label.Background>
                     <ImageBrush Stretch="Fill" ImageSource="/Views/CircleScore.png" />
                 </Label.Background>
             </Label>
         </ItemsControl>
         <ItemsControl VerticalAlignment="Bottom" x:Name="WhiteScoreBoard">
-            <Label Content="{Binding _PlayerWhiteScore}" Height="80" Width="80" HorizontalAlignment="Left" Margin="60, 30" >
+            <Label Content="{Binding PlayerWhiteScore}" Height="80" Width="80" HorizontalAlignment="Left" Margin="60, 30" >
                 <Label.Background>
                     <ImageBrush Stretch="Fill" ImageSource="/Views/CircleScore.png" />
                 </Label.Background>

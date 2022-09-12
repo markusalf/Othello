@@ -17,8 +17,8 @@ namespace Othello.ViewModels
 
         private const int _gameBoardSize = 8;
 
-        public string _PlayerBlackScore = "då";
-        public string _PlayerWhiteScore = "hej";
+        public int _playerBlackScore = 0;
+        public int _playerWhiteScore = 0;
 
         
         public GameViewModel()
@@ -85,32 +85,31 @@ namespace Othello.ViewModels
 
         public void UpdatePlayerBlackScore()
         {
-            int playerBlackScore = 0;
+            _playerBlackScore = 0;
 
             foreach (var UCTile in BoardPieces)
             {
                 if (UCTile.TypeOfTile == TileType.Black)
                 {
-                    playerBlackScore++;
+                    _playerBlackScore++;
                 }
             }
 
-            _PlayerBlackScore = playerBlackScore.ToString();
+            
         }
 
         public void UpdatePlayerWhiteScore()
         {
-            int playerWhiteScore = 0;
+            _playerWhiteScore = 0;
 
             foreach (var UCTile in BoardPieces)
             {
                 if (UCTile.TypeOfTile == TileType.White)
                 {
-                    playerWhiteScore++;
+                    _playerWhiteScore++;
                 }
             }
             
-            _PlayerWhiteScore = playerWhiteScore.ToString();
         }
 
         public bool IsBoardPieceAvailable(UCTile Tile)
