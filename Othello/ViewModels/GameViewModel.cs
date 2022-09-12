@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Othello.Enums;
+using System.Windows.Markup;
 
 namespace Othello.ViewModels
 {
@@ -16,11 +17,15 @@ namespace Othello.ViewModels
 
         private const int _gameBoardSize = 8;
 
+        public string _PlayerBlackScore = "då";
+        public string _PlayerWhiteScore = "hej";
+
+        
         public GameViewModel()
         {
             FillBoard();
-            //DisplayPlayer1Score();
-            //DisplayPlayer2Score();
+            UpdatePlayerBlackScore();
+            UpdatePlayerWhiteScore();
 
         }
 
@@ -76,29 +81,38 @@ namespace Othello.ViewModels
                     }
                 }
         }
-        //private int DisplayPlayer1Score()
-        //{
-        //    foreach (var boardPiece in BoardPieces)
-        //    {
-        //        if (boardPiece.EllipseColor == "Black")
-        //        {
-        //            Player1Black.Add(boardPiece);
-        //        }
-        //    }
-        //    return Player1Black.Count;
-        //}
 
-        //private int DisplayPlayer2Score()
-        //{
-        //    foreach (var boardPiece in BoardPieces)
-        //    {
-        //        if (boardPiece.EllipseColor == "White")
-        //        {
-        //            Player2White.Add(boardPiece);
-        //        }
-        //    }
-        //    return Player2White.Count;
-        //}
+
+        public void UpdatePlayerBlackScore()
+        {
+            int playerBlackScore = 0;
+
+            foreach (var UCTile in BoardPieces)
+            {
+                if (UCTile.TypeOfTile == TileType.Black)
+                {
+                    playerBlackScore++;
+                }
+            }
+
+            _PlayerBlackScore = playerBlackScore.ToString();
+        }
+
+        public void UpdatePlayerWhiteScore()
+        {
+            int playerWhiteScore = 0;
+
+            foreach (var UCTile in BoardPieces)
+            {
+                if (UCTile.TypeOfTile == TileType.White)
+                {
+                    playerWhiteScore++;
+                }
+            }
+            
+            _PlayerWhiteScore = playerWhiteScore.ToString();
+        }
+
         public bool IsBoardPieceAvailable(UCTile Tile)
         {
 
