@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Othello.Enums;
+using System.Windows.Markup;
 
 namespace Othello.ViewModels
 {
@@ -16,11 +17,16 @@ namespace Othello.ViewModels
 
         private const int _gameBoardSize = 8;
 
+        
+
+        public int PlayerBlackScore { get; set; } = 0;
+        public int PlayerWhiteScore { get; set; } = 0;
+
         public GameViewModel()
         {
             FillBoard();
-            //DisplayPlayer1Score();
-            //DisplayPlayer2Score();
+            UpdatePlayerBlackScore();
+            UpdatePlayerWhiteScore();
 
         }
 
@@ -64,7 +70,7 @@ namespace Othello.ViewModels
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.White
                         });
-                    }
+                    }                    
                     else
                     {
                         BoardPieces.Add(new UCTile
@@ -76,29 +82,37 @@ namespace Othello.ViewModels
                     }
                 }
         }
-        //private int DisplayPlayer1Score()
-        //{
-        //    foreach (var boardPiece in BoardPieces)
-        //    {
-        //        if (boardPiece.EllipseColor == "Black")
-        //        {
-        //            Player1Black.Add(boardPiece);
-        //        }
-        //    }
-        //    return Player1Black.Count;
-        //}
 
-        //private int DisplayPlayer2Score()
-        //{
-        //    foreach (var boardPiece in BoardPieces)
-        //    {
-        //        if (boardPiece.EllipseColor == "White")
-        //        {
-        //            Player2White.Add(boardPiece);
-        //        }
-        //    }
-        //    return Player2White.Count;
-        //}
+
+        public void UpdatePlayerBlackScore()
+        {
+            PlayerBlackScore = 0;
+
+            foreach (var UCTile in BoardPieces)
+            {
+                if (UCTile.TypeOfTile == TileType.Black)
+                {
+                    PlayerBlackScore++;
+                }
+            }
+
+            
+        }
+
+        public void UpdatePlayerWhiteScore()
+        {
+            PlayerWhiteScore = 0;
+
+            foreach (var UCTile in BoardPieces)
+            {
+                if (UCTile.TypeOfTile == TileType.White)
+                {
+                    PlayerWhiteScore++;
+                }
+            }
+            
+        }
+
         public bool IsBoardPieceAvailable(UCTile Tile)
         {
 
