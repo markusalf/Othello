@@ -13,8 +13,8 @@ namespace Othello.ViewModels
     internal class GameViewModel : BaseViewModel
     {
         public ObservableCollection<Tile> BoardPieces { get; private set; } = new ObservableCollection<Tile>();
-        public ObservableCollection<Tile> Player1 { get; private set; } = new ObservableCollection<Tile>();
-        public ObservableCollection<Tile> Player2 { get; private set; } = new ObservableCollection<Tile>();
+        public ObservableCollection<Tile> Player1Black { get; private set; } = new ObservableCollection<Tile>();
+        public ObservableCollection<Tile> Player2White { get; private set; } = new ObservableCollection<Tile>();
         private const int _gameBoardSize = 8;
 
         public GameViewModel()
@@ -77,30 +77,28 @@ namespace Othello.ViewModels
                     }
                 }
         }
-
-
-        private int DisplayPlayer2Score()
+        private int DisplayPlayer1Score()
         {
             foreach (var boardPiece in BoardPieces)
             {
                 if (boardPiece.EllipseColor == "Black")
                 {
-                    Player2.Add(boardPiece);
+                    Player1Black.Add(boardPiece);
                 }
             }
-            return Player2.Count;
+            return Player1Black.Count;
         }
 
-        private int DisplayPlayer1Score()
+        private int DisplayPlayer2Score()
         {
             foreach (var boardPiece in BoardPieces)
             {
                 if (boardPiece.EllipseColor == "White")
                 {
-                    Player1.Add(boardPiece);
+                    Player2White.Add(boardPiece);
                 }
             }
-            return Player1.Count;
+            return Player2White.Count;
         }
 
     }
