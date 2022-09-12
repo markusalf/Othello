@@ -17,10 +17,11 @@ namespace Othello.ViewModels
 
         private const int _gameBoardSize = 8;
 
-        public int _playerBlackScore = 0;
-        public int _playerWhiteScore = 0;
-
         
+
+        public int PlayerBlackScore { get; set; } = 0;
+        public int PlayerWhiteScore { get; set; } = 0;
+
         public GameViewModel()
         {
             FillBoard();
@@ -69,7 +70,7 @@ namespace Othello.ViewModels
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.White
                         });
-                    }
+                    }                    
                     else
                     {
                         BoardPieces.Add(new UCTile
@@ -85,13 +86,13 @@ namespace Othello.ViewModels
 
         public void UpdatePlayerBlackScore()
         {
-            _playerBlackScore = 0;
+            PlayerBlackScore = 0;
 
             foreach (var UCTile in BoardPieces)
             {
                 if (UCTile.TypeOfTile == TileType.Black)
                 {
-                    _playerBlackScore++;
+                    PlayerBlackScore++;
                 }
             }
 
@@ -100,13 +101,13 @@ namespace Othello.ViewModels
 
         public void UpdatePlayerWhiteScore()
         {
-            _playerWhiteScore = 0;
+            PlayerWhiteScore = 0;
 
             foreach (var UCTile in BoardPieces)
             {
                 if (UCTile.TypeOfTile == TileType.White)
                 {
-                    _playerWhiteScore++;
+                    PlayerWhiteScore++;
                 }
             }
             
