@@ -21,23 +21,6 @@ namespace Othello.Views.GameTiles
     /// </summary>
     public partial class UCTile : UserControl
     {
-
-
-        public BoardPieceType CurrentTileType
-        {
-            get { return (BoardPieceType)GetValue(CurrentTileTypeProperty); }
-            set { SetValue(CurrentTileTypeProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CurrentTileTypeProperty =
-
-            
-
-            DependencyProperty.Register("CurrentTileType", typeof(TileType), typeof(UCTile), new PropertyMetadata(0));
-
-
-
         public UCTile()
         {
             InitializeComponent();

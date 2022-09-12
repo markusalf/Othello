@@ -11,5 +11,6 @@ namespace Othello.ViewModels.Base
 
     internal class BaseViewModel
     {
+
     }
 }

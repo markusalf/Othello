@@ -7,10 +7,10 @@
         xmlns:local="clr-namespace:Othello"
         d:DataContext="{d:DesignInstance vm:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Othello" Height="600" Width="600">
 
-    <Grid Background="#d1efff">
-            <Grid.ColumnDefinitions>
+    <Grid Background="FloralWhite">
+        <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="50"/>

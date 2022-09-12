@@ -2,31 +2,45 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Othello.Models
 {
-    internal class Tile : BaseViewModel
+    public class Tile : INotifyPropertyChanged
     {
-        public Tile(int id)
-        {
-            Id = id;
-        }
-        /// <summary>
-        /// Id for tile Black or White
-        /// </summary>
-        public int Id { get; }
-        public ObservableCollection<Point> Coordinate { get; private set; } = new ObservableCollection<Point>();
+        public (int, int) Coordinates { get; set; }
 
-        public void SetCoordinate(Point starPoint)
+        private string _squareColor;
+        public string SquareColor
         {
-            int x = starPoint.X;
-            int y = starPoint.Y;
-            Point point = new Point(x, y);
-            Coordinate.Add(point);
+            get => _squareColor;
+            set 
+            {
+                _squareColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _ellipseColor;
+        public string EllipseColor
+        {
+            get => _ellipseColor;
+            set 
+            {
+                _ellipseColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
