@@ -14,7 +14,7 @@ namespace Othello.ViewModels
     internal class GameViewModel : BaseViewModel
     {
         public ObservableCollection<UCTile> BoardPieces { get; private set; } = new ObservableCollection<UCTile>();
-
+        public Player CurrentPlayer { get; set; }
         private const int _gameBoardSize = 8;
 
         
@@ -80,6 +80,7 @@ namespace Othello.ViewModels
                             TypeOfTile = TileType.Empty
                         });
                     }
+                    CurrentPlayer = Player.Black;
                 }
         }
 
@@ -95,8 +96,6 @@ namespace Othello.ViewModels
                     PlayerBlackScore++;
                 }
             }
-
-            
         }
 
         public void UpdatePlayerWhiteScore()
@@ -110,7 +109,27 @@ namespace Othello.ViewModels
                     PlayerWhiteScore++;
                 }
             }
-            
+        }
+
+        public void ChangePlayerTurn()
+        {
+            if(CurrentPlayer == Player.Black)
+            {
+                CurrentPlayer = Player.White;
+            }
+            else if(CurrentPlayer == Player.White)
+            {
+                CurrentPlayer = Player.Black;
+            }
+        }
+
+        /// <summary>
+        /// Metod som kollar om spelarna kan göra ett giltigt drag
+        /// </summary>
+        /// <returns></returns>
+        public bool IsAvailableMove()
+        {
+
         }
 
         public bool IsBoardPieceAvailable(UCTile Tile)
