@@ -30,13 +30,14 @@ namespace Othello.ViewModels
             UpdatePlayerWhiteScore();
             OppositeColor(CurrentPlayer);
             IsPossibleMove(BoardPieces[20]);
-            //ChangeTileType(BoardPieces[20]);
+            ChangeTileType(BoardPieces[20]);
+            CanPlayerMakeAMove(CurrentPlayer);
         }
 
-        //public void ChangeTileType(UCTile tile)
-        //{
-        //    tile.TypeOfTile = CurrentPlayer.TypeOfTile;
-        //}
+        public void ChangeTileType(UCTile tile)
+        {
+            tile.TypeOfTile = CurrentPlayer.TypeOfTile;
+        }
 
 
         private void FillBoard()
@@ -131,17 +132,20 @@ namespace Othello.ViewModels
             {
                 CurrentPlayer.TypeOfTile = TileType.Black;
             }
+            OppositeColor(CurrentPlayer);
         }
 
-        //public bool CanPlayerMakeAMove(UCTile CurrentPlayer)
-        //{
-        //    foreach(UCTile tile in BoardPieces)
-        //    {
-        //        IsPossibleMove(tile);
-        //        return true;
-        //    }
-        //    return false;
-        //}
+        public bool CanPlayerMakeAMove(UCTile CurrentPlayer)
+        {
+            ChangePlayerTurn();
+            foreach (UCTile tile in BoardPieces)
+            {
+                IsPossibleMove(tile);
+                return true;
+            }
+            ChangePlayerTurn();
+            return false;
+        }
 
 
         public bool IsBoardPieceAvailable(UCTile Tile)
