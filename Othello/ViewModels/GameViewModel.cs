@@ -14,7 +14,7 @@ namespace Othello.ViewModels
     internal class GameViewModel : BaseViewModel
     {
         public ObservableCollection<UCTile> BoardPieces { get; private set; } = new ObservableCollection<UCTile>();
-        public UCTile CurrentPlayer { get; set; }
+        public UCTile CurrentPlayer { get; set; } = new UCTile();
         TileType oppositeColor;
         private const int _gameBoardSize = 8;
 
@@ -28,6 +28,8 @@ namespace Othello.ViewModels
             FillBoard();
             UpdatePlayerBlackScore();
             UpdatePlayerWhiteScore();
+            OppositeColor(CurrentPlayer);
+            IsPossibleMove(BoardPieces[34]);
         }
 
 
@@ -164,8 +166,8 @@ namespace Othello.ViewModels
         public bool IsPossibleMove(UCTile Tile)
         {
             TileType currentColor = CurrentPlayer.TypeOfTile;
-            int x = Tile.Coordinates.Item1;
-            int y = Tile.Coordinates.Item2;
+            int y = Tile.Coordinates.Item1;
+            int x = Tile.Coordinates.Item2;
 
             for (int dx = -1; dx <= 1; dx++)
             {
