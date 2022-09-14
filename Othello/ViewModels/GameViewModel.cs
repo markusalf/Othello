@@ -27,7 +27,7 @@ namespace Othello.ViewModels
             FillBoard();
             UpdatePlayerBlackScore();
             UpdatePlayerWhiteScore();
-
+            
         }
 
         private void FillBoard()
@@ -70,7 +70,7 @@ namespace Othello.ViewModels
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.White
                         });
-                    }
+                    }                                      
                     else
                     {
                         BoardPieces.Add(new UCTile
@@ -124,14 +124,7 @@ namespace Othello.ViewModels
             }
         }
 
-        /// <summary>
-        /// Metod som kollar om spelarna kan göra ett giltigt drag
-        /// </summary>
-        /// <returns></returns>
-        //public bool IsAvailableMove()
-        //{
-
-        //}
+        
 
 
         public bool IsBoardPieceAvailable(UCTile Tile)
@@ -147,58 +140,52 @@ namespace Othello.ViewModels
             }
         }
 
-        //public bool IsPossibleMove(UCTile Tile)
-        //{
-        //    int x = Tile.Coordinates.Item1;
-        //    int y = Tile.Coordinates.Item2;
-        //    for (int dx = -1; dx <= 1; dx++)
-        //    {
-        //        for (int dy = -1; dy < 1; dy++)
-        //        {
-        //            if (dx == 0 && dy == 0)
-        //                continue;
+        public bool IsPossibleMove(UCTile Tile)
+        {
+            int x = Tile.Coordinates.Item1;
+            int y = Tile.Coordinates.Item2;
 
-        //            if (x + dx < 0 || x + dx > 7 || y + dy < 0 || y + dy > 7)
-        //                continue;
+            for (int dx = -1; dx <= 1; dx++)
+            {
+                for (int dy = -1; dy < 1; dy++)
+                {
+                    if (dx == 0 && dy == 0)
+                        continue;
 
-        //            foreach (UCTile tile in BoardPieces)
-        //            {
-        //                int thisx = tile.Coordinates.Item1;
-        //                int thisy = tile.Coordinates.Item2;
-        //                if (tile.Coordinates == (x + dx, y + dy) && tile.TypeOfTile != TileType.White)
-        //                    continue;
-        //            }
+                    if (x + dx < 0 || x + dx > 7 || y + dy < 0 || y + dy > 7)
+                        continue;
 
-        //            int i = 2;
-        //            while (i <= 7)
-        //            {
-        //                if (x + i * dx < 0 || x + i * dx > 7 || y + i * dy < 0 || y + i * dy > 7)
-        //                    break;
+                    
+                    if (BoardPieces.Any(piece => piece.Coordinates == (x + dx, y + dy) && piece.TypeOfTile != TileType.White))
+                        continue;
 
-        //                foreach (UCTile tile in BoardPieces)
-        //                {
-        //                    int thisx = tile.Coordinates.Item1;
-        //                    int thisy = tile.Coordinates.Item2;
-        //                    if (tile.Coordinates == (x + i * dx, y + i * dy) && tile.TypeOfTile == TileType.Empty)
-        //                        break;
-        //                }
+                        
+                    
 
-        //                foreach (UCTile tile in BoardPieces)
-        //                {
-        //                    int thisx = tile.Coordinates.Item1;
-        //                    int thisy = tile.Coordinates.Item2;
-        //                    if (tile.Coordinates == (x + i * dx, y + i * dy) && tile.TypeOfTile == TileType.Black)
-        //                    {
-        //                        return true;
-        //                    }
+                    int i = 2;
+                    while (i <= 7)
+                    {
+                        if (x + i * dx < 0 || x + i * dx > 7 || y + i * dy < 0 || y + i * dy > 7)
+                            break;
 
-        //                }
-        //                i++;
-        //            }
 
-        //        }
-        //    }
-        //    return false;
+                        if (BoardPieces.Any(piece => piece.Coordinates == (x + i * dx, y + i * dy) && piece.TypeOfTile == TileType.Empty))
+                            break;
+                            
+
+                        if (BoardPieces.Any(piece => piece.Coordinates == (x + i * dx, y + i * dy) && piece.TypeOfTile == TileType.Black))
+                        {
+                                return true;
+                        }
+                        
+                       i++;                           
+                                                                      
+                           
+                    }
+
+                }
+            }
+            return false;
 
         }
     }
