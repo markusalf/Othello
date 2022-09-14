@@ -29,8 +29,14 @@ namespace Othello.ViewModels
             UpdatePlayerBlackScore();
             UpdatePlayerWhiteScore();
             OppositeColor(CurrentPlayer);
-            IsPossibleMove(BoardPieces[34]);
+            IsPossibleMove(BoardPieces[20]);
+            //ChangeTileType(BoardPieces[20]);
         }
+
+        //public void ChangeTileType(UCTile tile)
+        //{
+        //    tile.TypeOfTile = CurrentPlayer.TypeOfTile;
+        //}
 
 
         private void FillBoard()
@@ -42,7 +48,7 @@ namespace Othello.ViewModels
                     {
                         BoardPieces.Add(new UCTile
                         {
-                            Coordinates = (y, x),
+                            Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.Black
                         });
@@ -51,7 +57,7 @@ namespace Othello.ViewModels
                     {
                         BoardPieces.Add(new UCTile
                         {
-                            Coordinates = (y, x),
+                            Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.White
                         });
@@ -60,7 +66,7 @@ namespace Othello.ViewModels
                     {
                         BoardPieces.Add(new UCTile
                         {
-                            Coordinates = (y, x),
+                            Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.Black
                         });
@@ -69,7 +75,7 @@ namespace Othello.ViewModels
                     {
                         BoardPieces.Add(new UCTile
                         {
-                            Coordinates = (y, x),
+                            Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.White
                         });
@@ -78,7 +84,7 @@ namespace Othello.ViewModels
                     {
                         BoardPieces.Add(new UCTile
                         {
-                            Coordinates = (y, x),
+                            Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.Empty
                         });
@@ -166,8 +172,8 @@ namespace Othello.ViewModels
         public bool IsPossibleMove(UCTile Tile)
         {
             TileType currentColor = CurrentPlayer.TypeOfTile;
-            int y = Tile.Coordinates.Item1;
-            int x = Tile.Coordinates.Item2;
+            int x = Tile.Coordinates.Item1;
+            int y = Tile.Coordinates.Item2;
 
             for (int dx = -1; dx <= 1; dx++)
             {
