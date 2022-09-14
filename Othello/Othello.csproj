@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Views\CircleScore.png" />
+    <None Remove="Views\background.png" />
+    <None Remove="Views\currentTurn.png" />
+    <None Remove="Views\score.jpg" />
   </ItemGroup>
  
   <ItemGroup>
@@ -16,7 +18,9 @@
   </ItemGroup>
  
   <ItemGroup>
-    <Resource Include="Views\CircleScore.png" />
+    <Resource Include="Views\Images\Background.png" />
+    <Resource Include="Views\Images\CurrentTurn.png" />
+    <Resource Include="Views\Images\Score.jpg" />
   </ItemGroup>
  
   <ItemGroup>
