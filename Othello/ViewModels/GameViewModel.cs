@@ -30,15 +30,18 @@ namespace Othello.ViewModels
             UpdatePlayerWhiteScore();
             OppositeColor(CurrentPlayer);
             IsPossibleMove(BoardPieces[20]);
-            //ChangeTileType(BoardPieces[20]);
+            ChangeTileType(BoardPieces[20]);
+            CanPlayerMakeAMove(CurrentPlayer);
         }
 
-        //public void ChangeTileType(UCTile tile)
-        //{
-        //    tile.TypeOfTile = CurrentPlayer.TypeOfTile;
-        //}
+        public void ChangeTileType(UCTile tile)
+        {
+            tile.TypeOfTile = CurrentPlayer.TypeOfTile;
+        }
 
-
+        /// <summary>
+        /// Fyller boarden med UCTile och lägger till 2 svarta och 2 vita.
+        /// </summary>
         private void FillBoard()
         {
             for (var y = 0; y < _gameBoardSize; y++)
@@ -94,7 +97,9 @@ namespace Othello.ViewModels
             CurrentPlayer.TypeOfTile = TileType.Black;
         }
 
-
+        /// <summary>
+        /// Uppdaterar och visar hur många svarta tiles som finns på spelbrädet.
+        /// </summary>
         public void UpdatePlayerBlackScore()
         {
             PlayerBlackScore = 0;
@@ -107,7 +112,9 @@ namespace Othello.ViewModels
                 }
             }
         }
-
+        /// <summary>
+        /// Uppdaterar och visar hur många vita tiles som finns på spelbrädet.
+        /// </summary>
         public void UpdatePlayerWhiteScore()
         {
             PlayerWhiteScore = 0;
@@ -120,7 +127,9 @@ namespace Othello.ViewModels
                 }
             }
         }
-
+        /// <summary>
+        /// Byter vilken spelares tur det är.
+        /// </summary>
         public void ChangePlayerTurn()
         {
             if (CurrentPlayer.TypeOfTile == TileType.Black)
@@ -131,19 +140,30 @@ namespace Othello.ViewModels
             {
                 CurrentPlayer.TypeOfTile = TileType.Black;
             }
+            OppositeColor(CurrentPlayer);
+        }
+        /// <summary>
+        /// Kollar om spelaren kan göra ett giltigt drag.
+        /// </summary>
+        /// <param name="CurrentPlayer"></param>
+        /// <returns>Sant om spelaren kan göra ett giltigt drag. Falskt om den inte kan samt ändrar då till andra spelarens tur</returns>
+        public bool CanPlayerMakeAMove(UCTile CurrentPlayer)
+        {
+            ChangePlayerTurn();
+            foreach (UCTile tile in BoardPieces)
+            {
+                IsPossibleMove(tile);
+                return true;
+            }
+            ChangePlayerTurn();
+            return false;
         }
 
-        //public bool CanPlayerMakeAMove(UCTile CurrentPlayer)
-        //{
-        //    foreach(UCTile tile in BoardPieces)
-        //    {
-        //        IsPossibleMove(tile);
-        //        return true;
-        //    }
-        //    return false;
-        //}
-
-
+        /// <summary>
+        /// Kollar om brickan spelaren vill lägga sin tile på är tom och tillgänglig.
+        /// </summary>
+        /// <param name="Tile"></param>
+        /// <returns>Sant om rutan är tom och spelaren kan lägga ut. Falskt om den inte kan lägga ut.</returns>
         public bool IsBoardPieceAvailable(UCTile Tile)
         {
             if (Tile.TypeOfTile != TileType.Empty)
@@ -155,7 +175,11 @@ namespace Othello.ViewModels
                 return true;
             }
         }
-
+        /// <summary>
+        /// Ändrar vilken färg/tiletype oppositecolor är.
+        /// </summary>
+        /// <param name="CurrentPlayer"></param>
+        /// <returns>Den färg/tiletype som oppositecolor är.</returns>
         public TileType OppositeColor(UCTile CurrentPlayer)
         {
             if(CurrentPlayer.TypeOfTile == TileType.Black)
@@ -168,7 +192,11 @@ namespace Othello.ViewModels
             }
             return oppositeColor;
         }
-
+        /// <summary>
+        /// Går igenom brädet runt den tile/rutan man vill lägga ut för att se om det är ett möjligt drag genom att man flankerar motståndarens tile/tiles.
+        /// </summary>
+        /// <param name="Tile"></param>
+        /// <returns>Sant om det är ett möjligt drag. Falskt om det inte är ett möjligt drag.</returns>
         public bool IsPossibleMove(UCTile Tile)
         {
             TileType currentColor = CurrentPlayer.TypeOfTile;
