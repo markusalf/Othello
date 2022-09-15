@@ -45,8 +45,8 @@ namespace Othello.Views
             double x = clickedPosition.X;
             double y = clickedPosition.Y;
 
-            x = Math.Floor(x / pieceSize) * pieceSize;
-            y = Math.Floor(y / pieceSize) * pieceSize;
+            x = Math.Floor(x / pieceSize);
+            y = Math.Floor(y / pieceSize);
 
             return new Point(x, y);
         }
