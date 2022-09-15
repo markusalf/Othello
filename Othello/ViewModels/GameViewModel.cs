@@ -31,7 +31,8 @@ namespace Othello.ViewModels
             FillBoard();
             UpdatePlayerBlackScore();
             UpdatePlayerWhiteScore();
-            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b)) ;
+            OppositeColor(CurrentPlayer);
+            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));
         }
 
         /// <summary>
@@ -42,6 +43,7 @@ namespace Othello.ViewModels
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             tile.TypeOfTile = CurrentPlayer.TypeOfTile;
+            ChangePlayerTurn();
         }
 
         public void ChangeTileType(UCTile tile)
@@ -96,7 +98,7 @@ namespace Othello.ViewModels
                             TypeOfTile = TileType.White,
                             Id = BoardPieces.Count
                         });
-                    }                                      
+                    }                   
                     else
                     {
                         BoardPieces.Add(new UCTile
@@ -223,7 +225,7 @@ namespace Othello.ViewModels
 
             for (int dx = -1; dx <= 1; dx++)
             {
-                for (int dy = -1; dy < 1; dy++)
+                for (int dy = -1; dy <= 1; dy++)
                 {
                     if (dx == 0 && dy == 0)
                         continue;
