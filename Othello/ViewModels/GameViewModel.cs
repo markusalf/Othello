@@ -10,6 +10,8 @@ using Othello.Enums;
 using System.Windows.Markup;
 using System.Windows.Input;
 using Othello.Commands;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Othello.ViewModels
 {
@@ -19,10 +21,10 @@ namespace Othello.ViewModels
         public UCTile CurrentPlayer { get; set; } = new UCTile();
         TileType oppositeColor;
         private const int _gameBoardSize = 8;
-
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public ICommand TileClickedCommand { get; }
-
+        public ICommand CurrentTurn { get; }
         public int PlayerBlackScore { get; set; } = 0;
         public int PlayerWhiteScore { get; set; } = 0;
 
@@ -263,5 +265,28 @@ namespace Othello.ViewModels
             return false;
 
         }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        /// <summary>
+        /// Uppdatera i gränssnittet vilken spelares tur det är att lägga sin bricka
+        /// </summary>
+        private UCTile currentPlayerTurn;
+        public UCTile CurrentPlayerTurn
+        {
+            get { return currentPlayerTurn; }
+            set 
+            {
+                currentPlayerTurn = value;
+                NotifyPropertyChanged(nameof(CurrentPlayer));
+            }
+        }
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
 }

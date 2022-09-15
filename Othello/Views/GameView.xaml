@@ -25,7 +25,16 @@
             </ItemsControl.ItemsPanel>
         </ItemsControl>
         <Grid>
-            <Label Content="{}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Height="100" Width="220" x:Name="CurrentTurn" Margin="835,0,0,0" FontFamily="Segoe UI Black" FontSize="25">
+            <TextBlock Text="Current turn" VerticalAlignment="Top" HorizontalAlignment="Left" Height="45" Width="204" FontFamily="Franklin Gothic Medium"  FontSize="38" Margin="849,250,0,0" FontStyle="Oblique" Foreground="#FFE0E0E0">
+                <TextBlock.Effect>
+                    <DropShadowEffect
+                               ShadowDepth="8"
+                               Direction="330"
+                               Color="#0c4007"
+                               BlurRadius="3"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Label Content="{Binding CurrentPlayer, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Height="100" Width="220" x:Name="CurrentTurn" Margin="835,0,0,0" FontFamily="Segoe UI Black" FontSize="25" FontWeight="Bold">
                 <Label.Effect>
                     <DropShadowEffect Color="ForestGreen" ShadowDepth="5" BlurRadius="8"/>
                 </Label.Effect>
