@@ -38,6 +38,8 @@
                     <ImageBrush Stretch="Fill" ImageSource="/Views/CircleScore.png" />
                 </Label.Background>
             </Label>
-        </ItemsControl>
+        </ItemsControl>        
+
+        
     </Grid>
 </UserControl>

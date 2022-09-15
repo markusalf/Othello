@@ -14,7 +14,7 @@
         <converter:RectangleTileTypeToColorConverter x:Key="RectangleTileTypeToColorConverter"/>
     </UserControl.Resources>
 
-    <Grid Height="75" Width="75">
+    <Grid Height="75" Width="75">        
         <Rectangle
             Fill="{Binding TypeOfSquare, ElementName=Tile, Converter={StaticResource RectangleTileTypeToColorConverter}}"
             Stroke="Black"
@@ -24,5 +24,11 @@
             Height="50"
             Fill="{Binding TypeOfTile, ElementName=Tile, Converter={StaticResource EllipseTileTypeToColorConverter}}">
         </Ellipse>
+        <Grid.InputBindings>
+            <MouseBinding
+            Gesture="LeftClick"
+            Command="{Binding TileClickedCommand}"
+            CommandParameter="{Binding Id, ElementName=Tile}"/>
+        </Grid.InputBindings>
     </Grid>
 </UserControl>

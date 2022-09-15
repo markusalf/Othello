@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Othello.Enums;
 using System.Windows.Markup;
+using System.Windows.Input;
+using Othello.Commands;
 
 namespace Othello.ViewModels
 {
@@ -19,6 +21,7 @@ namespace Othello.ViewModels
         private const int _gameBoardSize = 8;
 
 
+        public ICommand TileClickedCommand { get; }
 
         public int PlayerBlackScore { get; set; } = 0;
         public int PlayerWhiteScore { get; set; } = 0;
@@ -28,10 +31,17 @@ namespace Othello.ViewModels
             FillBoard();
             UpdatePlayerBlackScore();
             UpdatePlayerWhiteScore();
-            OppositeColor(CurrentPlayer);
-            IsPossibleMove(BoardPieces[20]);
-            ChangeTileType(BoardPieces[20]);
-            CanPlayerMakeAMove(CurrentPlayer);
+            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b)) ;
+        }
+
+        /// <summary>
+        /// Lägger ut en Tile på spelbrädan
+        /// </summary>
+        /// <param name="x"></param>
+        private void PlaceTile(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            tile.TypeOfTile = CurrentPlayer.TypeOfTile;
         }
 
         public void ChangeTileType(UCTile tile)
@@ -53,7 +63,8 @@ namespace Othello.ViewModels
                         {
                             Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.Black
+                            TypeOfTile = TileType.Black,
+                            Id = BoardPieces.Count
                         });
                     }
                     else if (x == 4 && y == 3)
@@ -62,7 +73,8 @@ namespace Othello.ViewModels
                         {
                             Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.White
+                            TypeOfTile = TileType.White,
+                            Id = BoardPieces.Count
                         });
                     }
                     else if (x == 4 && y == 4)
@@ -71,7 +83,8 @@ namespace Othello.ViewModels
                         {
                             Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.Black
+                            TypeOfTile = TileType.Black,
+                            Id = BoardPieces.Count
                         });
                     }
                     else if (x == 3 && y == 4)
@@ -80,7 +93,8 @@ namespace Othello.ViewModels
                         {
                             Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.White
+                            TypeOfTile = TileType.White,
+                            Id = BoardPieces.Count
                         });
                     }                                      
                     else
@@ -89,7 +103,8 @@ namespace Othello.ViewModels
                         {
                             Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.Empty
+                            TypeOfTile = TileType.Empty,
+                            Id = BoardPieces.Count
                         });
                     }
                 }
@@ -195,13 +210,16 @@ namespace Othello.ViewModels
         /// <summary>
         /// Går igenom brädet runt den tile/rutan man vill lägga ut för att se om det är ett möjligt drag genom att man flankerar motståndarens tile/tiles.
         /// </summary>
-        /// <param name="Tile"></param>
+        /// <param name="b"></param>
         /// <returns>Sant om det är ett möjligt drag. Falskt om det inte är ett möjligt drag.</returns>
-        public bool IsPossibleMove(UCTile Tile)
+        public bool IsPossibleMove(object b)
         {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
             TileType currentColor = CurrentPlayer.TypeOfTile;
-            int x = Tile.Coordinates.Item1;
-            int y = Tile.Coordinates.Item2;
+            
+
+            int x = tile.Coordinates.Item1;
+            int y = tile.Coordinates.Item2;
 
             for (int dx = -1; dx <= 1; dx++)
             {
