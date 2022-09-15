@@ -45,7 +45,7 @@
         </Grid>
 
         <ItemsControl VerticalAlignment="Top" x:Name="BlackScoreBoard">
-            <Label Content="{Binding PlayerWhiteScore}" Height="100" Width="118" HorizontalAlignment="Left" Margin="80, 90" FontFamily="Bahnschrift SemiBold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
+            <Label Content="{Binding PlayerWhiteScore, UpdateSourceTrigger=PropertyChanged}" Height="100" Width="118" HorizontalAlignment="Left" Margin="80, 90" FontFamily="Bahnschrift SemiBold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
                 <Label.Effect>
                     <DropShadowEffect Color="ForestGreen" ShadowDepth="10" BlurRadius="9"/>
                 </Label.Effect>
@@ -56,7 +56,7 @@
         </ItemsControl>
         <Ellipse Fill="White" Width="40" Height="38" Margin="117,95,898,567"/>
         <ItemsControl VerticalAlignment="Bottom" x:Name="WhiteScoreBoard">
-            <Label Content="{Binding PlayerBlackScore}" Height="100" Width="118" HorizontalAlignment="Left" Margin="80, 90" FontFamily="Bahnschrift SemiBold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
+            <Label Content="{Binding PlayerBlackScore, UpdateSourceTrigger=PropertyChanged}" Height="100" Width="118" HorizontalAlignment="Left" Margin="80, 90" FontFamily="Bahnschrift SemiBold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom">
                 <Label.Effect>
                     <DropShadowEffect Color="ForestGreen" ShadowDepth="10" BlurRadius="9"/>
                 </Label.Effect>
