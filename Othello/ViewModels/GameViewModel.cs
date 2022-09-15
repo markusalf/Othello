@@ -29,11 +29,11 @@ namespace Othello.ViewModels
         public GameViewModel()
         {
             FillBoard();
-            UpdatePlayerBlackScore();
-            UpdatePlayerWhiteScore();
             OppositeColor(CurrentPlayer);
-            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));
+            UpdateScore();
+            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));            
         }
+
 
         /// <summary>
         /// Lägger ut en Tile på spelbrädan
@@ -44,6 +44,7 @@ namespace Othello.ViewModels
             var tile = BoardPieces.First(t => t.Id == (int)b);
             tile.TypeOfTile = CurrentPlayer.TypeOfTile;
             ChangePlayerTurn();
+            UpdateScore();
         }
 
         public void ChangeTileType(UCTile tile)
@@ -114,35 +115,14 @@ namespace Othello.ViewModels
             CurrentPlayer.TypeOfTile = TileType.Black;
         }
 
-        /// <summary>
-        /// Uppdaterar och visar hur många svarta tiles som finns på spelbrädet.
-        /// </summary>
-        public void UpdatePlayerBlackScore()
-        {
-            PlayerBlackScore = 0;
 
-            foreach (var UCTile in BoardPieces)
-            {
-                if (UCTile.TypeOfTile == TileType.Black)
-                {
-                    PlayerBlackScore++;
-                }
-            }
-        }
         /// <summary>
-        /// Uppdaterar och visar hur många vita tiles som finns på spelbrädet.
+        /// Räknar svarta/vita brickor på spelbrädan för att visa resultat
         /// </summary>
-        public void UpdatePlayerWhiteScore()
+        public void UpdateScore()
         {
-            PlayerWhiteScore = 0;
-
-            foreach (var UCTile in BoardPieces)
-            {
-                if (UCTile.TypeOfTile == TileType.White)
-                {
-                    PlayerWhiteScore++;
-                }
-            }
+        PlayerBlackScore = BoardPieces.Count(x => x.TypeOfTile == TileType.Black);
+        PlayerWhiteScore = BoardPieces.Count(x => x.TypeOfTile == TileType.White);
         }
         /// <summary>
         /// Byter vilken spelares tur det är.
