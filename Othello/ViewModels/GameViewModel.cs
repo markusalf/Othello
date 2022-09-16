@@ -251,7 +251,7 @@ namespace Othello.ViewModels
                             break;
                             
 
-                        if (BoardPieces.Any(piece => piece.Coordinates == (x + i * dx, y + i * dy) && piece.TypeOfTile == currentColor))
+                        if (BoardPieces.Any(piece => piece.Coordinates == (x + i * dx, y + i * dy) && piece.TypeOfTile == currentColor && tile.TypeOfTile == TileType.Empty))
                         {
                                 return true;
                         }
