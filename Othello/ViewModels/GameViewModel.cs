@@ -25,6 +25,7 @@ namespace Othello.ViewModels
 
         public ICommand TileClickedCommand { get; }
         public ICommand CurrentTurn { get; }
+
         public int PlayerBlackScore { get; set; } = 0;
         public int PlayerWhiteScore { get; set; } = 0;
 
@@ -33,12 +34,13 @@ namespace Othello.ViewModels
             FillBoard();
             OppositeColor(CurrentPlayer);
             UpdateScore();
+            ShowPossibleMoves();
             TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));            
         }
 
 
         /// <summary>
-        /// Lägger ut en Tile på spelbrädan
+        /// Lägger ut en Tile på spelbrädan, uppdaterar resultatet, byter spelares tur och visar möjliga drag för den nya spelaren.
         /// </summary>
         /// <param name="x"></param>
         private void PlaceTile(object b)
@@ -47,6 +49,25 @@ namespace Othello.ViewModels
             tile.TypeOfTile = CurrentPlayer.TypeOfTile;
             ChangePlayerTurn();
             UpdateScore();
+            ShowPossibleMoves();
+        }
+
+        private void ShowPossibleMoves()
+        {
+
+            foreach (var UCTile in BoardPieces)
+            {
+
+                var b = UCTile.Id;
+                if (IsPossibleMove(b))
+                {
+                    UCTile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
+                }
+                else
+                {
+                    UCTile.TypeOfSquare = BoardPieceType.NotPossibleMoveMarker;
+                }
+            }
         }
 
         public void ChangeTileType(UCTile tile)
