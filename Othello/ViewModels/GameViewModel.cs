@@ -102,7 +102,7 @@ namespace Othello.ViewModels
                         {
                             Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.White,
+                            TypeOfTile = TileType.Black,
                             Id = BoardPieces.Count
                         });
                     }
@@ -122,7 +122,37 @@ namespace Othello.ViewModels
                         {
                             Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
+                            TypeOfTile = TileType.Black,
+                            Id = BoardPieces.Count
+                        });
+                    }
+                    else if (x == 5 && y == 5)
+                    {
+                        BoardPieces.Add(new UCTile
+                        {
+                            Coordinates = (x, y),
+                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.White,
+                            Id = BoardPieces.Count
+                        });
+                    }
+                    else if (x == 2 && y == 5)
+                    {
+                        BoardPieces.Add(new UCTile
+                        {
+                            Coordinates = (x, y),
+                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
+                            TypeOfTile = TileType.White,
+                            Id = BoardPieces.Count
+                        });
+                    }
+                    else if (x == 5 && y == 3)
+                    {
+                        BoardPieces.Add(new UCTile
+                        {
+                            Coordinates = (x, y),
+                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
+                            TypeOfTile = TileType.Black,
                             Id = BoardPieces.Count
                         });
                     }
@@ -148,7 +178,7 @@ namespace Othello.ViewModels
                     }
                 }
 
-            CurrentPlayer.TypeOfTile = TileType.Black;
+            CurrentPlayer.TypeOfTile = TileType.White;
         }
 
 
@@ -298,6 +328,22 @@ namespace Othello.ViewModels
             {
                 ChangeTilesDirectionEast(b);
             }
+            if(IsDirectionSouthWestPossible(b))
+            {
+                ChangeTilesDirectionSouthWest(b);
+            }
+            if (IsDirectionSouthEastPossible(b))
+            {
+                ChangeTilesDirectionSouthEast(b);
+            }
+            if (IsDirectionNorthWestPossible(b))
+            {
+                ChangeTilesDirectionNorthWest(b);
+            }
+            if (IsDirectionNorthEastPossible(b))
+            {
+                ChangeTilesDirectionNorthEast(b);
+            }
 
             ChangeColorOfTiles();
         }
@@ -396,6 +442,271 @@ namespace Othello.ViewModels
                     }                            
             
         }
+        public bool IsDirectionSouthWestPossible(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            TileType currentColor = CurrentPlayer.TypeOfTile;
+            int x = tile.Coordinates.Item1;
+            int y = tile.Coordinates.Item2;
+
+            if (y + 1 <= 7 && x - 1 >= 0)
+            {
+                if (BoardPieces.Any(piece => piece.Coordinates == (x - 1, y + 1) && piece.TypeOfTile == oppositeColor))
+                {
+                var i = x - 2;
+                var j = y + 2;
+
+                    while (i >= 0 && j <= 7)
+                    {
+                        if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == currentColor))
+                        {
+                            return true;
+                        }
+
+                        else if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
+                        {
+                            i--;
+                            j++;
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void ChangeTilesDirectionSouthWest(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            int x = tile.Coordinates.Item1;
+            int y = tile.Coordinates.Item2;
+            TileType currentColor = CurrentPlayer.TypeOfTile;
+
+            if (y + 1 <= 7 && x - 1 >= 0)
+            {
+                var i = x - 1;
+                var j = y + 1;
+                while (i >= 0 && j <= 7)
+                {
+                    if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
+                    {
+                        directionResults.Add(Tuple.Create(i, j));
+                        i--;
+                        j++;
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+        }
+
+
+        public bool IsDirectionSouthEastPossible(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            TileType currentColor = CurrentPlayer.TypeOfTile;
+            int x = tile.Coordinates.Item1;
+            int y = tile.Coordinates.Item2;
+
+            if (y + 1 <= 7 && x + 1 <= 7)
+            {
+                if (BoardPieces.Any(piece => piece.Coordinates == (x + 1, y + 1) && piece.TypeOfTile == oppositeColor))
+                {
+                    var i = x + 2;
+                    var j = y + 2;
+
+                    while (i <= 7 && j <= 7)
+                    {
+                        if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == currentColor))
+                        {
+                            return true;
+                        }
+
+                        else if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
+                        {
+                            i++;
+                            j++;
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void ChangeTilesDirectionSouthEast(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            int x = tile.Coordinates.Item1;
+            int y = tile.Coordinates.Item2;
+            TileType currentColor = CurrentPlayer.TypeOfTile;
+
+            if (y + 1 <= 7 && x + 1 <= 7)
+            {
+                var i = x + 1;
+                var j = y + 1;
+                while (i <= 7 && j <= 7)
+                {
+                    if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
+                    {
+                        directionResults.Add(Tuple.Create(i, j));
+                        i++;
+                        j++;
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        public bool IsDirectionNorthWestPossible(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            TileType currentColor = CurrentPlayer.TypeOfTile;
+            int x = tile.Coordinates.Item1;
+            int y = tile.Coordinates.Item2;
+
+            if (y - 1 >= 0 && x - 1 >= 0)
+            {
+                if (BoardPieces.Any(piece => piece.Coordinates == (x - 1, y - 1) && piece.TypeOfTile == oppositeColor))
+                {
+                    var i = x - 2;
+                    var j = y - 2;
+
+                    while (i >= 0 && j >= 0)
+                    {
+                        if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == currentColor))
+                        {
+                            return true;
+                        }
+
+                        else if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
+                        {
+                            i--;
+                            j--;
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void ChangeTilesDirectionNorthWest(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            int x = tile.Coordinates.Item1;
+            int y = tile.Coordinates.Item2;
+            TileType currentColor = CurrentPlayer.TypeOfTile;
+
+            if (y - 1 >= 0 && x - 1 >= 0)
+            {
+                var i = x - 1;
+                var j = y - 1;
+                while (i >= 0 && j >= 0)
+                {
+                    if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
+                    {
+                        directionResults.Add(Tuple.Create(i, j));
+                        i--;
+                        j--;
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        public bool IsDirectionNorthEastPossible(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            TileType currentColor = CurrentPlayer.TypeOfTile;
+            int x = tile.Coordinates.Item1;
+            int y = tile.Coordinates.Item2;
+
+            if (y - 1 >= 0 && x + 1 <= 7)
+            {
+                if (BoardPieces.Any(piece => piece.Coordinates == (x + 1, y - 1) && piece.TypeOfTile == oppositeColor))
+                {
+                    var i = x + 2;
+                    var j = y - 2;
+
+                    while (i <= 7 && j >= 0)
+                    {
+                        if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == currentColor))
+                        {
+                            return true;
+                        }
+
+                        else if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
+                        {
+                            i++;
+                            j--;
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void ChangeTilesDirectionNorthEast(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            int x = tile.Coordinates.Item1;
+            int y = tile.Coordinates.Item2;
+            TileType currentColor = CurrentPlayer.TypeOfTile;
+
+            if (y - 1 >= 0 && x + 1 <= 7)
+            {
+                var i = x + 1;
+                var j = y - 1;
+                while (i <= 7 && j >= 0)
+                {
+                    if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
+                    {
+                        directionResults.Add(Tuple.Create(i, j));
+                        i++;
+                        j--;
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+        }
+
 
         public bool IsDirectionNorthPossible(object b)
         {
