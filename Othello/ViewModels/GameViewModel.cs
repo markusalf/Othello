@@ -33,9 +33,10 @@ namespace Othello.ViewModels
         public GameViewModel()
         {
             FillBoard();
+            ChangePlayerTurn();
             OppositeColor(CurrentPlayer);
             UpdateScore();
-            ShowPossibleMoves();
+            //ShowPossibleMoves();
             TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));            
         }
 
@@ -48,11 +49,11 @@ namespace Othello.ViewModels
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             tile.TypeOfTile = CurrentPlayer.TypeOfTile;
-            ShowPossibleMoves();
+            //ShowPossibleMoves();
             MakeAMove(b);
-            UpdateScore();
             ChangePlayerTurn();
             directionResults.Clear();
+            UpdateScore();
         }
 
         private void ShowPossibleMoves()
@@ -92,7 +93,7 @@ namespace Othello.ViewModels
                         {
                             Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.Black,
+                            TypeOfTile = TileType.White,
                             Id = BoardPieces.Count
                         });
                     }
@@ -112,7 +113,7 @@ namespace Othello.ViewModels
                         {
                             Coordinates = (x, y),
                             TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.Black,
+                            TypeOfTile = TileType.White,
                             Id = BoardPieces.Count
                         });
                     }
@@ -125,47 +126,7 @@ namespace Othello.ViewModels
                             TypeOfTile = TileType.Black,
                             Id = BoardPieces.Count
                         });
-                    }
-                    else if (x == 5 && y == 5)
-                    {
-                        BoardPieces.Add(new UCTile
-                        {
-                            Coordinates = (x, y),
-                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.White,
-                            Id = BoardPieces.Count
-                        });
-                    }
-                    else if (x == 2 && y == 5)
-                    {
-                        BoardPieces.Add(new UCTile
-                        {
-                            Coordinates = (x, y),
-                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.White,
-                            Id = BoardPieces.Count
-                        });
-                    }
-                    else if (x == 5 && y == 3)
-                    {
-                        BoardPieces.Add(new UCTile
-                        {
-                            Coordinates = (x, y),
-                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.Black,
-                            Id = BoardPieces.Count
-                        });
-                    }
-                    else if (x == 4 && y == 5)
-                    {
-                        BoardPieces.Add(new UCTile
-                        {
-                            Coordinates = (x, y),
-                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
-                            TypeOfTile = TileType.Black,
-                            Id = BoardPieces.Count
-                        });
-                    }
+                    }                    
                     else
                     {
                         BoardPieces.Add(new UCTile
