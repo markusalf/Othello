@@ -18,7 +18,7 @@
   </ItemGroup>
  
   <ItemGroup>
-    <Resource Include="Views\Images\Background.png" />
+    <Resource Include="Views\Images\GameBackground.png" />
     <Resource Include="Views\Images\CurrentTurn.png" />
     <Resource Include="Views\Images\Score.jpg" />
   </ItemGroup>

@@ -11,7 +11,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Views/Images/Background.png"/>
+            <ImageBrush ImageSource="/Views/Images/GameBackground.png"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>

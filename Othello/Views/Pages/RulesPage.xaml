@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Othello.Views.Pages.RulesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Othello.Views.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Views/Images/GeneralBackground.jpg"/>
+        </Grid.Background>
+        <Button x:Name="RestartBtn" BorderThickness="0,0,0,0" Margin="612,307,-2,-31" Height="150" Width="140">
+            <Button.Background>
+                <ImageBrush ImageSource="/Views/Images/Button.png"/>
+            </Button.Background>
+            <Image Source="/Views/Images/Return.png" Margin="-10,20,18,10" Height="86" Width="153"/>
+        </Button>
+        <Label Margin="20,-25,200,0">
+            <Label.Content>
+                <Image Source="/Views/Images/PaperScroll.png" Height="600" Width="560"/>
+            </Label.Content>
+        </Label>
+        <Viewbox Margin="30,148,210,-125">
+            <StackPanel Orientation="Vertical" Width="290" Height="400">
+                <TextBlock x:Name="DescriptionTxtBlk"
+                           FontSize="10"
+                           TextWrapping="Wrap"
+                           Text="En spelare börjar med att lägga brickor med vita sidan upp, den andre med svarta sidan upp. Spelarna lägger växelvis en bricka var. Brickorna skall läggas så att man får en rad (vågrätt, lodrätt eller diagonalt) där man har en bricka i sin egen färg i radens båda ändar, och däremellan minst en bricka av motsatt färg. Mellanliggande brickor av motsatt färg vänds så att de får andra sidan upp. Den vinner som vid spelets slut har flest brickor i sin färg. Du kan bilda upp till 8 rader samtidigt, och vänder motspelarens brickor i samtliga rader. Du får bara lägga ut bricka om du kan vända minst en av motspelarens brickor. Kan du inte, så måste du stå över ett drag. Så i ett parti kan den ene spelaren lägga ut fler än hälften av brickorna, och ett parti kan sluta innan alla brickor är utlagda." FontWeight="Bold" Height="286"/>
+            </StackPanel>
+        </Viewbox>
+        <Label Width="200" Margin="226,75,374,302">
+            <Image Source="/Views/Images/GameRules.png" Height="60" Width="138"/>
+        </Label>
+    </Grid>
+</UserControl>
