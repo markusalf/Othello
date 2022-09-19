@@ -14,7 +14,6 @@ using Othello.Commands;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Reflection;
-using System.Media;
 
 namespace Othello.ViewModels
 {
