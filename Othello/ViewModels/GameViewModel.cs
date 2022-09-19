@@ -760,35 +760,37 @@ namespace Othello.ViewModels
 
         public bool IsPossibleMove(object b)
         {
-            if (IsDirectionSouthPossible(b))
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+
+            if (IsDirectionSouthPossible(b) && tile.TypeOfTile == TileType.Empty)
             {
                 return true;
             }
-            else if (IsDirectionNorthPossible(b))
+            else if (IsDirectionNorthPossible(b) && tile.TypeOfTile == TileType.Empty)
             {
                 return true;
             }
-            else if (IsDirectionEastPossible(b))
+            else if (IsDirectionEastPossible(b) && tile.TypeOfTile == TileType.Empty)
             {
                 return true;
             }
-            else if (IsDirectionWestPossible(b))
+            else if (IsDirectionWestPossible(b) && tile.TypeOfTile == TileType.Empty)
             {
                 return true;
             }
-            else if (IsDirectionNorthEastPossible(b))
+            else if (IsDirectionNorthEastPossible(b) && tile.TypeOfTile == TileType.Empty)
             {
                 return true;
             }
-            else if (IsDirectionNorthWestPossible(b))
+            else if (IsDirectionNorthWestPossible(b) && tile.TypeOfTile == TileType.Empty)
             {
                 return true;
             }
-            else if (IsDirectionSouthEastPossible(b))
+            else if (IsDirectionSouthEastPossible(b) && tile.TypeOfTile == TileType.Empty)
             {
                 return true;
             }
-            else if (IsDirectionSouthWestPossible(b))
+            else if (IsDirectionSouthWestPossible(b) && tile.TypeOfTile == TileType.Empty)
             {
                 return true;
             }
