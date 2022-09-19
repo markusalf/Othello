@@ -1,6 +1,7 @@
 ﻿using Othello.ViewModels.Base;
 using Othello.Views.GameTiles;
 using System;
+using System.Media;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,6 +14,7 @@ using Othello.Commands;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Reflection;
+using System.Media;
 
 namespace Othello.ViewModels
 {
@@ -54,6 +56,13 @@ namespace Othello.ViewModels
             ChangePlayerTurn();
             CanPlayerMakeAMove();
             ShowPossibleMoves();
+            PlaySound();
+        }
+
+        private void PlaySound()
+        {
+            var clickSound = new SoundPlayer(Properties.Resources.clickSound);
+            clickSound.Play();
         }
 
         private void ShowPossibleMoves()
