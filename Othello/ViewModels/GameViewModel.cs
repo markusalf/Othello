@@ -49,10 +49,11 @@ namespace Othello.ViewModels
             var tile = BoardPieces.First(t => t.Id == (int)b);
             tile.TypeOfTile = CurrentPlayer.TypeOfTile;
             MakeAMove(b);
-            ChangePlayerTurn();
             directionResults.Clear();
-            ShowPossibleMoves();
             UpdateScore();
+            ChangePlayerTurn();
+            CanPlayerMakeAMove();
+            ShowPossibleMoves();
         }
 
         private void ShowPossibleMoves()
@@ -170,17 +171,17 @@ namespace Othello.ViewModels
         /// </summary>
         /// <param name="CurrentPlayer"></param>
         /// <returns>Sant om spelaren kan göra ett giltigt drag. Falskt om den inte kan samt ändrar då till andra spelarens tur</returns>
-        //public bool CanPlayerMakeAMove(UCTile CurrentPlayer)
-        //{
-        //    ChangePlayerTurn();
-        //    foreach (UCTile tile in BoardPieces)
-        //    {
-        //        IsPossibleMove(tile);
-        //        return true;
-        //    }
-        //    ChangePlayerTurn();
-        //    return false;
-        //}
+        public bool CanPlayerMakeAMove()
+        {
+            
+            foreach (UCTile tile in BoardPieces)
+            {
+                if (IsPossibleMove(tile.Id)) { return true; }
+                
+            }
+            ChangePlayerTurn();
+            return false;
+        }
 
         /// <summary>
         /// Kollar om brickan spelaren vill lägga sin tile på är tom och tillgänglig.
