@@ -35,8 +35,8 @@ namespace Othello.ViewModels
             ChangePlayerTurn();
             OppositeColor(CurrentPlayer);
             UpdateScore();
-            //ShowPossibleMoves();
-            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => true);       
+            ShowPossibleMoves();
+            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));       
         }
 
 
@@ -48,30 +48,31 @@ namespace Othello.ViewModels
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             tile.TypeOfTile = CurrentPlayer.TypeOfTile;
-            //ShowPossibleMoves();
             MakeAMove(b);
-            ChangePlayerTurn();
             directionResults.Clear();
             UpdateScore();
+            ChangePlayerTurn();
+            CanPlayerMakeAMove();
+            ShowPossibleMoves();
         }
 
-        //private void ShowPossibleMoves()
-        //{
+        private void ShowPossibleMoves()
+        {
 
-        //    foreach (var UCTile in BoardPieces)
-        //    {
+            foreach (var UCTile in BoardPieces)
+            {
 
-        //        var b = UCTile.Id;
-        //        if ()
-        //        {
-        //            UCTile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
-        //        }
-        //        else
-        //        {
-        //            UCTile.TypeOfSquare = BoardPieceType.NotPossibleMoveMarker;
-        //        }
-        //    }
-        //}
+                var b = UCTile.Id;
+                if (IsPossibleMove(b) && UCTile.TypeOfTile == TileType.Empty)
+                {
+                    UCTile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
+                }
+                else
+                {
+                    UCTile.TypeOfSquare = BoardPieceType.NotPossibleMoveMarker;
+                }
+            }
+        }
 
         public void ChangeTileType(UCTile tile)
         {
@@ -170,17 +171,17 @@ namespace Othello.ViewModels
         /// </summary>
         /// <param name="CurrentPlayer"></param>
         /// <returns>Sant om spelaren kan göra ett giltigt drag. Falskt om den inte kan samt ändrar då till andra spelarens tur</returns>
-        //public bool CanPlayerMakeAMove(UCTile CurrentPlayer)
-        //{
-        //    ChangePlayerTurn();
-        //    foreach (UCTile tile in BoardPieces)
-        //    {
-        //        IsPossibleMove(tile);
-        //        return true;
-        //    }
-        //    ChangePlayerTurn();
-        //    return false;
-        //}
+        public bool CanPlayerMakeAMove()
+        {
+            
+            foreach (UCTile tile in BoardPieces)
+            {
+                if (IsPossibleMove(tile.Id)) { return true; }
+                
+            }
+            ChangePlayerTurn();
+            return false;
+        }
 
         /// <summary>
         /// Kollar om brickan spelaren vill lägga sin tile på är tom och tillgänglig.
@@ -755,6 +756,47 @@ namespace Othello.ViewModels
                 }
 
             }
+
+        }
+
+        public bool IsPossibleMove(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+
+            if (IsDirectionSouthPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionNorthPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionEastPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionWestPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionNorthEastPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionNorthWestPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionSouthEastPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionSouthWestPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+
+            return false;
 
         }
     }
