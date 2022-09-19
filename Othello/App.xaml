@@ -4,11 +4,16 @@
              xmlns:local="clr-namespace:Othello"
              xmlns:vm="clr-namespace:Othello.ViewModels"
              xmlns:views="clr-namespace:Othello.Views"
+             xmlns:Pages="clr-namespace:Othello.Views.Pages"
              StartupUri="/Views/MainWindow.xaml">
     <Application.Resources>
         <DataTemplate
              DataType="{x:Type vm:GameViewModel}">
             <views:GameView/>
+        </DataTemplate>
+        <DataTemplate
+             DataType="{x:Type vm:StartViewModel}">
+            <Pages:StartPage/>
         </DataTemplate>
     </Application.Resources>
 </Application>
