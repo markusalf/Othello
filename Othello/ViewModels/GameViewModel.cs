@@ -35,8 +35,8 @@ namespace Othello.ViewModels
             ChangePlayerTurn();
             OppositeColor(CurrentPlayer);
             UpdateScore();
-            //ShowPossibleMoves();
-            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => true);       
+            ShowPossibleMoves();
+            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));       
         }
 
 
@@ -48,30 +48,30 @@ namespace Othello.ViewModels
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             tile.TypeOfTile = CurrentPlayer.TypeOfTile;
-            //ShowPossibleMoves();
             MakeAMove(b);
             ChangePlayerTurn();
             directionResults.Clear();
+            ShowPossibleMoves();
             UpdateScore();
         }
 
-        //private void ShowPossibleMoves()
-        //{
+        private void ShowPossibleMoves()
+        {
 
-        //    foreach (var UCTile in BoardPieces)
-        //    {
+            foreach (var UCTile in BoardPieces)
+            {
 
-        //        var b = UCTile.Id;
-        //        if ()
-        //        {
-        //            UCTile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
-        //        }
-        //        else
-        //        {
-        //            UCTile.TypeOfSquare = BoardPieceType.NotPossibleMoveMarker;
-        //        }
-        //    }
-        //}
+                var b = UCTile.Id;
+                if (IsPossibleMove(b) && UCTile.TypeOfTile == TileType.Empty)
+                {
+                    UCTile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
+                }
+                else
+                {
+                    UCTile.TypeOfSquare = BoardPieceType.NotPossibleMoveMarker;
+                }
+            }
+        }
 
         public void ChangeTileType(UCTile tile)
         {
@@ -755,6 +755,45 @@ namespace Othello.ViewModels
                 }
 
             }
+
+        }
+
+        public bool IsPossibleMove(object b)
+        {
+            if (IsDirectionSouthPossible(b))
+            {
+                return true;
+            }
+            else if (IsDirectionNorthPossible(b))
+            {
+                return true;
+            }
+            else if (IsDirectionEastPossible(b))
+            {
+                return true;
+            }
+            else if (IsDirectionWestPossible(b))
+            {
+                return true;
+            }
+            else if (IsDirectionNorthEastPossible(b))
+            {
+                return true;
+            }
+            else if (IsDirectionNorthWestPossible(b))
+            {
+                return true;
+            }
+            else if (IsDirectionSouthEastPossible(b))
+            {
+                return true;
+            }
+            else if (IsDirectionSouthWestPossible(b))
+            {
+                return true;
+            }
+
+            return false;
 
         }
     }
