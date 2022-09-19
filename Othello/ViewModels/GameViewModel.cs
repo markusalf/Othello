@@ -12,6 +12,7 @@ using System.Windows.Input;
 using Othello.Commands;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Reflection;
 
 namespace Othello.ViewModels
 {
@@ -25,8 +26,6 @@ namespace Othello.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public ICommand TileClickedCommand { get; }
-        public ICommand CurrentTurn { get; }
-
         public int PlayerBlackScore { get; set; } = 0;
         public int PlayerWhiteScore { get; set; } = 0;
 
@@ -37,7 +36,7 @@ namespace Othello.ViewModels
             OppositeColor(CurrentPlayer);
             UpdateScore();
             //ShowPossibleMoves();
-            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));            
+            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => true);       
         }
 
 
@@ -56,23 +55,23 @@ namespace Othello.ViewModels
             UpdateScore();
         }
 
-        private void ShowPossibleMoves()
-        {
+        //private void ShowPossibleMoves()
+        //{
 
-            foreach (var UCTile in BoardPieces)
-            {
+        //    foreach (var UCTile in BoardPieces)
+        //    {
 
-                var b = UCTile.Id;
-                if (IsPossibleMove(b))
-                {
-                    UCTile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
-                }
-                else
-                {
-                    UCTile.TypeOfSquare = BoardPieceType.NotPossibleMoveMarker;
-                }
-            }
-        }
+        //        var b = UCTile.Id;
+        //        if ()
+        //        {
+        //            UCTile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
+        //        }
+        //        else
+        //        {
+        //            UCTile.TypeOfSquare = BoardPieceType.NotPossibleMoveMarker;
+        //        }
+        //    }
+        //}
 
         public void ChangeTileType(UCTile tile)
         {
@@ -171,17 +170,17 @@ namespace Othello.ViewModels
         /// </summary>
         /// <param name="CurrentPlayer"></param>
         /// <returns>Sant om spelaren kan göra ett giltigt drag. Falskt om den inte kan samt ändrar då till andra spelarens tur</returns>
-        public bool CanPlayerMakeAMove(UCTile CurrentPlayer)
-        {
-            ChangePlayerTurn();
-            foreach (UCTile tile in BoardPieces)
-            {
-                IsPossibleMove(tile);
-                return true;
-            }
-            ChangePlayerTurn();
-            return false;
-        }
+        //public bool CanPlayerMakeAMove(UCTile CurrentPlayer)
+        //{
+        //    ChangePlayerTurn();
+        //    foreach (UCTile tile in BoardPieces)
+        //    {
+        //        IsPossibleMove(tile);
+        //        return true;
+        //    }
+        //    ChangePlayerTurn();
+        //    return false;
+        //}
 
         /// <summary>
         /// Kollar om brickan spelaren vill lägga sin tile på är tom och tillgänglig.
@@ -215,60 +214,6 @@ namespace Othello.ViewModels
                 oppositeColor = TileType.Black;
             }
             return oppositeColor;
-        }
-        /// <summary>
-        /// Går igenom brädet runt den tile/rutan man vill lägga ut för att se om det är ett möjligt drag genom att man flankerar motståndarens tile/tiles.
-        /// </summary>
-        /// <param name="b"></param>
-        /// <returns>Sant om det är ett möjligt drag. Falskt om det inte är ett möjligt drag.</returns>
-        public bool IsPossibleMove(object b)
-        {
-            var tile = BoardPieces.First(t => t.Id == (int)b);
-            TileType currentColor = CurrentPlayer.TypeOfTile;
-            
-
-            int x = tile.Coordinates.Item1;
-            int y = tile.Coordinates.Item2;
-
-            for (int dx = -1; dx <= 1; dx++)
-            {
-                for (int dy = -1; dy <= 1; dy++)
-                {
-                    if (dx == 0 && dy == 0)
-                        continue;
-
-                    if (x + dx < 0 || x + dx > 7 || y + dy < 0 || y + dy > 7)
-                        continue;
-
-                    
-                    if (BoardPieces.Any(piece => piece.Coordinates == (x + dx, y + dy) && piece.TypeOfTile != oppositeColor))
-                        continue;
-  
-                    int i = 2;
-                    while (i <= 7)
-                    {
-                        if (x + i * dx < 0 || x + i * dx > 7 || y + i * dy < 0 || y + i * dy > 7)
-                            break;
-
-
-                        if (BoardPieces.Any(piece => piece.Coordinates == (x + i * dx, y + i * dy) && piece.TypeOfTile == TileType.Empty))
-                            break;
-                            
-
-                        if (BoardPieces.Any(piece => piece.Coordinates == (x + i * dx, y + i * dy) && piece.TypeOfTile == currentColor && tile.TypeOfTile == TileType.Empty))
-                        {
-                                return true;
-                        }
-                        
-                       i++;                           
-                                                                      
-                           
-                    }
-
-                }
-            }
-            return false;
-
         }
 
         public void MakeAMove (object b)
@@ -322,29 +267,6 @@ namespace Othello.ViewModels
                 }
             }
             
-        }
-
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        /// <summary>
-        /// Uppdatera i gränssnittet vilken spelares tur det är att lägga sin bricka
-        /// </summary>
-        private UCTile currentPlayerTurn;
-        public UCTile CurrentPlayerTurn
-        {
-            get { return currentPlayerTurn; }
-            set 
-            {
-                currentPlayerTurn = value;
-                NotifyPropertyChanged(nameof(CurrentPlayer));
-            }
-        }
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public bool IsDirectionSouthPossible(object b)
