@@ -4,24 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Othello.Views.Pages"
+             xmlns:vm="clr-namespace:Othello.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="1200">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Views/Images/GeneralBackground.jpg"/>
+            <ImageBrush ImageSource="/Images/GeneralBackground.png" Stretch="Fill"/>
         </Grid.Background>
-        <Button x:Name="StartBtn" Height="170" Width="240" BorderThickness="0,0,0,0" Margin="118,225,442,55">
-            <Image Source="/Views/Images/Start.png" Height="60" Width="120"></Image>
+        <Image Source="/Images/OthelloText.png" Width="450" Margin="375,78,375,364"/>
+        <Button x:Name="StartBtn" Height="170" Width="240" BorderThickness="0,0,0,0" Margin="118,225,442,55" Command="{Binding StartGameCommand, Source={x:Static vm:MainViewModel.Instance}}">
             <Button.Background>
-                <ImageBrush ImageSource="/Views/Images/Button.png"/>
+                <ImageBrush ImageSource="/Images/Button.png"/>
             </Button.Background>
+            <Image Source="/Images/Start.png" Height="60" Width="120"/>
         </Button>
         <Button x:Name="RulesBtn" Height="170" Width="240" BorderThickness="0,0,0,0" Margin="416,225,144,55">
-            <Image Source="/Views/Images/Rules.png" Height="60" Width="120"></Image>
             <Button.Background>
-                <ImageBrush ImageSource="/Views/Images/Button.png"/>
+                <ImageBrush ImageSource="/Images/Button.png"/>
             </Button.Background>
+            <Image Source="/Images/Rules.png" Height="60" Width="120"/>
         </Button>
-        <Image Source="/Views/Images/OthelloText.png" Width="450" Margin="175,78,175,207"/>
     </Grid>
 </UserControl>

@@ -24,7 +24,6 @@ namespace Othello
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
     }
 }

@@ -8,6 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Button.png" />
+    <None Remove="Images\GameOverText.png" />
+    <None Remove="Images\GameRules.png" />
+    <None Remove="Images\GeneralBackground.png" />
+    <None Remove="Images\OthelloText.png" />
+    <None Remove="Images\PaperScroll.png" />
+    <None Remove="Images\Quit.png" />
+    <None Remove="Images\Restart.png" />
+    <None Remove="Images\Return.png" />
+    <None Remove="Images\Rules.png" />
+    <None Remove="Images\Start.png" />
+    <None Remove="Images\WinnerBoard.png" />
     <None Remove="Views\background.png" />
     <None Remove="Views\currentTurn.png" />
     <None Remove="Views\score.jpg" />
@@ -18,9 +30,21 @@
   </ItemGroup>
  
   <ItemGroup>
-    <Resource Include="Views\Images\GameBackground.png" />
-    <Resource Include="Views\Images\CurrentTurn.png" />
-    <Resource Include="Views\Images\Score.jpg" />
+    <Resource Include="Images\Button.png" />
+    <Resource Include="Images\GameBackground.png" />
+    <Resource Include="Images\CurrentTurn.png" />
+    <Resource Include="Images\GameOverText.png" />
+    <Resource Include="Images\GameRules.png" />
+    <Resource Include="Images\GeneralBackground.png" />
+    <Resource Include="Images\OthelloText.png" />
+    <Resource Include="Images\PaperScroll.png" />
+    <Resource Include="Images\Quit.png" />
+    <Resource Include="Images\Restart.png" />
+    <Resource Include="Images\Return.png" />
+    <Resource Include="Images\Rules.png" />
+    <Resource Include="Images\Score.jpg" />
+    <Resource Include="Images\Start.png" />
+    <Resource Include="Images\WinnerBoard.png" />
   </ItemGroup>
  
   <ItemGroup>

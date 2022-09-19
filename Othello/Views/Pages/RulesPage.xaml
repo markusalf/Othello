@@ -8,17 +8,17 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Views/Images/GeneralBackground.jpg"/>
+            <ImageBrush ImageSource="/Images/GeneralBackground.png"/>
         </Grid.Background>
         <Button x:Name="RestartBtn" BorderThickness="0,0,0,0" Margin="612,307,-2,-31" Height="150" Width="140">
             <Button.Background>
-                <ImageBrush ImageSource="/Views/Images/Button.png"/>
+                <ImageBrush ImageSource="/Images/Button.png"/>
             </Button.Background>
-            <Image Source="/Views/Images/Return.png" Margin="-10,20,18,10" Height="86" Width="153"/>
+            <Image Source="/Images/Return.png" Margin="-10,20,18,10" Height="86" Width="153"/>
         </Button>
         <Label Margin="20,-25,200,0">
             <Label.Content>
-                <Image Source="/Views/Images/PaperScroll.png" Height="600" Width="560"/>
+                <Image Source="/Images/PaperScroll.png" Height="600" Width="560"/>
             </Label.Content>
         </Label>
         <Viewbox Margin="30,148,210,-125">
@@ -30,7 +30,7 @@
             </StackPanel>
         </Viewbox>
         <Label Width="200" Margin="226,75,374,302">
-            <Image Source="/Views/Images/GameRules.png" Height="60" Width="138"/>
+            <Image Source="/Images/GameRules.png" Height="60" Width="138"/>
         </Label>
     </Grid>
 </UserControl>

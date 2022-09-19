@@ -24,6 +24,12 @@ namespace Othello.Commands
             _canExecute = predicate;
         }
 
+        public RelayCommand(Action<object> execute)
+        {
+            _execute = execute;
+            _canExecute = x => true;
+        }
+
         public bool CanExecute(object? parameter)
         {
             return _canExecute(parameter);
