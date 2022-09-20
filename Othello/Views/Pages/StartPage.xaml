@@ -5,14 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Othello.Views.Pages"
              xmlns:vm="clr-namespace:Othello.ViewModels"
-             xmlns:enum="clr-namespace:Othello.Enums"
-             xmlns:converter="clr-namespace:Othello.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1200">
     
-    <UserControl.Resources>
-        <converter:PageToViewConverter x:Key="PageToViewConverter"/>
-    </UserControl.Resources>
+
     
     <Grid>
         <Grid.Background>
@@ -26,7 +22,7 @@
             <Image Source="/Images/Start.png" Height="60" Width="120"/>
         </Button>
         <Button x:Name="RulesBtn" Height="170" Width="240" BorderThickness="0,0,0,0" Margin="416,225,144,55" 
-                Command="{Binding ChangePageCommand, Source={x:Static vm:MainViewModel.Instance}}">            
+                Command="{Binding RulesPageCommand, Source={x:Static vm:MainViewModel.Instance}}">            
             <Button.Background>
                 <ImageBrush ImageSource="/Images/Button.png"/>
             </Button.Background>
