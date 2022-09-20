@@ -15,5 +15,9 @@
              DataType="{x:Type vm:StartViewModel}">
             <Pages:StartPage/>
         </DataTemplate>
+        <DataTemplate
+             DataType="{x:Type vm:RulesViewModel}">
+            <Pages:RulesPage/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

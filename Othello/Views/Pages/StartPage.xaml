@@ -7,6 +7,9 @@
              xmlns:vm="clr-namespace:Othello.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1200">
+    
+
+    
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/GeneralBackground.png" Stretch="Fill"/>
@@ -18,7 +21,8 @@
             </Button.Background>
             <Image Source="/Images/Start.png" Height="60" Width="120"/>
         </Button>
-        <Button x:Name="RulesBtn" Height="170" Width="240" BorderThickness="0,0,0,0" Margin="416,225,144,55">
+        <Button x:Name="RulesBtn" Height="170" Width="240" BorderThickness="0,0,0,0" Margin="416,225,144,55" 
+                Command="{Binding RulesPageCommand, Source={x:Static vm:MainViewModel.Instance}}">            
             <Button.Background>
                 <ImageBrush ImageSource="/Images/Button.png"/>
             </Button.Background>

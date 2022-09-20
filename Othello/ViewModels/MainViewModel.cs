@@ -1,6 +1,7 @@
 ﻿using Othello.Commands;
 using Othello.ViewModels.Base;
 using Othello.Views.GameTiles;
+using Othello.Views.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,22 +17,30 @@ namespace Othello.ViewModels
         public static MainViewModel? _instance;
         public BaseViewModel? CurrentViewModel { get; set; } = new StartViewModel();
         public static MainViewModel Instance { get => _instance ?? (_instance = new MainViewModel()); }
-        public ICommand ChangePageCommand { get; }
         public ICommand StartGameCommand { get; }
+        public ICommand RulesPageCommand { get; }
+        public ICommand StartPageCommand { get; }
 
         private MainViewModel()
         {
-            ChangePageCommand = new RelayCommand(page=> ChangePage());
-            StartGameCommand = new RelayCommand(page=> StartGame());
+            StartGameCommand = new RelayCommand(page => StartGame());
+            RulesPageCommand = new RelayCommand(page => RulesPage());
+            StartPageCommand = new RelayCommand(page => StartPage());
         }
 
-        private void ChangePage()
-        {
-        }
         
         private void StartGame()
         {
             CurrentViewModel = new GameViewModel();
+        }
+
+        private void RulesPage()
+        {
+            CurrentViewModel = new RulesViewModel();
+        }
+        private void StartPage()
+        {
+            CurrentViewModel = new StartViewModel();
         }
     }
 }
