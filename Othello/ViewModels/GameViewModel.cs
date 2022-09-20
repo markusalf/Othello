@@ -14,6 +14,8 @@ using Othello.Commands;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
+using System.Windows;
 
 namespace Othello.ViewModels
 {
@@ -21,6 +23,7 @@ namespace Othello.ViewModels
     {
         public ObservableCollection<UCTile> BoardPieces { get; private set; } = new ObservableCollection<UCTile>();
         public UCTile CurrentPlayer { get; set; } = new UCTile();
+        public Player Winner { get; set; } = new Player();
         TileType oppositeColor;
         List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
         private const int _gameBoardSize = 8;
@@ -37,7 +40,7 @@ namespace Othello.ViewModels
             OppositeColor(CurrentPlayer);
             UpdateScore();
             ShowPossibleMoves();
-            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));       
+            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b),  predicate: b => IsPossibleMove(b));       
         }
 
 
@@ -56,6 +59,7 @@ namespace Othello.ViewModels
             CanPlayerMakeAMove();
             ShowPossibleMoves();
             PlaySound();
+            CheckIfGameOver(b);
         }
 
         private void PlaySound()
@@ -806,6 +810,41 @@ namespace Othello.ViewModels
 
             return false;
 
+        }
+
+        public object ShowWinner()
+        {
+            object Winner = Player.Black;
+
+
+            if (PlayerBlackScore > PlayerWhiteScore)
+            {
+                Winner = Player.Black;
+            }
+
+            if (PlayerWhiteScore > PlayerBlackScore)
+            {
+                Winner = Player.White;
+            }
+            else if (PlayerBlackScore == PlayerWhiteScore)
+            {
+                Winner = Player.NoWinner;
+            }
+            return Winner;
+        }
+
+        public bool CheckIfGameOver(object b)
+        {
+
+            if (PlayerBlackScore + PlayerWhiteScore != 64  || IsPossibleMove(b))
+            {
+                return true;
+            }
+            else
+            {
+                ShowWinner();
+            }
+            return false;
         }
     }
 }
