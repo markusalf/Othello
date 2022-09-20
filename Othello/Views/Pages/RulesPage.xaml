@@ -16,7 +16,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/GeneralBackground.png"/>
         </Grid.Background>
-        <Button x:Name="RestartBtn" BorderThickness="0,0,0,0" Margin="612,307,-2,-31" Height="150" Width="140" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">            
+        <Button x:Name="ReturnBtn" BorderThickness="0,0,0,0" Margin="612,307,-2,-31" Height="150" Width="140" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">            
             <Button.Background>
                 <ImageBrush ImageSource="/Images/Button.png"/>
             </Button.Background>

@@ -19,5 +19,9 @@
              DataType="{x:Type vm:RulesViewModel}">
             <Pages:RulesPage/>
         </DataTemplate>
+        <DataTemplate
+             DataType="{x:Type vm:EndViewModel}">
+            <Pages:EndPage/>
+        </DataTemplate>
     </Application.Resources>
 </Application>
