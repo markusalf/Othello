@@ -10,14 +10,13 @@
   <ItemGroup>
     <None Remove="Images\Button.png" />
     <None Remove="Images\GameOverText.png" />
-    <None Remove="Images\GameRules.png" />
     <None Remove="Images\GeneralBackground.png" />
     <None Remove="Images\OthelloText.png" />
-    <None Remove="Images\PaperScroll.png" />
     <None Remove="Images\Quit.png" />
     <None Remove="Images\Restart.png" />
     <None Remove="Images\Return.png" />
     <None Remove="Images\Rules.png" />
+    <None Remove="Images\RulesScroll.png" />
     <None Remove="Images\Start.png" />
     <None Remove="Images\WinnerBoard.png" />
     <None Remove="Views\background.png" />
@@ -42,16 +41,10 @@
     <Resource Include="Images\GameOverText.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\GameRules.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\GeneralBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\OthelloText.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\PaperScroll.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Quit.png">
@@ -64,6 +57,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Rules.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RulesScroll.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Score.jpg">

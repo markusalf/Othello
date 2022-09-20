@@ -7,36 +7,25 @@
              xmlns:vm="clr-namespace:Othello.ViewModels"             
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1200">
-    
+
     <UserControl.DataContext>
         <vm:RulesViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/GeneralBackground.png"/>
         </Grid.Background>
-        <Button x:Name="ReturnBtn" BorderThickness="0,0,0,0" Margin="612,307,-2,-31" Height="150" Width="140" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">            
+        <Grid Margin="-36,0,315,86">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Images/RulesScroll.png"/>
+            </Grid.Background>
+        </Grid>
+        <Button x:Name="ReturnBtn" BorderThickness="0,0,0,0" Margin="930,578,75,34" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
             <Button.Background>
                 <ImageBrush ImageSource="/Images/Button.png"/>
             </Button.Background>
-            <Image Source="/Images/Return.png" Margin="-10,20,18,10" Height="86" Width="153"/>
+            <Image Source="/Images/Return.png" Height="90" Width="158"/>
         </Button>
-        <Label Margin="220,-25,200,200">
-            <Label.Content>
-                <Image Source="/Images/PaperScroll.png" Height="600" Width="560"/>
-            </Label.Content>
-        </Label>
-        <Viewbox Margin="129,162,277,-139">
-            <StackPanel Orientation="Vertical" Width="200" Height="400">
-                <TextBlock x:Name="DescriptionTxtBlk"
-                           FontSize="6"
-                           TextWrapping="Wrap"
-                           Text="En spelare börjar med att lägga brickor med vita sidan upp, den andre med svarta sidan upp. Spelarna lägger växelvis en bricka var. Brickorna skall läggas så att man får en rad (vågrätt, lodrätt eller diagonalt) där man har en bricka i sin egen färg i radens båda ändar, och däremellan minst en bricka av motsatt färg. Mellanliggande brickor av motsatt färg vänds så att de får andra sidan upp. Den vinner som vid spelets slut har flest brickor i sin färg. Du kan bilda upp till 8 rader samtidigt, och vänder motspelarens brickor i samtliga rader. Du får bara lägga ut bricka om du kan vända minst en av motspelarens brickor. Kan du inte, så måste du stå över ett drag. Så i ett parti kan den ene spelaren lägga ut fler än hälften av brickorna, och ett parti kan sluta innan alla brickor är utlagda." FontWeight="Bold" Height="286" Width="205"/>
-            </StackPanel>
-        </Viewbox>
-        <Label Width="200" Margin="226,75,374,302">
-            <Image Source="/Images/GameRules.png" Height="60" Width="138"/>
-        </Label>
     </Grid>
 </UserControl>
