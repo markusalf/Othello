@@ -21,12 +21,14 @@ namespace Othello.ViewModels
 
         private MainViewModel()
         {
-            ChangePageCommand = new RelayCommand(page=> ChangePage());
+            ChangePageCommand = new RelayCommand(page=> ChangePage((BaseViewModel)page));
             StartGameCommand = new RelayCommand(page=> StartGame());
         }
 
-        private void ChangePage()
+        private void ChangePage(BaseViewModel page)
         {
+
+            CurrentViewModel = page;
         }
         
         private void StartGame()

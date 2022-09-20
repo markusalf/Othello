@@ -10,7 +10,7 @@
     <UserControl.DataContext>
         <vm:GameViewModel/>
     </UserControl.DataContext>
-    <Grid>
+    <Grid>        
         <ItemsControl
             Width="600"
             Height="600"
@@ -65,6 +65,6 @@
                 </Label.Background>
             </Label>
         </ItemsControl>
-        <Ellipse Fill="Black" Width="40" Height="38" Margin="115,516,900,146"/>
+        <Ellipse Fill="Black" Width="40" Height="38" Margin="115,516,900,146"/>        
     </Grid>
 </UserControl>
