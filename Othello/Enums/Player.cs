@@ -9,6 +9,7 @@ namespace Othello.Enums
     public enum Player
     {
         Black,
-        White
+        White,
+        NoWinner
     }
 }
