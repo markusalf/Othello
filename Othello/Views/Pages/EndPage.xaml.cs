@@ -22,7 +22,7 @@ namespace Othello.Views.Pages
     {
         public EndPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
     }
 }

@@ -27,7 +27,9 @@ namespace Othello.ViewModels
         TileType oppositeColor;
         List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
         private const int _gameBoardSize = 8;
-        public event PropertyChangedEventHandler? PropertyChanged;
+        
+
+        
 
         public ICommand TileClickedCommand { get; }
         public int PlayerBlackScore { get; set; } = 0;
@@ -40,7 +42,7 @@ namespace Othello.ViewModels
             OppositeColor(CurrentPlayer);
             UpdateScore();
             ShowPossibleMoves();
-            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b),  predicate: b => IsPossibleMove(b));       
+            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));
         }
 
 
@@ -814,21 +816,25 @@ namespace Othello.ViewModels
 
         public object ShowWinner()
         {
-            object Winner = Player.Black;
-
+            
 
             if (PlayerBlackScore > PlayerWhiteScore)
             {
-                Winner = Player.Black;
+                MainViewModel.Instance.CurrentViewModel = new EndViewModel(); 
+                Winner = Player.Black;                
+
             }
 
             if (PlayerWhiteScore > PlayerBlackScore)
             {
-                Winner = Player.White;
+                MainViewModel.Instance.CurrentViewModel = new EndViewModel();
+                Winner = Player.White;                
+
             }
             else if (PlayerBlackScore == PlayerWhiteScore)
             {
-                Winner = Player.NoWinner;
+                MainViewModel.Instance.CurrentViewModel = new EndViewModel();
+                Winner = Player.NoWinner;                
             }
             return Winner;
         }
@@ -843,8 +849,9 @@ namespace Othello.ViewModels
             else
             {
                 ShowWinner();
+                return true;
             }
-            return false;
+            
         }
     }
 }

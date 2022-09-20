@@ -1,4 +1,5 @@
-﻿using Othello.ViewModels.Base;
+﻿using Othello.Enums;
+using Othello.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace Othello.ViewModels
 {
     internal class EndViewModel : BaseViewModel
     {
+        
     }
 }

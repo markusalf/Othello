@@ -26,7 +26,7 @@
                 <Image Source="/Images/GameOverText.png" Height="126" Width="448"/>
             </Label.Content>
         </Label>
-        <Label Content="{Binding Winner}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="300" Width="550" Margin="0,40,0,0" FontFamily="Bahnschrift SemiBold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <Label Content="{Binding Winner, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="300" Width="550" Margin="0,40,0,0" FontFamily="Bahnschrift SemiBold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <Label.Background>
                 <ImageBrush Stretch="Uniform" ImageSource="/Images/WinnerBoard.png"/>
             </Label.Background>
