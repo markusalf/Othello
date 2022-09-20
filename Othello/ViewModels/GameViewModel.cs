@@ -842,7 +842,7 @@ namespace Othello.ViewModels
         public bool CheckIfGameOver(object b)
         {
 
-            if (PlayerBlackScore + PlayerWhiteScore != 64  || IsPossibleMove(b))
+            if (PlayerBlackScore + PlayerWhiteScore != _gameBoardSize*_gameBoardSize  || IsPossibleMove(b))
             {
                 return true;
             }
