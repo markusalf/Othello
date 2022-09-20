@@ -20,6 +20,7 @@ namespace Othello.ViewModels
         public ICommand StartGameCommand { get; }
         public ICommand RulesPageCommand { get; }
         public ICommand StartPageCommand { get; }
+        public ICommand RestartGameCommand { get; }
 
         private MainViewModel()
         {
@@ -28,7 +29,7 @@ namespace Othello.ViewModels
             StartPageCommand = new RelayCommand(page => StartPage());
         }
 
-        
+
         private void StartGame()
         {
             CurrentViewModel = new GameViewModel();
