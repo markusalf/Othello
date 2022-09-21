@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Images\Button.png" />
+    <None Remove="Images\fireworks.gif" />
     <None Remove="Images\GameOverText.png" />
     <None Remove="Images\GeneralBackground.png" />
     <None Remove="Images\OthelloText.png" />
@@ -26,11 +27,15 @@
  
   <ItemGroup>
     <PackageReference Include="PropertyChanged.Fody" Version="4.0.1" PrivateAssets="All" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
  
   <ItemGroup>
     <Resource Include="Images\Button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\fireworks.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\GameBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -92,7 +97,7 @@
  
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

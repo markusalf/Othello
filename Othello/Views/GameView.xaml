@@ -5,11 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Othello.Views"
              xmlns:vm="clr-namespace:Othello.ViewModels"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:GameTiles="clr-namespace:Othello.Views.GameTiles" 
              mc:Ignorable="d" Height="700" Width="1063" x:Name="GameBoard">
+    
     <UserControl.DataContext>
         <vm:GameViewModel/>
     </UserControl.DataContext>
+    
     <Grid>        
         <ItemsControl
             Width="600"
@@ -65,6 +68,8 @@
                 </Label.Background>
             </Label>
         </ItemsControl>
-        <Ellipse Fill="Black" Width="40" Height="38" Margin="115,516,900,146"/>        
+        <Ellipse Fill="Black" Width="40" Height="38" Margin="115,516,900,146"/>
+        <Image x:Name="Fireworks" 
+            gif:ImageBehavior.AnimatedSource="C:\Users\marku\source\repos\systemvetenskap\sup22_g3\Othello\Images\fireworks.gif" Visibility="{Binding Visibility}"/>
     </Grid>
 </UserControl>
