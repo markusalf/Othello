@@ -88,7 +88,6 @@
     <Resource Include="Images\StartButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\WinBoard.png" />
   </ItemGroup>
  
   <ItemGroup>
