@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Othello.Views"
+             xmlns:resources="clr-namespace:System.Resources;assembly=System.Resources.ResourceManager"
              xmlns:vm="clr-namespace:Othello.ViewModels"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:GameTiles="clr-namespace:Othello.Views.GameTiles" 
@@ -69,7 +70,7 @@
             </Label>
         </ItemsControl>
         <Ellipse Fill="Black" Width="40" Height="38" Margin="115,516,900,146"/>
-        <Image x:Name="Fireworks" 
-            gif:ImageBehavior.AnimatedSource="C:\Users\marku\source\repos\systemvetenskap\sup22_g3\Othello\Images\fireworks.gif" Visibility="{Binding Fireworks}"/>
+        <!--<Image x:Name="Fireworks" 
+            gif:ImageBehavior.AnimatedSource="" Visibility="{Binding Fireworks}"/>-->
     </Grid>
 </UserControl>
