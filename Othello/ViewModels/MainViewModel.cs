@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Othello.ViewModels
@@ -20,14 +21,22 @@ namespace Othello.ViewModels
         public ICommand StartGameCommand { get; }
         public ICommand RulesPageCommand { get; }
         public ICommand StartPageCommand { get; }
-        public ICommand RestartGameCommand { get; }
+        public ICommand QuitGameCommand { get; }
 
         private MainViewModel()
         {
             StartGameCommand = new RelayCommand(page => StartGame());
             RulesPageCommand = new RelayCommand(page => RulesPage());
             StartPageCommand = new RelayCommand(page => StartPage());
+            QuitGameCommand = new RelayCommand(page => QuitPage());
+
         }
+
+        private void QuitPage()
+        {
+            Application.Current.Shutdown();
+        }
+
 
 
         private void StartGame()
