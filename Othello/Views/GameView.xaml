@@ -70,6 +70,6 @@
         </ItemsControl>
         <Ellipse Fill="Black" Width="40" Height="38" Margin="115,516,900,146"/>
         <Image x:Name="Fireworks" 
-            gif:ImageBehavior.AnimatedSource="C:\Users\marku\source\repos\systemvetenskap\sup22_g3\Othello\Images\fireworks.gif" Visibility="{Binding Fireworks}"/>
+            gif:ImageBehavior.AnimatedSource="/Images/Fireworks.gif" Visibility="{Binding Fireworks}"/>
     </Grid>
 </UserControl>

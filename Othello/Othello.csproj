@@ -14,6 +14,7 @@
     <None Remove="Images\ButtonReturnHover.png" />
     <None Remove="Images\ButtonRulesHover.png" />
     <None Remove="Images\ButtonStartHover.png" />
+    <None Remove="Images\fireworks.gif" />
     <None Remove="Images\GameOverText.png" />
     <None Remove="Images\GeneralBackground.png" />
     <None Remove="Images\OthelloText.png" />
@@ -53,6 +54,7 @@
     <Resource Include="Images\ButtonStartHover.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\Fireworks.gif" />
     <Resource Include="Images\GameBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
