@@ -56,12 +56,11 @@ namespace Othello.ViewModels
             tile.TypeOfTile = CurrentPlayer.TypeOfTile;
             MakeAMove(b);
             directionResults.Clear();
+            PlaySound();
             UpdateScore();
             ChangePlayerTurn();
-            CanPlayerMakeAMove();
+            CheckIfGameOver();            
             ShowPossibleMoves();
-            PlaySound();
-            CheckIfGameOver(b);
         }
 
         private void PlaySound()
@@ -164,6 +163,26 @@ namespace Othello.ViewModels
         {
         PlayerBlackScore = BoardPieces.Count(x => x.TypeOfTile == TileType.Black);
         PlayerWhiteScore = BoardPieces.Count(x => x.TypeOfTile == TileType.White);
+        }
+
+
+
+        public bool CheckIfGameOver()
+        {
+            if (CanPlayerMakeAMove())
+            {
+                return false;
+            }
+            else
+            {                
+                if (CanPlayerMakeAMove())
+                {
+                    return false;
+                }
+            }
+            ShowWinner();
+            return true;
+
         }
         /// <summary>
         /// Byter vilken spelares tur det är.
@@ -839,19 +858,6 @@ namespace Othello.ViewModels
             return Winner;
         }
 
-        public bool CheckIfGameOver(object b)
-        {
 
-            if (PlayerBlackScore + PlayerWhiteScore != _gameBoardSize*_gameBoardSize  || IsPossibleMove(b))
-            {
-                return true;
-            }
-            else
-            {
-                ShowWinner();
-                return true;
-            }
-            
-        }
     }
 }
