@@ -14,6 +14,7 @@
     <None Remove="Images\ButtonReturnHover.png" />
     <None Remove="Images\ButtonRulesHover.png" />
     <None Remove="Images\ButtonStartHover.png" />
+    <None Remove="Images\fireworks.gif" />
     <None Remove="Images\GameOverText.png" />
     <None Remove="Images\GeneralBackground.png" />
     <None Remove="Images\OthelloText.png" />
@@ -24,6 +25,7 @@
     <None Remove="Images\RulesScroll.png" />
     <None Remove="Images\StartButton.png" />
     <None Remove="Images\WinBoard.png" />
+    <None Remove="Resources\fireworks.gif" />
     <None Remove="Views\background.png" />
     <None Remove="Views\currentTurn.png" />
     <None Remove="Views\score.jpg" />
@@ -51,6 +53,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\ButtonStartHover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\fireworks.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\GameBackground.png">
@@ -89,6 +94,7 @@
     <Resource Include="Images\StartButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\fireworks.gif" />
   </ItemGroup>
  
   <ItemGroup>
