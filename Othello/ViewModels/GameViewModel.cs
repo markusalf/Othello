@@ -849,7 +849,7 @@ namespace Othello.ViewModels
             {
                 PlayWinSound();                
                 Fireworks = Visibility.Visible;
-                MessageBoxResult messageBoxResult = MessageBox.Show($"BLACK WON with {PlayerBlackScore} over {PlayerWhiteScore}\n\nSpela igen?", "Game Over", MessageBoxButton.OKCancel);
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Black player won with {PlayerBlackScore} vs {PlayerWhiteScore}\n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
                 if (messageBoxResult == MessageBoxResult.OK)
                 {
                     MainViewModel._instance.CurrentViewModel = new StartViewModel();
@@ -865,7 +865,7 @@ namespace Othello.ViewModels
             {
                 PlayWinSound();
                 Fireworks = Visibility.Visible;
-                MessageBoxResult messageBoxResult = MessageBox.Show($"WHITE WON with {PlayerBlackScore} over {PlayerWhiteScore}\n\nSpela igen?", "Game Over", MessageBoxButton.OKCancel);
+                MessageBoxResult messageBoxResult = MessageBox.Show($"White player won with {PlayerBlackScore} vs {PlayerWhiteScore}\n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
                 if (messageBoxResult == MessageBoxResult.OK)
                 {
                     MainViewModel._instance.CurrentViewModel = new StartViewModel();
@@ -883,7 +883,7 @@ namespace Othello.ViewModels
 
                 Fireworks = Visibility.Visible;
 
-                MessageBoxResult messageBoxResult = MessageBox.Show($"TIE with {PlayerBlackScore} over {PlayerWhiteScore}\n\nSpela igen?", "Game Over", MessageBoxButton.OKCancel);
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Tie with {PlayerBlackScore} vs {PlayerWhiteScore}\n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
                 if (messageBoxResult == MessageBoxResult.OK)
                 {
                     MainViewModel._instance.CurrentViewModel = new StartViewModel();
