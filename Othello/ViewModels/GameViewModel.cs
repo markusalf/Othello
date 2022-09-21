@@ -16,6 +16,9 @@ using System.Runtime.CompilerServices;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Windows;
+using System.Windows.Media.Imaging;
+using WpfAnimatedGif;
+using System.Windows.Controls;
 
 namespace Othello.ViewModels
 {
@@ -23,8 +26,8 @@ namespace Othello.ViewModels
     {
         public ObservableCollection<UCTile> BoardPieces { get; private set; } = new ObservableCollection<UCTile>();
         public UCTile CurrentPlayer { get; set; } = new UCTile();
-        public Player Winner { get; set; } = new Player();
         TileType oppositeColor;
+        public Visibility Fireworks { get; set; } = Visibility.Hidden;
         List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
         public int _gameBoardSize = 8;
         
@@ -56,16 +59,22 @@ namespace Othello.ViewModels
             tile.TypeOfTile = CurrentPlayer.TypeOfTile;
             MakeAMove(b);
             directionResults.Clear();
-            PlaySound();
+            PlayClickSound();
             UpdateScore();
             ChangePlayerTurn();
             CheckIfGameOver();            
             ShowPossibleMoves();
         }
 
-        private void PlaySound()
+        private void PlayClickSound()
         {
             var clickSound = new SoundPlayer(Properties.Resources.clickSound);
+            clickSound.Play();
+        }
+
+        private void PlayWinSound()
+        {
+            var clickSound = new SoundPlayer(Properties.Resources.winSound);
             clickSound.Play();
         }
 
@@ -833,30 +842,61 @@ namespace Othello.ViewModels
 
         }
 
-        public object ShowWinner()
+        public void ShowWinner()
         {
-            
 
             if (PlayerBlackScore > PlayerWhiteScore)
             {
-                MainViewModel.Instance.CurrentViewModel = new EndViewModel(); 
-                Winner = Player.Black;                
+                PlayWinSound();                
+                Fireworks = Visibility.Visible;
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Black player won with {PlayerBlackScore} vs {PlayerWhiteScore}\n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
+                if (messageBoxResult == MessageBoxResult.OK)
+                {
+                    MainViewModel._instance.CurrentViewModel = new StartViewModel();
 
+                }
+                else if (messageBoxResult == MessageBoxResult.Cancel)
+                {
+                    Application.Current.Shutdown();
+                }
             }
 
-            if (PlayerWhiteScore > PlayerBlackScore)
+            else if (PlayerWhiteScore > PlayerBlackScore)
             {
-                MainViewModel.Instance.CurrentViewModel = new EndViewModel();
-                Winner = Player.White;                
+                PlayWinSound();
+                Fireworks = Visibility.Visible;
+                MessageBoxResult messageBoxResult = MessageBox.Show($"White player won with {PlayerBlackScore} vs {PlayerWhiteScore}\n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
+                if (messageBoxResult == MessageBoxResult.OK)
+                {
+                    MainViewModel._instance.CurrentViewModel = new StartViewModel();
+
+                }
+                else if (messageBoxResult == MessageBoxResult.Cancel)
+                {
+                    Application.Current.Shutdown();
+                }
 
             }
             else if (PlayerBlackScore == PlayerWhiteScore)
             {
-                MainViewModel.Instance.CurrentViewModel = new EndViewModel();
-                Winner = Player.NoWinner;                
+                PlayWinSound();
+
+                Fireworks = Visibility.Visible;
+
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Tie with {PlayerBlackScore} vs {PlayerWhiteScore}\n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
+                if (messageBoxResult == MessageBoxResult.OK)
+                {
+                    MainViewModel._instance.CurrentViewModel = new StartViewModel();
+
+                }
+                else if (messageBoxResult == MessageBoxResult.Cancel)
+                {
+                    Application.Current.Shutdown();
+                }
             }
-            return Winner;
         }
+
+        
 
 
     }

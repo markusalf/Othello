@@ -10,6 +10,15 @@ namespace Othello.ViewModels
 {
     internal class EndViewModel : BaseViewModel
     {
-        
+        public string Winner { get; set; } = "";
+
+        public EndViewModel()
+        {
+
+        }
+        public EndViewModel(string winner)
+        {
+            Winner = winner;
+        }
     }
 }

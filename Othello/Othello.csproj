@@ -31,6 +31,7 @@
  
   <ItemGroup>
     <PackageReference Include="PropertyChanged.Fody" Version="4.0.1" PrivateAssets="All" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
  
   <ItemGroup>
@@ -109,7 +110,7 @@
  
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

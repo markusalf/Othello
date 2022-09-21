@@ -1,5 +1,6 @@
 ﻿using Othello.Commands;
 using Othello.ViewModels.Base;
+using Othello.Views;
 using Othello.Views.GameTiles;
 using Othello.Views.Pages;
 using System;
@@ -23,14 +24,17 @@ namespace Othello.ViewModels
         public ICommand StartPageCommand { get; }
         public ICommand QuitGameCommand { get; }
 
+
         private MainViewModel()
         {
             StartGameCommand = new RelayCommand(page => StartGame());
             RulesPageCommand = new RelayCommand(page => RulesPage());
             StartPageCommand = new RelayCommand(page => StartPage());
-            QuitGameCommand = new RelayCommand(page => QuitPage());
+            QuitGameCommand = new RelayCommand(page => QuitPage());           
+            
 
         }
+        
 
         private void QuitPage()
         {
