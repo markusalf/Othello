@@ -15,27 +15,55 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/GeneralBackground.png" Stretch="Fill"/>
         </Grid.Background>
-        <Button x:Name="RulesBtn" Width="240" BorderThickness="0,0,0,0" Margin="435,302,125,0" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
-            <Image Source="/Images/Restart.png" Height="71" Width="179"/>
-            <Button.Background>
-                <ImageBrush ImageSource="/Images/Button.png"/>
-            </Button.Background>
+        <Button x:Name="RestartButton" Width="290" Height="250" BorderThickness="0,0,0,0" Margin="400,222,110,-22" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Name="Image" Stretch="Fill" Source="/Images/RestartButton.png"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Image"  Property="Source" Value="/Images/ButtonRestartHover.png"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="QuitBtn" Width="290" Height="250" BorderThickness="0,0,0,0" Margin="171,222,339,-22" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Name="Image" Stretch="Fill" Source="/Images/QuitButton.png"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Image"  Property="Source" Value="/Images/ButtonQuitHover.png"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
         <Label HorizontalAlignment="Center" Margin="0,0,0,335">
             <Label.Content>
                 <Image Source="/Images/GameOverText.png" Height="126" Width="448"/>
             </Label.Content>
         </Label>
-        <Label Content="{Binding Winner, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="300" Width="550" Margin="0,40,0,0" FontFamily="Bahnschrift SemiBold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <Label Content="{Binding Winner}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="300" Width="550" Margin="0,58,0,0" FontFamily="Bahnschrift SemiBold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <Label.Background>
                 <ImageBrush Stretch="Uniform" ImageSource="/Images/WinnerBoard.png"/>
             </Label.Background>
         </Label>
-        <Button x:Name="StartBtn" Width="240" BorderThickness="0,0,0,0" Margin="137,302,423,0" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
-            <Button.Background>
-                <ImageBrush ImageSource="/Images/Button.png"/>
-            </Button.Background>
-            <Image Source="/Images/Quit.png" Height="53" Width="110" Margin="-19,5,0,0"/>
-        </Button>
     </Grid>
 </UserControl>

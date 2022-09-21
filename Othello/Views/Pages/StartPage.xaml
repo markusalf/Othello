@@ -15,18 +15,45 @@
             <ImageBrush ImageSource="/Images/GeneralBackground.png" Stretch="Fill"/>
         </Grid.Background>
         <Image Source="/Images/OthelloText.png" Width="450" Margin="375,78,375,364"/>
-        <Button x:Name="StartBtn" Height="170" Width="240" BorderThickness="0,0,0,0" Margin="118,225,442,55" Command="{Binding StartGameCommand, Source={x:Static vm:MainViewModel.Instance}}">
-            <Button.Background>
-                <ImageBrush ImageSource="/Images/Button.png"/>
-            </Button.Background>
-            <Image Source="/Images/Start.png" Height="60" Width="120"/>
+        <Button x:Name="StartBtn" Height="300" Width="400" BorderThickness="0,0,0,0" Margin="254,335,546,165" Command="{Binding StartGameCommand, Source={x:Static vm:MainViewModel.Instance}}" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Name="Image" Stretch="Fill" Source="/Images/StartButton.png"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Image"  Property="Source" Value="/Images/ButtonStartHover.png"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
-        <Button x:Name="RulesBtn" Height="170" Width="240" BorderThickness="0,0,0,0" Margin="416,225,144,55" 
-                Command="{Binding RulesPageCommand, Source={x:Static vm:MainViewModel.Instance}}">            
-            <Button.Background>
-                <ImageBrush ImageSource="/Images/Button.png"/>
-            </Button.Background>
-            <Image Source="/Images/Rules.png" Height="60" Width="120"/>
+        <Button x:Name="RulesBtn" Height="300" Width="400" BorderThickness="0,0,0,0" Margin="530,335,270,165" Command="{Binding RulesPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Name="Image" Stretch="Fill" Source="/Images/RulesButton.png"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Image"  Property="Source" Value="/Images/ButtonRulesHover.png"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
     </Grid>
 </UserControl>

@@ -9,16 +9,21 @@
 
   <ItemGroup>
     <None Remove="Images\Button.png" />
+    <None Remove="Images\ButtonQuitHover.png" />
+    <None Remove="Images\ButtonRestartHover.png" />
+    <None Remove="Images\ButtonReturnHover.png" />
+    <None Remove="Images\ButtonRulesHover.png" />
+    <None Remove="Images\ButtonStartHover.png" />
     <None Remove="Images\GameOverText.png" />
     <None Remove="Images\GeneralBackground.png" />
     <None Remove="Images\OthelloText.png" />
-    <None Remove="Images\Quit.png" />
-    <None Remove="Images\Restart.png" />
-    <None Remove="Images\Return.png" />
-    <None Remove="Images\Rules.png" />
+    <None Remove="Images\QuitButton.png" />
+    <None Remove="Images\RestartButton.png" />
+    <None Remove="Images\ReturnButton.png" />
+    <None Remove="Images\RulesButton.png" />
     <None Remove="Images\RulesScroll.png" />
-    <None Remove="Images\Start.png" />
-    <None Remove="Images\WinnerBoard.png" />
+    <None Remove="Images\StartButton.png" />
+    <None Remove="Images\WinBoard.png" />
     <None Remove="Views\background.png" />
     <None Remove="Views\currentTurn.png" />
     <None Remove="Views\score.jpg" />
@@ -30,6 +35,21 @@
  
   <ItemGroup>
     <Resource Include="Images\Button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ButtonQuitHover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ButtonRestartHover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ButtonReturnHover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ButtonRulesHover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ButtonStartHover.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\GameBackground.png">
@@ -47,16 +67,16 @@
     <Resource Include="Images\OthelloText.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Quit.png">
+    <Resource Include="Images\QuitButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Restart.png">
+    <Resource Include="Images\RestartButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Return.png">
+    <Resource Include="Images\ReturnButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Rules.png">
+    <Resource Include="Images\RulesButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\RulesScroll.png">
@@ -65,12 +85,10 @@
     <Resource Include="Images\Score.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Start.png">
+    <Resource Include="Images\StartButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\WinnerBoard.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Images\WinBoard.png" />
   </ItemGroup>
  
   <ItemGroup>

@@ -22,10 +22,24 @@
             </Grid.Background>
         </Grid>
         <Button x:Name="ReturnBtn" BorderThickness="0,0,0,0" Margin="930,578,75,34" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
-            <Button.Background>
-                <ImageBrush ImageSource="/Images/Button.png"/>
-            </Button.Background>
-            <Image Source="/Images/Return.png" Height="90" Width="158"/>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Name="Image" Stretch="Fill" Source="/Images/ReturnButton.png"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Image"  Property="Source" Value="/Images/ButtonReturnHover.png"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
         </Button>
     </Grid>
 </UserControl>
