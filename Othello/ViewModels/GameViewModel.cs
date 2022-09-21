@@ -883,7 +883,7 @@ namespace Othello.ViewModels
 
                 Fireworks = Visibility.Visible;
 
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Tie with {PlayerBlackScore} vs {PlayerWhiteScore}\n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Tie with {PlayerWhiteScore} vs {PlayerBlackScore} \n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
                 if (messageBoxResult == MessageBoxResult.OK)
                 {
                     MainViewModel._instance.CurrentViewModel = new StartViewModel();
