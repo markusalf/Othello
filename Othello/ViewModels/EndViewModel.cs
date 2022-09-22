@@ -17,10 +17,10 @@ namespace Othello.ViewModels
 
         }
 
-        public EndViewModel(Player winner)
+        public EndViewModel(Player winner, int playerBlackScore, int playerWhiteScore)
         {
             Winner = winner;
-            Message = $"Player {Winner} Wins!";
+            Message = $"Player {Winner} Wins!\nBlack:{playerBlackScore} White:{playerWhiteScore}";
         } 
     }
 }
