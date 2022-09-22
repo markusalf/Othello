@@ -4,10 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Othello.ViewModels"
+        xmlns:converters ="clr-namespace:Othello.Converters"
         xmlns:local="clr-namespace:Othello.Views.Pages"
         d:DataContext="{d:DesignInstance vm:MainViewModel}"
         mc:Ignorable="d"
-        Title="Othello" Height="1000" Width="1400">
+        Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={converters:RatioConverter}, ConverterParameter='0.9' }" 
+        Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={converters:RatioConverter}, ConverterParameter='0.9' }"
+        Title="Othello"
+        WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.Background>
