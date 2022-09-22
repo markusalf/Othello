@@ -70,7 +70,7 @@
             </Label>
         </ItemsControl>
         <Ellipse Fill="Black" Width="40" Height="38" Margin="115,516,900,146"/>
-        <Image x:Name="Fireworks" 
-            gif:ImageBehavior.AnimatedSource="/Resources/fireworks.gif" Visibility="{Binding Fireworks}"/>
+        <!--<Image x:Name="Fireworks" 
+            gif:ImageBehavior.AnimatedSource="/Resources/fireworks.gif" Visibility="{Binding Fireworks}"/>-->
     </Grid>
 </UserControl>

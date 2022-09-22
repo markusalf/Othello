@@ -26,6 +26,7 @@ namespace Othello.ViewModels
     {
         public ObservableCollection<UCTile> BoardPieces { get; private set; } = new ObservableCollection<UCTile>();
         public UCTile CurrentPlayer { get; set; } = new UCTile();
+        public Player Winner { get; set; } = new Player();
         TileType oppositeColor;
         public Visibility Fireworks { get; set; } = Visibility.Hidden;
         List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
@@ -41,7 +42,6 @@ namespace Othello.ViewModels
         public GameViewModel()
         {
             FillBoard();
-            ChangePlayerTurn();
             OppositeColor(CurrentPlayer);
             UpdateScore();
             ShowPossibleMoves();
@@ -161,7 +161,7 @@ namespace Othello.ViewModels
                     }
                 }
 
-            CurrentPlayer.TypeOfTile = TileType.White;
+            CurrentPlayer.TypeOfTile = TileType.Black;
         }
 
 
@@ -189,6 +189,7 @@ namespace Othello.ViewModels
                     return false;
                 }
             }
+            FindWinner();
             ShowWinner();
             return true;
 
@@ -842,62 +843,28 @@ namespace Othello.ViewModels
 
         }
 
-        public void ShowWinner()
+        public void FindWinner()
         {
 
             if (PlayerBlackScore > PlayerWhiteScore)
             {
-                PlayWinSound();                
-                Fireworks = Visibility.Visible;
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Black player won with {PlayerBlackScore} vs {PlayerWhiteScore}\n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
-                if (messageBoxResult == MessageBoxResult.OK)
-                {
-                    MainViewModel._instance.CurrentViewModel = new StartViewModel();
-
-                }
-                else if (messageBoxResult == MessageBoxResult.Cancel)
-                {
-                    Application.Current.Shutdown();
-                }
+                Winner = Player.Black;
             }
 
             else if (PlayerWhiteScore > PlayerBlackScore)
             {
-                PlayWinSound();
-                Fireworks = Visibility.Visible;
-                MessageBoxResult messageBoxResult = MessageBox.Show($"White player won with {PlayerBlackScore} vs {PlayerWhiteScore}\n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
-                if (messageBoxResult == MessageBoxResult.OK)
-                {
-                    MainViewModel._instance.CurrentViewModel = new StartViewModel();
-
-                }
-                else if (messageBoxResult == MessageBoxResult.Cancel)
-                {
-                    Application.Current.Shutdown();
-                }
-
+                Winner = Player.White;
             }
             else if (PlayerBlackScore == PlayerWhiteScore)
             {
-                PlayWinSound();
-
-                Fireworks = Visibility.Visible;
-
-                MessageBoxResult messageBoxResult = MessageBox.Show($"Tie with {PlayerWhiteScore} vs {PlayerBlackScore} \n\nPlay again?", "Game Over", MessageBoxButton.OKCancel);
-                if (messageBoxResult == MessageBoxResult.OK)
-                {
-                    MainViewModel._instance.CurrentViewModel = new StartViewModel();
-
-                }
-                else if (messageBoxResult == MessageBoxResult.Cancel)
-                {
-                    Application.Current.Shutdown();
-                }
+                Winner = Player.None;
             }
         }
 
-        
-
+        public void ShowWinner()
+        {
+            MainViewModel._instance.CurrentViewModel = new EndViewModel(Winner);
+        }       
 
     }
 }
