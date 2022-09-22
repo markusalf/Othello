@@ -13,7 +13,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/GeneralBackground.png" Stretch="Fill"/>
+            <ImageBrush ImageSource="/Images/BackgroundOthello.png" Stretch="Fill"/>
         </Grid.Background>
         <Button x:Name="RestartButton" Width="290" Height="250" BorderThickness="0,0,0,0" Margin="400,222,110,-22" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
             <Button.RenderTransform>

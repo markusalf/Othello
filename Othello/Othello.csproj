@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\BackgroundOthello.png" />
     <None Remove="Images\Button.png" />
     <None Remove="Images\ButtonQuitHover.png" />
     <None Remove="Images\ButtonRestartHover.png" />
@@ -15,8 +16,7 @@
     <None Remove="Images\ButtonRulesHover.png" />
     <None Remove="Images\ButtonStartHover.png" />
     <None Remove="Images\GameOverText.png" />
-    <None Remove="Images\GeneralBackground.png" />
-    <None Remove="Images\OthelloText.png" />
+    <None Remove="Images\OthelloBanner.png" />
     <None Remove="Images\QuitButton.png" />
     <None Remove="Images\RestartButton.png" />
     <None Remove="Images\ReturnButton.png" />
@@ -36,6 +36,9 @@
   </ItemGroup>
  
   <ItemGroup>
+    <Resource Include="Images\BackgroundOthello.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\Button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -63,10 +66,7 @@
     <Resource Include="Images\GameOverText.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\GeneralBackground.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\OthelloText.png">
+    <Resource Include="Images\OthelloBanner.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\QuitButton.png">

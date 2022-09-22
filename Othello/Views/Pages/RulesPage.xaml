@@ -14,14 +14,14 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/GeneralBackground.png"/>
+            <ImageBrush ImageSource="/Images/BackgroundOthello.png"/>
         </Grid.Background>
         <Grid Margin="-36,0,315,86">
             <Grid.Background>
                 <ImageBrush ImageSource="/Images/RulesScroll.png"/>
             </Grid.Background>
         </Grid>
-        <Button x:Name="ReturnBtn" BorderThickness="0,0,0,0" Margin="930,578,75,34" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
+        <Button x:Name="ReturnBtn" BorderThickness="0,0,0,0" Margin="904,550,48,34" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -32,7 +32,7 @@
             </Button.RenderTransform>
             <Button.Template>
                 <ControlTemplate>
-                    <Image Name="Image" Stretch="Fill" Source="/Images/ReturnButton.png"/>
+                    <Image Name="Image" Source="/Images/ReturnButton.png"/>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Image"  Property="Source" Value="/Images/ButtonReturnHover.png"/>
