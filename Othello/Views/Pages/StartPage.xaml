@@ -44,14 +44,11 @@
         </EventTrigger>
     </UserControl.Triggers>
 
-
-
-
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/GeneralBackground.png" Stretch="Fill"/>
+            <ImageBrush ImageSource="/Images/BackgroundOthello.png" Stretch="Fill"/>
         </Grid.Background>
-        <Button x:Name="StartBtn" Height="300" Width="400" BorderThickness="0,0,0,0" Margin="254,335,546,165" Command="{Binding StartGameCommand, Source={x:Static vm:MainViewModel.Instance}}" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="StartBtn" Height="300" Width="400" BorderThickness="0,0,0,0" Margin="415,376,385,124" Command="{Binding StartGameCommand, Source={x:Static vm:MainViewModel.Instance}}" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -71,7 +68,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Image x:Name="image" Source="/Images/OthelloText.png" Width="450" Margin="375,156,375,490" RenderTransformOrigin="0.5,0.5">
+        <Image x:Name="image" Source="/Images/OthelloBanner.png" Width="450" Height="200" Margin="375,145,375,455" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -81,7 +78,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Button x:Name="RulesBtn" Height="300" Width="400" BorderThickness="0,0,0,0" Margin="530,335,270,165" Command="{Binding RulesPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
+            <Button x:Name="RulesBtn" Height="300" Width="400" BorderThickness="0,0,0,0" Margin="415,526,385,-26" Command="{Binding RulesPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -101,7 +98,7 @@
                 </ControlTemplate>
             </Button.Template>
                 </Button>
-        <Ellipse x:Name ="BlackTile" Fill="Black" Width="100" Height="100" Margin="474,325,626,375" RenderTransformOrigin="0.5,0.5">
+        <Ellipse x:Name ="BlackTile" Fill="Black" Width="100" Height="100" Margin="474,350,626,350" RenderTransformOrigin="0.5,0.5">
             <Ellipse.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -111,7 +108,7 @@
                 </TransformGroup>
             </Ellipse.RenderTransform>
         </Ellipse>
-        <Ellipse x:Name="WhiteTile" Fill="White" Width="100" Height="100" Margin="600,325,500,375" RenderTransformOrigin="0.5,0.5">
+        <Ellipse x:Name="WhiteTile" Fill="White" Width="100" Height="100" Margin="600,350,500,350" RenderTransformOrigin="0.5,0.5">
             <Ellipse.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
