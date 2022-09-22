@@ -58,7 +58,7 @@
                 <Image Source="/Images/GameOverText.png" Height="126" Width="448"/>
             </Label.Content>
         </Label>
-        <Label Content="{Binding Message}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="240" Width="412" FontFamily="Sitka Heading Semibold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,125,0,0">
+        <Label Content="{Binding Message}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="300" Width="500" FontFamily="Sitka Heading Semibold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,125,0,0">
             <Label.Background>
                 <ImageBrush Stretch="Uniform" ImageSource="/Images/WinnerBanner.png"/>
             </Label.Background>

@@ -863,7 +863,7 @@ namespace Othello.ViewModels
 
         public void ShowWinner()
         {
-            MainViewModel._instance.CurrentViewModel = new EndViewModel(Winner);
+            MainViewModel._instance.CurrentViewModel = new EndViewModel(Winner, PlayerBlackScore, PlayerWhiteScore);
         }       
 
     }
