@@ -24,6 +24,7 @@
     <None Remove="Images\RulesScroll.png" />
     <None Remove="Images\StartButton.png" />
     <None Remove="Images\WinBoard.png" />
+    <None Remove="Images\WinnerBoard.png" />
     <None Remove="Resources\fireworks.gif" />
     <None Remove="Views\background.png" />
     <None Remove="Views\currentTurn.png" />
@@ -90,6 +91,7 @@
     <Resource Include="Images\StartButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\WinnerBoard.png" />
     <Resource Include="Resources\fireworks.gif" />
   </ItemGroup>
  
