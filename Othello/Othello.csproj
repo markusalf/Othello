@@ -25,6 +25,7 @@
     <None Remove="Images\StartButton.png" />
     <None Remove="Images\WinBoard.png" />
     <None Remove="Images\WinnerBanner.png" />
+    <None Remove="Resources\firework1.gif" />
     <None Remove="Resources\fireworks.gif" />
     <None Remove="Views\background.png" />
     <None Remove="Views\currentTurn.png" />
@@ -94,6 +95,7 @@
     <Resource Include="Images\WinnerBanner.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\firework1.gif" />
     <Resource Include="Resources\fireworks.gif" />
   </ItemGroup>
  
