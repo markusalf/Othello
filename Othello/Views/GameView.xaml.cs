@@ -25,30 +25,5 @@ namespace Othello.Views
         {
             InitializeComponent();
         }
-
-        private void boardPiece_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Point clickedPosition = e.GetPosition(GameBoard);
-            Point boardPieceCo = GetCoordinates(clickedPosition);
-        }
-
-        /// <summary>
-        /// "Get" coordinates for each square in board
-        /// </summary>
-        /// <param name="clickedPosition"></param>
-        /// <returns></returns>
-
-        private Point GetCoordinates(Point clickedPosition)
-        {
-            int pieceSize = 75;
-
-            double x = clickedPosition.X;
-            double y = clickedPosition.Y;
-
-            x = Math.Floor(x / pieceSize);
-            y = Math.Floor(y / pieceSize);
-
-            return new Point(x, y);
-        }
     }  
 }

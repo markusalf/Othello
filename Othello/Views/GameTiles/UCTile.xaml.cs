@@ -30,28 +30,6 @@ namespace Othello.Views.GameTiles
 
         public (int, int) Coordinates { get; set; }
 
-        //private string _squareColor;
-        //public string SquareColor
-        //{
-        //    get => _squareColor;
-        //    set
-        //    {
-        //        _squareColor = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ellipseColor;
-        //public string EllipseColor
-        //{
-        //    get => _ellipseColor;
-        //    set
-        //    {
-        //        _ellipseColor = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         /// <summary>
         /// Unique id for UCTiles
         /// </summary>
