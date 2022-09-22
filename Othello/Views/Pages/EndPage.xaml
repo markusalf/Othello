@@ -13,7 +13,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/BackgroundOthello.png" Stretch="Fill"/>
         </Grid.Background>
-        <Button x:Name="RestartButton" Width="290" Height="250" BorderThickness="0,0,0,0" Margin="400,222,110,-22" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
+        <Button x:Name="RestartButton" Width="290" Height="250" BorderThickness="0,0,0,0" Margin="360,240,150,-40" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -33,7 +33,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="QuitBtn" Width="290" Height="250" BorderThickness="0,0,0,0" Margin="171,222,339,-22" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
+        <Button x:Name="QuitBtn" Width="290" Height="250" BorderThickness="0,0,0,0" Margin="194,240,316,-40" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -53,14 +53,14 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label HorizontalAlignment="Center" Margin="0,0,0,335">
+        <Label HorizontalAlignment="Center" Margin="0,30,0,290">
             <Label.Content>
                 <Image Source="/Images/GameOverText.png" Height="126" Width="448"/>
             </Label.Content>
         </Label>
-        <Label Content="{Binding Winner}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="300" Width="550" Margin="0,58,0,0" FontFamily="Bahnschrift SemiBold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <Label Content="{Binding Message}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="240" Width="412" FontFamily="Sitka Heading Semibold" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,125,0,0">
             <Label.Background>
-                <ImageBrush Stretch="Uniform" ImageSource="/Images/WinnerBoard.png"/>
+                <ImageBrush Stretch="Uniform" ImageSource="/Images/WinnerBanner.png"/>
             </Label.Background>
         </Label>
     </Grid>
