@@ -8,8 +8,8 @@
         xmlns:local="clr-namespace:Othello.Views.Pages"
         d:DataContext="{d:DesignInstance vm:MainViewModel}"
         mc:Ignorable="d"
-        Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={converters:RatioConverter}, ConverterParameter='0.9' }" 
-        Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={converters:RatioConverter}, ConverterParameter='0.9' }"
+        Height="900" 
+        Width="1300"
         Title="Othello"
         WindowStartupLocation="CenterScreen">
 
@@ -17,10 +17,6 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/GameBackground.png"/>
         </Grid.Background>
-        <ContentControl Content="{Binding CurrentViewModel, Source={x:Static vm:MainViewModel.Instance}}"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"/>
+        <ContentControl Content="{Binding CurrentViewModel, Source={x:Static vm:MainViewModel.Instance}}"/>
     </Grid>
 </Window>

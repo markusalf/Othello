@@ -14,30 +14,32 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/BackgroundOthello.png"/>
         </Grid.Background>
-        <Grid Margin="-36,0,315,86">
-            <Grid.Background>
+        <StackPanel Height="650" Width="900" Margin="10,75,290,75">
+            <StackPanel.Background>
                 <ImageBrush ImageSource="/Images/RulesScroll.png"/>
-            </Grid.Background>
-        </Grid>
-        <Button x:Name="ReturnBtn" BorderThickness="0,0,0,0" Margin="904,550,48,34" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-            <Button.Template>
-                <ControlTemplate>
-                    <Image Name="Image" Source="/Images/ReturnButton.png"/>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Image"  Property="Source" Value="/Images/ButtonReturnHover.png"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+            </StackPanel.Background>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="300" Width="315" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button x:Name="ReturnBtn" Height="350" Width="350"  BorderThickness="0,0,0,0"  Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image x:Name="Image" Source="/Images/ReturnButton.png"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Image"  Property="Source" Value="/Images/ButtonReturnHover.png"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

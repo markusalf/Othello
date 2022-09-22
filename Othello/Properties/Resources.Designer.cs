@@ -72,6 +72,16 @@ namespace Othello.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] firework1 {
+            get {
+                object obj = ResourceManager.GetObject("firework1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] fireworks {
             get {
                 object obj = ResourceManager.GetObject("fireworks", resourceCulture);
