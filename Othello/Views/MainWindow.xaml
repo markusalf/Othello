@@ -12,11 +12,14 @@
         Width="1300"
         Title="Othello"
         WindowStartupLocation="CenterScreen">
+        
 
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/GameBackground.png"/>
         </Grid.Background>
         <ContentControl Content="{Binding CurrentViewModel, Source={x:Static vm:MainViewModel.Instance}}"/>
     </Grid>
+    </Viewbox>
 </Window>
