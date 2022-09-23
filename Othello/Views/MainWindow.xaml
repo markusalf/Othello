@@ -11,8 +11,8 @@
         Height="900" 
         Width="1300"
         Title="Othello"
-        WindowStartupLocation="CenterScreen">
-        
+        WindowState="Maximized">
+
 
     <Viewbox Stretch="Uniform" StretchDirection="Both">
     <Grid>
