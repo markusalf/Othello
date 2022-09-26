@@ -28,11 +28,16 @@ namespace Othello.ViewModels
         public UCTile CurrentPlayer { get; set; } = new UCTile();
         public Player Winner { get; set; } = new Player();
         TileType oppositeColor;
-        public Visibility Fireworks { get; set; } = Visibility.Hidden;
         List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
         public int _gameBoardSize = 8;
-        public bool SoundOff;
 
+
+        public Visibility SoundOn { get; set; } = Visibility.Collapsed;
+        public Visibility SoundOff { get; set; } = Visibility.Visible;
+        public bool IsSoundOn;
+
+        public ICommand TurnSoundOffCommand { get; set; }
+        public ICommand TurnSoundOnCommand { get; set; }
 
 
         public ICommand RulesInGameCommand { get; }
@@ -48,6 +53,9 @@ namespace Othello.ViewModels
             ShowPossibleMoves();
             TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));
             RulesInGameCommand = new RelayCommand(page => OpenRulesScroll());
+            TurnSoundOffCommand = new RelayCommand(execute: b => TurnSoundOff());
+            TurnSoundOnCommand = new RelayCommand(execute: b => TurnSoundOn());
+
         }
         public Visibility Rules { get; set; } = Visibility.Collapsed;
         private void OpenRulesScroll()
@@ -80,9 +88,25 @@ namespace Othello.ViewModels
             ShowPossibleMoves();
         }
 
+        #region Sounds
+
+
+        private void TurnSoundOff()
+        {
+            IsSoundOn = false;
+            SoundOff = Visibility.Collapsed;
+            SoundOn = Visibility.Visible;
+        }
+        private void TurnSoundOn()
+        {
+            IsSoundOn = true;
+            SoundOn = Visibility.Collapsed;
+            SoundOff = Visibility.Visible;
+        }
+
         private void PlayClickSound()
         {
-            if (!SoundOff)
+            if (IsSoundOn)
             {
                 var clickSound = new SoundPlayer(Properties.Resources.clickSound);
                 clickSound.Play();
@@ -92,12 +116,14 @@ namespace Othello.ViewModels
         private void PlayWinSound()
         {
 
-            if (!SoundOff)
+            if (IsSoundOn)
             {
                 var winSound = new SoundPlayer(Properties.Resources.winSound);
                 winSound.Play();
             }
-        }
+        } 
+        #endregion
+
 
         private void ShowPossibleMoves()
         {

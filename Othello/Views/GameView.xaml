@@ -111,7 +111,8 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <CheckBox Content="Sound OFF" FontSize="24" Foreground="#FFFF0051" Height="27" Width="193" Margin="828,500,0,0"/>
         <Image x:Name="RulesScroll" Height="900" Width="800" Source="/Images/RulesScroll.png" Visibility="{Binding Rules}"/>
+        <Image x:Name="SoundOffBtn" Height="100" Width="100" Source="/Images/SoundOff.png" Visibility="{Binding SoundOff}" Margin="904,517,59,83"/>
+        <Image x:Name="SoundOnBtn" Height="100" Width="100" Source="/Images/SoundOn.png" Visibility="{Binding SoundOn}" Margin="904,517,59,83" />
     </Grid>
 </UserControl>
