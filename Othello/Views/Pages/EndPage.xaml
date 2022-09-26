@@ -72,10 +72,5 @@
                 </Button.Template>
             </Button>
         </StackPanel>
-
-
     </Grid>
-    
-    
-    
 </UserControl>
