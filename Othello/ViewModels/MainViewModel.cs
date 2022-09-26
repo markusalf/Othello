@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,17 +31,13 @@ namespace Othello.ViewModels
             StartGameCommand = new RelayCommand(page => StartGame());
             RulesPageCommand = new RelayCommand(page => RulesPage());
             StartPageCommand = new RelayCommand(page => StartPage());
-            QuitGameCommand = new RelayCommand(page => QuitPage());           
-            
-
+            QuitGameCommand = new RelayCommand(page => QuitPage());
         }
-        
 
         private void QuitPage()
         {
             Application.Current.Shutdown();
         }
-
 
 
         private void StartGame()

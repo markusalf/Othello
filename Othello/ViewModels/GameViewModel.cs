@@ -32,10 +32,10 @@ namespace Othello.ViewModels
         List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
         public int _gameBoardSize = 8;
         public bool SoundOff;
-        
 
-        
 
+
+        public ICommand RulesInGameCommand { get; }
         public ICommand TileClickedCommand { get; }
         public int PlayerBlackScore { get; set; } = 0;
         public int PlayerWhiteScore { get; set; } = 0;
@@ -47,6 +47,19 @@ namespace Othello.ViewModels
             UpdateScore();
             ShowPossibleMoves();
             TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));
+            RulesInGameCommand = new RelayCommand(page => OpenRulesScroll());
+        }
+        public Visibility Rules { get; set; } = Visibility.Collapsed;
+        private void OpenRulesScroll()
+        {
+            if (Rules == Visibility.Collapsed)
+            {
+                Rules = Visibility.Visible;
+            }
+            else
+            {
+                Rules = Visibility.Collapsed;
+            }
         }
 
 

@@ -71,9 +71,7 @@
             </Label>
         </ItemsControl>
         <Ellipse Fill="Black" Width="40" Height="38" Margin="115,516,900,146"/>
-        <!--<Image x:Name="Fireworks" 
-            gif:ImageBehavior.AnimatedSource="/Resources/fireworks.gif" Visibility="{Binding Fireworks}"/>-->
-        <Button x:Name="QuitBtn" BorderThickness="0,0,0,0" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}" Margin="823,300,-32,183">
+        <Button x:Name="QuitBtn" BorderThickness="0,0,0,0" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}" Margin="818,300,-27,183">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -93,7 +91,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="RulesBtn" BorderThickness="0,0,0,0"  Command="{Binding RulesPageCommand, Source={x:Static vm:MainViewModel.Instance}}" Margin="823,155,-32,300">
+        <Button x:Name="RulesBtn" BorderThickness="0,0,0,0" Command="{Binding RulesInGameCommand}" Margin="818,114,-27,381">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -113,7 +111,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <CheckBox Content="Klick Sound OFF" FontSize="24" Foreground="#FFFF0051" Height="27" Width="193" Margin="828,500,0,0"/>
-
+        <CheckBox Content="Sound OFF" FontSize="24" Foreground="#FFFF0051" Height="27" Width="193" Margin="828,500,0,0"/>
+        <Image x:Name="RulesScroll" Height="900" Width="800" Source="/Images/RulesScroll.png" Visibility="{Binding Rules}"/>
     </Grid>
 </UserControl>
