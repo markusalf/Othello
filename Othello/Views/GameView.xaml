@@ -9,12 +9,12 @@
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              xmlns:GameTiles="clr-namespace:Othello.Views.GameTiles" 
              mc:Ignorable="d" Height="700" Width="1063" x:Name="GameBoard">
-    
+
     <UserControl.DataContext>
         <vm:GameViewModel/>
     </UserControl.DataContext>
-    
-    <Grid>        
+
+    <Grid>
         <ItemsControl
             Width="600"
             Height="600"
@@ -29,7 +29,7 @@
             </ItemsControl.ItemsPanel>
         </ItemsControl>
         <Grid>
-            <TextBlock Text="Current turn" VerticalAlignment="Top" HorizontalAlignment="Left" Height="45" Width="204" FontFamily="Franklin Gothic Medium"  FontSize="38" Margin="0,250,0,0" FontStyle="Oblique" Foreground="#FFE0E0E0">
+            <TextBlock Text="Current turn" VerticalAlignment="Top" HorizontalAlignment="Left" Height="45" Width="204" FontFamily="Franklin Gothic Medium"  FontSize="38" Margin="5,250,0,0" FontStyle="Oblique" Foreground="#FFE0E0E0">
                 <TextBlock.Effect>
                     <DropShadowEffect
                                ShadowDepth="8"
@@ -38,7 +38,7 @@
                                BlurRadius="3"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <Label Content="{Binding CurrentPlayer, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Height="100" Width="220" x:Name="CurrentTurn" Margin="0,0,0,0" FontFamily="Segoe UI Black" FontSize="25" FontWeight="Bold">
+            <Label Content="{Binding CurrentPlayer, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Height="89" Width="204" x:Name="CurrentTurn" FontFamily="Segoe UI Black" FontSize="25" FontWeight="Bold" Margin="5,0,0,0">
                 <Label.Effect>
                     <DropShadowEffect Color="ForestGreen" ShadowDepth="5" BlurRadius="8"/>
                 </Label.Effect>
