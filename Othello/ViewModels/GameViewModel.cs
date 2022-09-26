@@ -31,6 +31,7 @@ namespace Othello.ViewModels
         public Visibility Fireworks { get; set; } = Visibility.Hidden;
         List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
         public int _gameBoardSize = 8;
+        public bool SoundOff;
         
 
         
@@ -68,14 +69,21 @@ namespace Othello.ViewModels
 
         private void PlayClickSound()
         {
-            var clickSound = new SoundPlayer(Properties.Resources.clickSound);
-            clickSound.Play();
+            if (!SoundOff)
+            {
+                var clickSound = new SoundPlayer(Properties.Resources.clickSound);
+                clickSound.Play();
+            }
         }
 
         private void PlayWinSound()
         {
-            var clickSound = new SoundPlayer(Properties.Resources.winSound);
-            clickSound.Play();
+
+            if (!SoundOff)
+            {
+                var winSound = new SoundPlayer(Properties.Resources.winSound);
+                winSound.Play();
+            }
         }
 
         private void ShowPossibleMoves()
