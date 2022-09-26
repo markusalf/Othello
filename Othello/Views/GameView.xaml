@@ -29,7 +29,7 @@
             </ItemsControl.ItemsPanel>
         </ItemsControl>
         <Grid>
-            <TextBlock Text="Current turn" VerticalAlignment="Top" HorizontalAlignment="Left" Height="45" Width="204" FontFamily="Franklin Gothic Medium"  FontSize="38" Margin="5,250,0,0" FontStyle="Oblique" Foreground="#FFE0E0E0">
+            <TextBlock Text="Current Player" VerticalAlignment="Top" HorizontalAlignment="Left" Height="45" Width="183" FontFamily="Franklin Gothic Medium"  FontSize="29" Margin="26,270,0,0" FontStyle="Oblique" Foreground="#FFE0E0E0">
                 <TextBlock.Effect>
                     <DropShadowEffect
                                ShadowDepth="8"
