@@ -1,49 +1,40 @@
-﻿using Othello.ViewModels.Base;
+﻿using Othello.Commands;
+using Othello.Enums;
+using Othello.ViewModels.Base;
 using Othello.Views.GameTiles;
 using System;
-using System.Media;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Othello.Enums;
-using System.Windows.Markup;
-using System.Windows.Input;
-using Othello.Commands;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Reflection;
-using System.Reflection.Metadata.Ecma335;
+using System.Media;
 using System.Windows;
-using System.Windows.Media.Imaging;
-using WpfAnimatedGif;
-using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Othello.ViewModels
 {
     internal class GameViewModel : BaseViewModel
     {
         public ObservableCollection<UCTile> BoardPieces { get; private set; } = new ObservableCollection<UCTile>();
+        List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
         public UCTile CurrentPlayer { get; set; } = new UCTile();
         public Player Winner { get; set; } = new Player();
         TileType oppositeColor;
-        List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
+        public bool IsSoundOn { get; set; } = true;
+
         public int _gameBoardSize = 8;
+        public int PlayerBlackScore { get; set; } = 0;
+        public int PlayerWhiteScore { get; set; } = 0;
 
 
         public Visibility SoundOn { get; set; } = Visibility.Collapsed;
         public Visibility SoundOff { get; set; } = Visibility.Visible;
-        public bool IsSoundOn { get; set; } = true;
+        public Visibility Rules { get; set; } = Visibility.Collapsed;
+
 
         public ICommand TurnSoundOffCommand { get; set; }
         public ICommand TurnSoundOnCommand { get; set; }
-
-
         public ICommand RulesInGameCommand { get; }
         public ICommand TileClickedCommand { get; }
-        public int PlayerBlackScore { get; set; } = 0;
-        public int PlayerWhiteScore { get; set; } = 0;
 
         public GameViewModel()
         {
@@ -57,7 +48,6 @@ namespace Othello.ViewModels
             TurnSoundOnCommand = new RelayCommand(execute: b => TurnSoundOn());
 
         }
-        public Visibility Rules { get; set; } = Visibility.Collapsed;
 
         /// <summary>
         /// Changes visibility of the Rules Scroll
@@ -136,7 +126,6 @@ namespace Othello.ViewModels
 
             foreach (var UCTile in BoardPieces)
             {
-
                 var b = UCTile.Id;
                 if (IsPossibleMove(b) && UCTile.TypeOfTile == TileType.Empty)
                 {
@@ -405,10 +394,8 @@ namespace Othello.ViewModels
                     else
                     {                            
                         break;
-                    }
-                        
-                }                            
-            
+                    }    
+                }                              
         }
 
         /// <summary>
@@ -762,9 +749,6 @@ namespace Othello.ViewModels
             int y = tile.Coordinates.Item2;
             TileType currentColor = CurrentPlayer.TypeOfTile;
 
-
-
-
             for (int i = y - 1; i >= 0; i--)
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (x, i) && piece.TypeOfTile == oppositeColor))
@@ -775,9 +759,7 @@ namespace Othello.ViewModels
                 {
                     break;
                 }
-
             }
-
         }
 
 
@@ -827,9 +809,6 @@ namespace Othello.ViewModels
             int y = tile.Coordinates.Item2;
             TileType currentColor = CurrentPlayer.TypeOfTile;
 
-
-
-
             for (int i = x - 1; i >= 0; i--)
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (i, y) && piece.TypeOfTile == oppositeColor))
@@ -840,9 +819,7 @@ namespace Othello.ViewModels
                 {
                     break;
                 }
-
             }
-
         }
 
 
@@ -952,7 +929,6 @@ namespace Othello.ViewModels
             {
                 return true;
             }
-
             return false;
 
         }
@@ -984,6 +960,6 @@ namespace Othello.ViewModels
         {
             PlayWinSound(); 
             MainViewModel._instance.CurrentViewModel = new EndViewModel(Winner, PlayerBlackScore, PlayerWhiteScore);
-        }       
+        }
     }
 }

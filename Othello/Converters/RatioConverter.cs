@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace Othello.Converters
 {
     #region Converterare från https://stackoverflow.com/questions/8121906/resize-wpf-window-and-contents-depening-on-screen-resolution
-    
+
     [ValueConversion(typeof(string), typeof(string))]
     internal class RatioConverter : MarkupExtension, IValueConverter
     {

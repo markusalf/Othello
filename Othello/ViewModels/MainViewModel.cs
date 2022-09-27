@@ -1,15 +1,5 @@
 ﻿using Othello.Commands;
 using Othello.ViewModels.Base;
-using Othello.Views;
-using Othello.Views.GameTiles;
-using Othello.Views.Pages;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -34,21 +24,32 @@ namespace Othello.ViewModels
             QuitGameCommand = new RelayCommand(page => QuitPage());
         }
 
+        /// <summary>
+        /// Shuts down the application
+        /// </summary>
         private void QuitPage()
         {
             Application.Current.Shutdown();
         }
 
-
+        /// <summary>
+        /// Changes page to GameView
+        /// </summary>
         private void StartGame()
         {
             CurrentViewModel = new GameViewModel();
         }
 
+        /// <summary>
+        /// Changes page to RulesView
+        /// </summary>
         private void RulesPage()
         {
             CurrentViewModel = new RulesViewModel();
         }
+        /// <summary>
+        /// Changes page to StartView
+        /// </summary>
         private void StartPage()
         {
             CurrentViewModel = new StartViewModel();
