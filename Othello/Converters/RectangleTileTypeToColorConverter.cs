@@ -22,7 +22,6 @@ namespace Othello.Converters
                     
                     BoardPieceType.PossibleMoveMarker => new SolidColorBrush(Colors.LightSeaGreen),
                     BoardPieceType.NotPossibleMoveMarker => new SolidColorBrush(Colors.Green),
-                    BoardPieceType.FlankedTileMarker => new SolidColorBrush(Colors.Red),
                     _ => new SolidColorBrush(Colors.Green),
                 };
             }

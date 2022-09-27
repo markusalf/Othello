@@ -8,8 +8,13 @@ namespace Othello.Enums
 {
     public enum BoardPieceType
     {
-        PossibleMoveMarker, // Visar vart det går att lägga sin tile.
-        NotPossibleMoveMarker, // Visar vart det inte går att lägga sin tile.
-        FlankedTileMarker,
+        /// <summary>
+        /// Shows where tile can be placed
+        /// </summary>
+        PossibleMoveMarker,
+        /// <summary>
+        /// Shows where tile cannot be placed
+        /// </summary>
+        NotPossibleMoveMarker,
     }
 }
