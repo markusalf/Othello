@@ -51,13 +51,17 @@ namespace Othello.ViewModels
             SetOppositeColor(CurrentPlayer);
             UpdateScore();
             ShowPossibleMoves();
-            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsMovePossible(b));
+            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));
             RulesInGameCommand = new RelayCommand(page => ChangeRulesScrollVisibility());
             TurnSoundOffCommand = new RelayCommand(execute: b => TurnSoundOff());
             TurnSoundOnCommand = new RelayCommand(execute: b => TurnSoundOn());
 
         }
         public Visibility Rules { get; set; } = Visibility.Collapsed;
+
+        /// <summary>
+        /// Changes visibility of the Rules Scroll
+        /// </summary>
         private void ChangeRulesScrollVisibility()
         {
             if (Rules == Visibility.Collapsed)
@@ -72,9 +76,9 @@ namespace Othello.ViewModels
 
 
         /// <summary>
-        /// Lägger ut en Tile på spelbrädan, uppdaterar resultatet, byter spelares tur och visar möjliga drag för den nya spelaren.
+        /// Allows you to place a tile on the board depending on if there are possible moves or not
         /// </summary>
-        /// <param name="x"></param>
+        /// <param name="b">Clicked position on board</param>
         private void PlaceTile(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
@@ -124,7 +128,9 @@ namespace Othello.ViewModels
         } 
         #endregion
 
-
+        /// <summary>
+        /// Changes the BoardPieceType to show where you can place your piece
+        /// </summary>
         private void ShowPossibleMoves()
         {
 
@@ -132,7 +138,7 @@ namespace Othello.ViewModels
             {
 
                 var b = UCTile.Id;
-                if (IsMovePossible(b) && UCTile.TypeOfTile == TileType.Empty)
+                if (IsPossibleMove(b) && UCTile.TypeOfTile == TileType.Empty)
                 {
                     UCTile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
                 }
@@ -144,7 +150,7 @@ namespace Othello.ViewModels
         }
 
         /// <summary>
-        /// Fyller boarden med UCTile och lägger till 2 svarta och 2 vita.
+        /// Fills the gameboard with UCTiles where 2 white and 2 black pieces start
         /// </summary>
         private void FillBoard()
         {
@@ -208,7 +214,7 @@ namespace Othello.ViewModels
 
 
         /// <summary>
-        /// Räknar svarta/vita brickor på spelbrädan för att visa resultat
+        /// Counts black and white tiles/pieces on the gameboard
         /// </summary>
         public void UpdateScore()
         {
@@ -217,27 +223,27 @@ namespace Othello.ViewModels
         }
 
 
-
+        /// <summary>
+        /// Checks whether the game is over or not
+        /// </summary>
+        /// <returns>True if there are no more valid moves, otherwise false</returns>
         public bool IsGameOver()
         {
             if (CanPlayerMakeAMove())
             {
                 return false;
             }
-            else
-            {                
-                if (CanPlayerMakeAMove())
-                {
-                    return false;
-                }
+            else if (CanPlayerMakeAMove())
+            {
+                return false;
             }
-            FindWinner();
+            SetWinner();
             ShowWinner();
             return true;
 
         }
         /// <summary>
-        /// Byter vilken spelares tur det är.
+        /// Changes turn
         /// </summary>
         public void ChangePlayerTurn()
         {
@@ -252,27 +258,24 @@ namespace Othello.ViewModels
             SetOppositeColor(CurrentPlayer);
         }
         /// <summary>
-        /// Kollar om spelaren kan göra ett giltigt drag.
+        /// Checks if a player can make a valid move
         /// </summary>
-        /// <param name="CurrentPlayer"></param>
-        /// <returns>Sant om spelaren kan göra ett giltigt drag. Falskt om den inte kan samt ändrar då till andra spelarens tur</returns>
+        /// <returns>True if there's a valid move, otherwise false</returns>
         public bool CanPlayerMakeAMove()
-        {
-            
+        {  
             foreach (UCTile tile in BoardPieces)
             {
-                if (IsMovePossible(tile.Id)) { return true; }
-                
+                if (IsPossibleMove(tile.Id)) { return true; }   
             }
             ChangePlayerTurn();
             return false;
         }
 
         /// <summary>
-        /// Ändrar vilken färg/tiletype oppositecolor är.
+        /// Changes color value of OppositeColor
         /// </summary>
-        /// <param name="CurrentPlayer"></param>
-        /// <returns>Den färg/tiletype som oppositecolor är.</returns>
+        /// <param name="CurrentPlayer">Player that is currently playing</param>
+        /// <returns>The new color value of OppositeColor</returns>
         public TileType SetOppositeColor(UCTile CurrentPlayer)
         {
             if(CurrentPlayer.TypeOfTile == TileType.Black)
@@ -286,44 +289,51 @@ namespace Othello.ViewModels
             return oppositeColor;
         }
 
+        /// <summary>
+        /// Makes the move for the current player's placed piece
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
         public void MakeAMove (object b)
         {
             if (IsDirectionSouthPossible(b))
             {
-                ChangeTilesDirectionSouth(b);
+                AddTilesDirectionSouth(b);
             }
             if (IsDirectionNorthPossible(b))
             {
-                ChangeTilesDirectionNorth(b);
+                AddTilesDirectionNorth(b);
             }
             if (IsDirectionWestPossible(b))
             {
-                ChangeTilesDirectionWest(b);
+                AddTilesDirectionWest(b);
             }
             if (IsDirectionEastPossible(b))
             {
-                ChangeTilesDirectionEast(b);
+                AddTilesDirectionEast(b);
             }
             if(IsDirectionSouthWestPossible(b))
             {
-                ChangeTilesDirectionSouthWest(b);
+                AddTilesDirectionSouthWest(b);
             }
             if (IsDirectionSouthEastPossible(b))
             {
-                ChangeTilesDirectionSouthEast(b);
+                AddTilesDirectionSouthEast(b);
             }
             if (IsDirectionNorthWestPossible(b))
             {
-                ChangeTilesDirectionNorthWest(b);
+                AddTilesDirectionNorthWest(b);
             }
             if (IsDirectionNorthEastPossible(b))
             {
-                ChangeTilesDirectionNorthEast(b);
+                AddTilesDirectionNorthEast(b);
             }
-
             ChangeColorOfTiles();
         }
 
+
+        /// <summary>
+        /// Changes color of tiles within the list directionResults
+        /// </summary>
         public void ChangeColorOfTiles()
         {
             foreach (var affectedcoordinates in directionResults)
@@ -339,6 +349,11 @@ namespace Othello.ViewModels
             
         }
 
+        /// <summary>
+        /// Checks if move is valid in the given direction
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns>True if valid, else false</returns>
         public bool IsDirectionSouthPossible(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
@@ -370,8 +385,11 @@ namespace Othello.ViewModels
             return false;
         }
 
-           
-        public void ChangeTilesDirectionSouth(object b)
+        /// <summary>
+        /// Adds affected tiles of the opposite color to the directionResults list
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
+        public void AddTilesDirectionSouth(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             int x = tile.Coordinates.Item1;
@@ -392,6 +410,12 @@ namespace Othello.ViewModels
                 }                            
             
         }
+
+        /// <summary>
+        /// Checks if move is valid in the given direction
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns>True if valid, else false</returns>
         public bool IsDirectionSouthWestPossible(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
@@ -429,7 +453,11 @@ namespace Othello.ViewModels
             return false;
         }
 
-        public void ChangeTilesDirectionSouthWest(object b)
+        /// <summary>
+        /// Adds affected tiles of the opposite color to the directionResults list
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
+        public void AddTilesDirectionSouthWest(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             int x = tile.Coordinates.Item1;
@@ -459,6 +487,11 @@ namespace Othello.ViewModels
         }
 
 
+        /// <summary>
+        /// Checks if move is valid in the given direction
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns>True if valid, else false</returns>
         public bool IsDirectionSouthEastPossible(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
@@ -496,7 +529,11 @@ namespace Othello.ViewModels
             return false;
         }
 
-        public void ChangeTilesDirectionSouthEast(object b)
+        /// <summary>
+        /// Adds affected tiles of the opposite color to the directionResults list
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
+        public void AddTilesDirectionSouthEast(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             int x = tile.Coordinates.Item1;
@@ -525,6 +562,12 @@ namespace Othello.ViewModels
 
         }
 
+
+        /// <summary>
+        /// Checks if move is valid in the given direction
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns>True if valid, else false</returns>
         public bool IsDirectionNorthWestPossible(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
@@ -562,7 +605,11 @@ namespace Othello.ViewModels
             return false;
         }
 
-        public void ChangeTilesDirectionNorthWest(object b)
+        /// <summary>
+        /// Adds affected tiles of the opposite color to the directionResults list
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
+        public void AddTilesDirectionNorthWest(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             int x = tile.Coordinates.Item1;
@@ -591,6 +638,12 @@ namespace Othello.ViewModels
 
         }
 
+
+        /// <summary>
+        /// Checks if move is valid in the given direction
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns>True if valid, else false</returns>
         public bool IsDirectionNorthEastPossible(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
@@ -628,7 +681,11 @@ namespace Othello.ViewModels
             return false;
         }
 
-        public void ChangeTilesDirectionNorthEast(object b)
+        /// <summary>
+        /// Adds affected tiles of the opposite color to the directionResults list
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
+        public void AddTilesDirectionNorthEast(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             int x = tile.Coordinates.Item1;
@@ -658,6 +715,11 @@ namespace Othello.ViewModels
         }
 
 
+        /// <summary>
+        /// Checks if move is valid in the given direction
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns>True if valid, else false</returns>
         public bool IsDirectionNorthPossible(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
@@ -688,7 +750,12 @@ namespace Othello.ViewModels
             }
             return false;
         }
-        public void ChangeTilesDirectionNorth(object b)
+
+        /// <summary>
+        /// Adds affected tiles of the opposite color to the directionResults list
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
+        public void AddTilesDirectionNorth(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             int x = tile.Coordinates.Item1;
@@ -713,6 +780,12 @@ namespace Othello.ViewModels
 
         }
 
+
+        /// <summary>
+        /// Checks if move is valid in the given direction
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns>True if valid, else false</returns>
         public bool IsDirectionWestPossible(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
@@ -743,7 +816,11 @@ namespace Othello.ViewModels
             }
             return false;
         }
-        public void ChangeTilesDirectionWest(object b)
+        /// <summary>
+        /// Adds affected tiles of the opposite color to the directionResults list
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
+        public void AddTilesDirectionWest(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             int x = tile.Coordinates.Item1;
@@ -768,6 +845,12 @@ namespace Othello.ViewModels
 
         }
 
+
+        /// <summary>
+        /// Checks if move is valid in the given direction
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns>True if valid, else false</returns>
         public bool IsDirectionEastPossible(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
@@ -799,8 +882,11 @@ namespace Othello.ViewModels
             return false;
         }
 
-
-        public void ChangeTilesDirectionEast(object b)
+        /// <summary>
+        /// Adds affected tiles of the opposite color to the directionResults list
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
+        public void AddTilesDirectionEast(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
             int x = tile.Coordinates.Item1;
@@ -825,7 +911,12 @@ namespace Othello.ViewModels
 
         }
 
-        public bool IsMovePossible(object b)
+        /// <summary>
+        /// Checks if there's a possible move
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
+        /// <returns>True if there's a possible move, else false</returns>
+        public bool IsPossibleMove(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
 
@@ -866,7 +957,10 @@ namespace Othello.ViewModels
 
         }
 
-        public void FindWinner()
+        /// <summary>
+        /// Sets Winner by checking player's score
+        /// </summary>
+        public void SetWinner()
         {
             if (PlayerBlackScore > PlayerWhiteScore)
             {
@@ -883,6 +977,9 @@ namespace Othello.ViewModels
             }
         }
 
+        /// <summary>
+        /// Displays winner by creating an EndViewModel with right properties together with sound
+        /// </summary>
         public void ShowWinner()
         {
             PlayWinSound(); 
