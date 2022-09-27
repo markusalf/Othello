@@ -112,33 +112,17 @@
             </Button.Template>
         </Button>
         <Image x:Name="RulesScroll" Height="900" Width="800" Source="/Images/RulesScroll.png" Visibility="{Binding Rules}"/>
-        <Button x:Name="SoundOffBtn" Height="100" Width="100" Command="{Binding TurnSoundOffCommand}" Visibility="{Binding SoundOff}"  Margin="904,517,59,83">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
+        <Button x:Name="SoundOffBtn" Height="100" Width="100" Command="{Binding TurnSoundOffCommand}" Visibility="{Binding SoundOff}"  Margin="887,516,76,84">            
             <Button.Template>
                 <ControlTemplate>
-                    <Image x:Name="Image" Stretch="Fill" Source="/Images/SoundOn.png"/>                    
+                    <Image x:Name="Image" Stretch="Fill" Source="/Images/SoundOffButton.png"/>                    
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button x:Name="SoundOnBtn" Height="100" Width="100" Command="{Binding TurnSoundOnCommand}"  Visibility="{Binding SoundOn}" Margin="904,517,59,83">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
+        <Button x:Name="SoundOnBtn" Height="100" Width="100" Command="{Binding TurnSoundOnCommand}"  Visibility="{Binding SoundOn}" Margin="887,516,76,84">            
             <Button.Template>
                 <ControlTemplate>
-                    <Image x:Name="Image" Stretch="Fill" Source="/Images/SoundOff.png"/>
+                    <Image x:Name="Image" Stretch="Fill" Source="/Images/SoundOnButton.png"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>

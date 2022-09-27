@@ -22,8 +22,8 @@
     <None Remove="Images\ReturnButton.png" />
     <None Remove="Images\RulesButton.png" />
     <None Remove="Images\RulesScroll.png" />
-    <None Remove="Images\SoundOff.png" />
-    <None Remove="Images\SoundOn.png" />
+    <None Remove="Images\SoundOffButton.png" />
+    <None Remove="Images\SoundOnButton.png" />
     <None Remove="Images\StartButton.png" />
     <None Remove="Images\WinBoard.png" />
     <None Remove="Images\WinnerBanner.png" />
@@ -91,11 +91,11 @@
     <Resource Include="Images\Score.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\SoundOff.png" />
-    <Resource Include="Images\SoundOn.png" />
     <Resource Include="Images\StartButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\SoundOnButton.png" />
+    <Resource Include="Images\SoundOffButton.png" />
     <Resource Include="Images\WinnerBanner.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
