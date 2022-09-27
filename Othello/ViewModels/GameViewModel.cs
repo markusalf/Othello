@@ -21,7 +21,7 @@ namespace Othello.ViewModels
         TileType oppositeColor;
         public bool IsSoundOn { get; set; } = true;
 
-        public int _gameBoardSize = 8;
+        public int GameBoardSize { get; set; } = 8;
         public int PlayerBlackScore { get; set; } = 0;
         public int PlayerWhiteScore { get; set; } = 0;
 
@@ -143,10 +143,10 @@ namespace Othello.ViewModels
         /// </summary>
         private void FillBoard()
         {
-            for (var y = 0; y < _gameBoardSize; y++)
-                for (var x = 0; x < _gameBoardSize; x++)
+            for (var y = 0; y < GameBoardSize; y++)
+                for (var x = 0; x < GameBoardSize; x++)
                 {
-                    if (x == _gameBoardSize/2 - 1 && y == _gameBoardSize/2 - 1)
+                    if (x == GameBoardSize/2 - 1 && y == GameBoardSize/2 - 1)
                     {
                         BoardPieces.Add(new UCTile
                         {
@@ -156,7 +156,7 @@ namespace Othello.ViewModels
                             Id = BoardPieces.Count
                         });
                     }
-                    else if (x == _gameBoardSize/2 && y == _gameBoardSize/2 - 1)
+                    else if (x == GameBoardSize/2 && y == GameBoardSize/2 - 1)
                     {
                         BoardPieces.Add(new UCTile
                         {
@@ -166,7 +166,7 @@ namespace Othello.ViewModels
                             Id = BoardPieces.Count
                         });
                     }
-                    else if (x == _gameBoardSize/2 && y == _gameBoardSize/2)
+                    else if (x == GameBoardSize/2 && y == GameBoardSize/2)
                     {
                         BoardPieces.Add(new UCTile
                         {
@@ -176,7 +176,7 @@ namespace Othello.ViewModels
                             Id = BoardPieces.Count
                         });
                     }
-                    else if (x == _gameBoardSize/2 - 1 && y == _gameBoardSize/2)
+                    else if (x == GameBoardSize/2 - 1 && y == GameBoardSize/2)
                     {
                         BoardPieces.Add(new UCTile
                         {
@@ -350,11 +350,11 @@ namespace Othello.ViewModels
             int x = tile.Coordinates.Item1;
             int y = tile.Coordinates.Item2;
 
-            if (y + 1 <= _gameBoardSize - 1)
+            if (y + 1 <= GameBoardSize - 1)
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (x, y + 1) && piece.TypeOfTile == oppositeColor))
                 {
-                    for (int i = y + 2; i <= _gameBoardSize - 1; i++)
+                    for (int i = y + 2; i <= GameBoardSize - 1; i++)
                     {
                         if (BoardPieces.Any(piece => piece.Coordinates == (x, i) && piece.TypeOfTile == currentColor))
                         {
@@ -385,7 +385,7 @@ namespace Othello.ViewModels
             int y = tile.Coordinates.Item2;
             TileType currentColor = CurrentPlayer.TypeOfTile;
 
-                for (int i = y + 1; i <= _gameBoardSize - 1; i++)
+                for (int i = y + 1; i <= GameBoardSize - 1; i++)
                 {
                     if (BoardPieces.Any(piece => piece.Coordinates == (x, i) && piece.TypeOfTile == oppositeColor))
                     {
@@ -410,14 +410,14 @@ namespace Othello.ViewModels
             int x = tile.Coordinates.Item1;
             int y = tile.Coordinates.Item2;
 
-            if (y + 1 <= _gameBoardSize - 1 && x - 1 >= 0)
+            if (y + 1 <= GameBoardSize - 1 && x - 1 >= 0)
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (x - 1, y + 1) && piece.TypeOfTile == oppositeColor))
                 {
                 var i = x - 2;
                 var j = y + 2;
 
-                    while (i >= 0 && j <= _gameBoardSize - 1)
+                    while (i >= 0 && j <= GameBoardSize - 1)
                     {
                         if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == currentColor))
                         {
@@ -451,11 +451,11 @@ namespace Othello.ViewModels
             int y = tile.Coordinates.Item2;
             TileType currentColor = CurrentPlayer.TypeOfTile;
 
-            if (y + 1 <= _gameBoardSize - 1 && x - 1 >= 0)
+            if (y + 1 <= GameBoardSize - 1 && x - 1 >= 0)
             {
                 var i = x - 1;
                 var j = y + 1;
-                while (i >= 0 && j <= _gameBoardSize - 1)
+                while (i >= 0 && j <= GameBoardSize - 1)
                 {
                     if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
                     {
@@ -486,14 +486,14 @@ namespace Othello.ViewModels
             int x = tile.Coordinates.Item1;
             int y = tile.Coordinates.Item2;
 
-            if (y + 1 <= _gameBoardSize - 1 && x + 1 <= _gameBoardSize - 1)
+            if (y + 1 <= GameBoardSize - 1 && x + 1 <= GameBoardSize - 1)
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (x + 1, y + 1) && piece.TypeOfTile == oppositeColor))
                 {
                     var i = x + 2;
                     var j = y + 2;
 
-                    while (i <= _gameBoardSize - 1 && j <= _gameBoardSize - 1)
+                    while (i <= GameBoardSize - 1 && j <= GameBoardSize - 1)
                     {
                         if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == currentColor))
                         {
@@ -527,11 +527,11 @@ namespace Othello.ViewModels
             int y = tile.Coordinates.Item2;
             TileType currentColor = CurrentPlayer.TypeOfTile;
 
-            if (y + 1 <= _gameBoardSize - 1 && x + 1 <= _gameBoardSize - 1)
+            if (y + 1 <= GameBoardSize - 1 && x + 1 <= GameBoardSize - 1)
             {
                 var i = x + 1;
                 var j = y + 1;
-                while (i <= _gameBoardSize - 1 && j <= _gameBoardSize - 1)
+                while (i <= GameBoardSize - 1 && j <= GameBoardSize - 1)
                 {
                     if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
                     {
@@ -638,14 +638,14 @@ namespace Othello.ViewModels
             int x = tile.Coordinates.Item1;
             int y = tile.Coordinates.Item2;
 
-            if (y - 1 >= 0 && x + 1 <= _gameBoardSize - 1)
+            if (y - 1 >= 0 && x + 1 <= GameBoardSize - 1)
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (x + 1, y - 1) && piece.TypeOfTile == oppositeColor))
                 {
                     var i = x + 2;
                     var j = y - 2;
 
-                    while (i <= _gameBoardSize - 1 && j >= 0)
+                    while (i <= GameBoardSize - 1 && j >= 0)
                     {
                         if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == currentColor))
                         {
@@ -679,11 +679,11 @@ namespace Othello.ViewModels
             int y = tile.Coordinates.Item2;
             TileType currentColor = CurrentPlayer.TypeOfTile;
 
-            if (y - 1 >= 0 && x + 1 <= _gameBoardSize - 1)
+            if (y - 1 >= 0 && x + 1 <= GameBoardSize - 1)
             {
                 var i = x + 1;
                 var j = y - 1;
-                while (i <= _gameBoardSize - 1 && j >= 0)
+                while (i <= GameBoardSize - 1 && j >= 0)
                 {
                     if (BoardPieces.Any(piece => piece.Coordinates == (i, j) && piece.TypeOfTile == oppositeColor))
                     {
@@ -714,7 +714,7 @@ namespace Othello.ViewModels
             int x = tile.Coordinates.Item1;
             int y = tile.Coordinates.Item2;
 
-            if (y - 1 <= _gameBoardSize - 1)
+            if (y - 1 <= GameBoardSize - 1)
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (x, y - 1) && piece.TypeOfTile == oppositeColor))
                 {
@@ -775,7 +775,7 @@ namespace Othello.ViewModels
             int x = tile.Coordinates.Item1;
             int y = tile.Coordinates.Item2;
 
-            if (x - 1 <= _gameBoardSize - 1)
+            if (x - 1 <= GameBoardSize - 1)
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (x - 1, y) && piece.TypeOfTile == oppositeColor))
                 {
@@ -835,11 +835,11 @@ namespace Othello.ViewModels
             int x = tile.Coordinates.Item1;
             int y = tile.Coordinates.Item2;
 
-            if (x + 1 <= _gameBoardSize - 1)
+            if (x + 1 <= GameBoardSize - 1)
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (x + 1, y) && piece.TypeOfTile == oppositeColor))
                 {
-                    for (int i = x + 2; i <= _gameBoardSize - 1; i++)
+                    for (int i = x + 2; i <= GameBoardSize - 1; i++)
                     {
                         if (BoardPieces.Any(piece => piece.Coordinates == (i, y) && piece.TypeOfTile == currentColor))
                         {
@@ -873,7 +873,7 @@ namespace Othello.ViewModels
 
 
 
-            for (int i = x + 1; i <= _gameBoardSize - 1; i++)
+            for (int i = x + 1; i <= GameBoardSize - 1; i++)
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (i, y) && piece.TypeOfTile == oppositeColor))
                 {
