@@ -34,7 +34,7 @@ namespace Othello.ViewModels
 
         public Visibility SoundOn { get; set; } = Visibility.Collapsed;
         public Visibility SoundOff { get; set; } = Visibility.Visible;
-        public bool IsSoundOn;
+        public bool IsSoundOn { get; set; } = true;
 
         public ICommand TurnSoundOffCommand { get; set; }
         public ICommand TurnSoundOnCommand { get; set; }
