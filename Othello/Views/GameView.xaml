@@ -71,7 +71,7 @@
             </Label>
         </ItemsControl>
         <Ellipse Fill="Black" Width="40" Height="38" Margin="115,516,900,146"/>
-        <Button x:Name="QuitBtn" BorderThickness="0,0,0,0" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}" Margin="818,300,-27,183">
+        <Button x:Name="QuitBtn" BorderThickness="0,0,0,0" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}" Margin="837,350,26,210">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -82,7 +82,7 @@
             </Button.RenderTransform>
             <Button.Template>
                 <ControlTemplate>
-                    <Image x:Name="Image" Source="/Images/QuitButton.png"/>
+                    <Image x:Name="Image" Source="/Images/ButtonQuit.png"/>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Image"  Property="Source" Value="/Images/ButtonQuitHover.png"/>

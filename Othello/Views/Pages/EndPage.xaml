@@ -31,7 +31,7 @@
         </Label>
 
         <StackPanel Orientation="Horizontal" Width="800" Height="600" Margin="310,275,190,25">
-            <Button x:Name="QuitBtn" BorderThickness="0,0,0,0"  Height="350" Width="350" Command="{Binding QuitGameCommand, Source={x:Static vm:MainViewModel.Instance}}">
+            <Button x:Name="QuitBtn" BorderThickness="0,0,0,0"  Height="183" Width="350" Command="{Binding QuitGameCommand, Source={x:Static vm:MainViewModel.Instance}}">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -42,7 +42,7 @@
                 </Button.RenderTransform>
                 <Button.Template>
                     <ControlTemplate>
-                        <Image x:Name="Image" Source="/Images/QuitButton.png"/>
+                        <Image x:Name="Image" Source="/Images/ButtonQuit.png"/>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="Image"  Property="Source" Value="/Images/ButtonQuitHover.png"/>
