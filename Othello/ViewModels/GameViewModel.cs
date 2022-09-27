@@ -48,17 +48,17 @@ namespace Othello.ViewModels
         public GameViewModel()
         {
             FillBoard();
-            OppositeColor(CurrentPlayer);
+            SetOppositeColor(CurrentPlayer);
             UpdateScore();
             ShowPossibleMoves();
-            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsPossibleMove(b));
-            RulesInGameCommand = new RelayCommand(page => OpenRulesScroll());
+            TileClickedCommand = new RelayCommand(execute: b => PlaceTile(b), predicate: b => IsMovePossible(b));
+            RulesInGameCommand = new RelayCommand(page => ChangeRulesScrollVisibility());
             TurnSoundOffCommand = new RelayCommand(execute: b => TurnSoundOff());
             TurnSoundOnCommand = new RelayCommand(execute: b => TurnSoundOn());
 
         }
         public Visibility Rules { get; set; } = Visibility.Collapsed;
-        private void OpenRulesScroll()
+        private void ChangeRulesScrollVisibility()
         {
             if (Rules == Visibility.Collapsed)
             {
@@ -84,7 +84,7 @@ namespace Othello.ViewModels
             PlayClickSound();
             UpdateScore();
             ChangePlayerTurn();
-            CheckIfGameOver();            
+            IsGameOver();            
             ShowPossibleMoves();
         }
 
@@ -132,7 +132,7 @@ namespace Othello.ViewModels
             {
 
                 var b = UCTile.Id;
-                if (IsPossibleMove(b) && UCTile.TypeOfTile == TileType.Empty)
+                if (IsMovePossible(b) && UCTile.TypeOfTile == TileType.Empty)
                 {
                     UCTile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
                 }
@@ -141,11 +141,6 @@ namespace Othello.ViewModels
                     UCTile.TypeOfSquare = BoardPieceType.NotPossibleMoveMarker;
                 }
             }
-        }
-
-        public void ChangeTileType(UCTile tile)
-        {
-            tile.TypeOfTile = CurrentPlayer.TypeOfTile;
         }
 
         /// <summary>
@@ -217,13 +212,13 @@ namespace Othello.ViewModels
         /// </summary>
         public void UpdateScore()
         {
-        PlayerBlackScore = BoardPieces.Count(x => x.TypeOfTile == TileType.Black);
-        PlayerWhiteScore = BoardPieces.Count(x => x.TypeOfTile == TileType.White);
+            PlayerBlackScore = BoardPieces.Count(x => x.TypeOfTile == TileType.Black);
+            PlayerWhiteScore = BoardPieces.Count(x => x.TypeOfTile == TileType.White);
         }
 
 
 
-        public bool CheckIfGameOver()
+        public bool IsGameOver()
         {
             if (CanPlayerMakeAMove())
             {
@@ -254,7 +249,7 @@ namespace Othello.ViewModels
             {
                 CurrentPlayer.TypeOfTile = TileType.Black;
             }
-            OppositeColor(CurrentPlayer);
+            SetOppositeColor(CurrentPlayer);
         }
         /// <summary>
         /// Kollar om spelaren kan göra ett giltigt drag.
@@ -266,7 +261,7 @@ namespace Othello.ViewModels
             
             foreach (UCTile tile in BoardPieces)
             {
-                if (IsPossibleMove(tile.Id)) { return true; }
+                if (IsMovePossible(tile.Id)) { return true; }
                 
             }
             ChangePlayerTurn();
@@ -274,27 +269,11 @@ namespace Othello.ViewModels
         }
 
         /// <summary>
-        /// Kollar om brickan spelaren vill lägga sin tile på är tom och tillgänglig.
-        /// </summary>
-        /// <param name="Tile"></param>
-        /// <returns>Sant om rutan är tom och spelaren kan lägga ut. Falskt om den inte kan lägga ut.</returns>
-        public bool IsBoardPieceAvailable(UCTile Tile)
-        {
-            if (Tile.TypeOfTile != TileType.Empty)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        /// <summary>
         /// Ändrar vilken färg/tiletype oppositecolor är.
         /// </summary>
         /// <param name="CurrentPlayer"></param>
         /// <returns>Den färg/tiletype som oppositecolor är.</returns>
-        public TileType OppositeColor(UCTile CurrentPlayer)
+        public TileType SetOppositeColor(UCTile CurrentPlayer)
         {
             if(CurrentPlayer.TypeOfTile == TileType.Black)
             {
@@ -399,21 +378,18 @@ namespace Othello.ViewModels
             int y = tile.Coordinates.Item2;
             TileType currentColor = CurrentPlayer.TypeOfTile;
 
-            
-            
-                
-                    for (int i = y + 1; i <= _gameBoardSize - 1; i++)
+                for (int i = y + 1; i <= _gameBoardSize - 1; i++)
+                {
+                    if (BoardPieces.Any(piece => piece.Coordinates == (x, i) && piece.TypeOfTile == oppositeColor))
                     {
-                        if (BoardPieces.Any(piece => piece.Coordinates == (x, i) && piece.TypeOfTile == oppositeColor))
-                        {
-                            directionResults.Add(Tuple.Create(x, i));
-                        }
-                        else
-                        {                            
-                            break;
-                        }
+                        directionResults.Add(Tuple.Create(x, i));
+                    }
+                    else
+                    {                            
+                        break;
+                    }
                         
-                    }                            
+                }                            
             
         }
         public bool IsDirectionSouthWestPossible(object b)
@@ -849,7 +825,7 @@ namespace Othello.ViewModels
 
         }
 
-        public bool IsPossibleMove(object b)
+        public bool IsMovePossible(object b)
         {
             var tile = BoardPieces.First(t => t.Id == (int)b);
 
@@ -892,7 +868,6 @@ namespace Othello.ViewModels
 
         public void FindWinner()
         {
-
             if (PlayerBlackScore > PlayerWhiteScore)
             {
                 Winner = Player.Black;
@@ -913,6 +888,5 @@ namespace Othello.ViewModels
             PlayWinSound(); 
             MainViewModel._instance.CurrentViewModel = new EndViewModel(Winner, PlayerBlackScore, PlayerWhiteScore);
         }       
-
     }
 }
