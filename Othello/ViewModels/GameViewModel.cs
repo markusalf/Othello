@@ -15,16 +15,16 @@ namespace Othello.ViewModels
     internal class GameViewModel : BaseViewModel
     {
         public ObservableCollection<UCTile> BoardPieces { get; private set; } = new ObservableCollection<UCTile>();
-        List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
         public UCTile CurrentPlayer { get; set; } = new UCTile();
         public Player Winner { get; set; } = new Player();
-        TileType oppositeColor;
         public bool IsSoundOn { get; set; } = true;
-
         public int GameBoardSize { get; set; } = 8;
         public int PlayerBlackScore { get; set; } = 0;
         public int PlayerWhiteScore { get; set; } = 0;
 
+
+        List<Tuple<int, int>> directionResults = new List<Tuple<int, int>>();
+        TileType oppositeColor;
 
         public Visibility SoundOn { get; set; } = Visibility.Collapsed;
         public Visibility SoundOff { get; set; } = Visibility.Visible;
@@ -255,6 +255,10 @@ namespace Othello.ViewModels
             foreach (UCTile tile in BoardPieces)
             {
                 if (IsPossibleMove(tile.Id)) { return true; }   
+            }
+            if(PlayerBlackScore + PlayerWhiteScore != 64)
+            {
+                MessageBox.Show($"The current player has no valid moves so the turn goes back. ");
             }
             ChangePlayerTurn();
             return false;
