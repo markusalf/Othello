@@ -22,19 +22,17 @@ namespace Othello.ViewModels
         public int PlayerBlackScore { get; set; } = 0;
         public int PlayerWhiteScore { get; set; } = 0;
 
-
-        List<Tuple<int, int>> flankedTiles = new List<Tuple<int, int>>();
-        TileType oppositeColor;
-
         public Visibility SoundOn { get; set; } = Visibility.Collapsed;
         public Visibility SoundOff { get; set; } = Visibility.Visible;
         public Visibility Rules { get; set; } = Visibility.Collapsed;
-
 
         public ICommand TurnSoundOffCommand { get; set; }
         public ICommand TurnSoundOnCommand { get; set; }
         public ICommand RulesInGameCommand { get; }
         public ICommand TileClickedCommand { get; }
+
+        List<Tuple<int, int>> flankedTiles = new List<Tuple<int, int>>();
+        TileType oppositeColor;
 
         public GameViewModel()
         {
