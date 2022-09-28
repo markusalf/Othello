@@ -65,17 +65,14 @@ namespace Othello.ViewModels
             }
         }
 
-
         /// <summary>
         /// Allows you to place a tile on the board depending on if there are possible moves or not
         /// </summary>
         /// <param name="b">Clicked position on board</param>
         private void PlaceTile(object b)
         {
-            var tile = BoardPieces.First(t => t.Id == (int)b);
-            tile.TypeOfTile = CurrentPlayer.TypeOfTile;
-            MakeAMove(b);
-            flankedTiles.Clear();
+            ChangeClickedTile(b);
+            MakeAMove(b);            
             PlayClickSound();
             UpdatePlayerScore();
             ChangePlayerTurn();
@@ -85,13 +82,19 @@ namespace Othello.ViewModels
 
         #region Sounds
 
-
+        /// <summary>
+        /// Turn sound on
+        /// </summary>
         private void TurnSoundOff()
         {
             IsSoundOn = false;
             SoundOff = Visibility.Collapsed;
             SoundOn = Visibility.Visible;
         }
+
+        /// <summary>
+        /// Turn sound off
+        /// </summary>
         private void TurnSoundOn()
         {
             IsSoundOn = true;
@@ -99,6 +102,9 @@ namespace Othello.ViewModels
             SoundOff = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Plays click sound
+        /// </summary>
         private void PlayClickSound()
         {
             if (IsSoundOn)
@@ -108,16 +114,28 @@ namespace Othello.ViewModels
             }
         }
 
+        /// <summary>
+        /// Plays a win sound
+        /// </summary>
         private void PlayWinSound()
         {
-
             if (IsSoundOn)
             {
                 var winSound = new SoundPlayer(Properties.Resources.winSound);
                 winSound.Play();
             }
-        } 
+        }
         #endregion
+
+        /// <summary>
+        /// Changes the clicked tile to the tiletype of the current player
+        /// </summary>
+        /// <param name="b">The clicked tile</param>
+        public void ChangeClickedTile(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            tile.TypeOfTile = CurrentPlayer.TypeOfTile;
+        }
 
         /// <summary>
         /// Changes the BoardPieceType to show where you can place your piece
@@ -354,7 +372,8 @@ namespace Othello.ViewModels
                         tile.TypeOfTile = CurrentPlayer.TypeOfTile;
                     }
                 }
-            }            
+            }
+            flankedTiles.Clear();
         }
 
         /// <summary>
