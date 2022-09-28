@@ -14,6 +14,7 @@ namespace Othello.Views.GameTiles
         public UCTile()
         {
             InitializeComponent();
+
         }
 
         public (int, int) Coordinates { get; set; }
