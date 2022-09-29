@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+    <Page Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Images\BackgroundOthello.png" />
     <None Remove="Images\Button.png" />
     <None Remove="Images\ButtonQuit.png" />
@@ -101,10 +108,6 @@
     </Resource>
     <Resource Include="Resources\firework1.gif" />
     <Resource Include="Resources\fireworks.gif" />
-  </ItemGroup>
- 
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
  
   <ItemGroup>

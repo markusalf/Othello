@@ -32,14 +32,6 @@
 
         <StackPanel Orientation="Horizontal" Width="800" Height="600" Margin="310,275,190,25">
             <Button x:Name="QuitBtn" BorderThickness="0,0,0,0"  Height="183" Width="350" Command="{Binding QuitGameCommand, Source={x:Static vm:MainViewModel.Instance}}">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Button.RenderTransform>
                 <Button.Template>
                     <ControlTemplate>
                         <Image x:Name="Image" Source="/Images/ButtonQuit.png"/>
@@ -52,14 +44,6 @@
                 </Button.Template>
             </Button>
             <Button x:Name="RestartButton" BorderThickness="0,0,0,0"  Height="350" Width="350"  Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Button.RenderTransform>
                 <Button.Template>
                     <ControlTemplate>
                         <Image x:Name="Image" Source="/Images/RestartButton.png"/>

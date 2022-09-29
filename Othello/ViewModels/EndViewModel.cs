@@ -7,10 +7,6 @@ namespace Othello.ViewModels
     {
         public Player Winner { get; set; } = new Player();
         public string Message { get; set; }
-        public EndViewModel()
-        {
-
-        }
 
         public EndViewModel(Player winner, int playerBlackScore, int playerWhiteScore)
         {
