@@ -22,12 +22,12 @@ namespace Othello.ViewModels
         public int PlayerBlackScore { get; set; } = 0;
         public int PlayerWhiteScore { get; set; } = 0;
 
+        public Visibility SoundOff { get; set; }
         public Visibility SoundOn { get; set; } = Visibility.Collapsed;
-        public Visibility SoundOff { get; set; } = Visibility.Visible;
         public Visibility Rules { get; set; } = Visibility.Collapsed;
 
-        public ICommand TurnSoundOffCommand { get; set; }
-        public ICommand TurnSoundOnCommand { get; set; }
+        public ICommand TurnSoundOffCommand { get; }
+        public ICommand TurnSoundOnCommand { get; }
         public ICommand RulesInGameCommand { get; }
         public ICommand TileClickedCommand { get; }
 
@@ -45,115 +45,7 @@ namespace Othello.ViewModels
             RulesInGameCommand = new RelayCommand(page => ChangeRulesScrollVisibility());
             TurnSoundOffCommand = new RelayCommand(execute: b => TurnSoundOff());
             TurnSoundOnCommand = new RelayCommand(execute: b => TurnSoundOn());
-
-        }
-
-        /// <summary>
-        /// Changes visibility of the Rules Scroll
-        /// </summary>
-        private void ChangeRulesScrollVisibility()
-        {
-            if (Rules == Visibility.Collapsed)
-            {
-                Rules = Visibility.Visible;
-            }
-            else
-            {
-                Rules = Visibility.Collapsed;
-            }
-        }
-
-        /// <summary>
-        /// Allows you to place a tile on the board depending on if there are possible moves or not
-        /// </summary>
-        /// <param name="b">Clicked position on board</param>
-        private void PlaceTile(object b)
-        {
-            ChangeClickedTile(b);
-            MakeAMove(b);            
-            PlayClickSound();
-            UpdatePlayerScore();
-            ChangePlayerTurn();
-            IsGameOver();            
-            ShowPossibleMoves();
-        }
-
-        #region Sounds
-
-        /// <summary>
-        /// Turn sound on
-        /// </summary>
-        private void TurnSoundOff()
-        {
-            IsSoundOn = false;
-            SoundOff = Visibility.Collapsed;
-            SoundOn = Visibility.Visible;
-        }
-
-        /// <summary>
-        /// Turn sound off
-        /// </summary>
-        private void TurnSoundOn()
-        {
-            IsSoundOn = true;
-            SoundOn = Visibility.Collapsed;
-            SoundOff = Visibility.Visible;
-        }
-
-        /// <summary>
-        /// Plays click sound
-        /// </summary>
-        private void PlayClickSound()
-        {
-            if (IsSoundOn)
-            {
-                var clickSound = new SoundPlayer(Properties.Resources.clickSound);
-                clickSound.Play();
-            }
-        }
-
-        /// <summary>
-        /// Plays a win sound
-        /// </summary>
-        private void PlayWinSound()
-        {
-            if (IsSoundOn)
-            {
-                var winSound = new SoundPlayer(Properties.Resources.winSound);
-                winSound.Play();
-            }
-        }
-        #endregion
-
-        /// <summary>
-        /// Changes the clicked tile to the tiletype of the current player
-        /// </summary>
-        /// <param name="b">The clicked tile</param>
-        public void ChangeClickedTile(object b)
-        {
-            var tile = BoardPieces.First(t => t.Id == (int)b);
-            tile.TypeOfTile = CurrentPlayer.TypeOfTile;
-        }
-
-        /// <summary>
-        /// Changes the BoardPieceType to show where you can place your piece
-        /// </summary>
-        private void ShowPossibleMoves()
-        {
-
-            foreach (UCTile tile in BoardPieces)
-            {
-                int id = tile.Id;
-                if (IsPossibleMove(id) && tile.TypeOfTile == TileType.Empty)
-                {
-                    tile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
-                }
-                else
-                {
-                    tile.TypeOfSquare = BoardPieceType.NotPossibleMoveMarker;
-                }
-            }
-        }
+        }        
 
         /// <summary>
         /// Fills the gameboard with UCTiles where 2 white and 2 black pieces start
@@ -168,7 +60,6 @@ namespace Othello.ViewModels
                         BoardPieces.Add(new UCTile
                         {
                             Coordinates = (x, y),
-                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.White,
                             Id = BoardPieces.Count
                         });
@@ -178,7 +69,6 @@ namespace Othello.ViewModels
                         BoardPieces.Add(new UCTile
                         {
                             Coordinates = (x, y),
-                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.Black,
                             Id = BoardPieces.Count
                         });
@@ -188,7 +78,6 @@ namespace Othello.ViewModels
                         BoardPieces.Add(new UCTile
                         {
                             Coordinates = (x, y),
-                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.White,
                             Id = BoardPieces.Count
                         });
@@ -198,7 +87,6 @@ namespace Othello.ViewModels
                         BoardPieces.Add(new UCTile
                         {
                             Coordinates = (x, y),
-                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.Black,
                             Id = BoardPieces.Count
                         });
@@ -208,7 +96,6 @@ namespace Othello.ViewModels
                         BoardPieces.Add(new UCTile
                         {
                             Coordinates = (x, y),
-                            TypeOfSquare = BoardPieceType.NotPossibleMoveMarker,
                             TypeOfTile = TileType.Empty,
                             Id = BoardPieces.Count
                         });
@@ -225,86 +112,13 @@ namespace Othello.ViewModels
         }
 
         /// <summary>
-        /// Counts black and white tiles/pieces on the gameboard
-        /// </summary>
-        public void UpdatePlayerScore()
-        {
-            PlayerBlackScore = BoardPieces.Count(x => x.TypeOfTile == TileType.Black);
-            PlayerWhiteScore = BoardPieces.Count(x => x.TypeOfTile == TileType.White);
-        }
-
-        /// <summary>
-        /// Checks whether the game is over or not
-        /// </summary>
-        /// <returns>True if there are no more valid moves, otherwise false</returns>
-        public bool IsGameOver()
-        {
-            if (CanPlayerMakeAMove())
-            {               
-                return false;
-            }
-            ChangePlayerTurn();
-            if (CanPlayerMakeAMove())
-            {                
-                return false;
-            }
-            SetGameResult();
-            return true;
-        }
-
-        /// <summary>
-        /// Set the game result
-        /// </summary>
-        public void SetGameResult()
-        {
-            SetWinner();
-            ShowWinner();            
-        }
-
-        /// <summary>
-        /// Changes turn
-        /// </summary>
-        public void ChangePlayerTurn()
-        {
-            if (CurrentPlayer.TypeOfTile == TileType.Black)
-            {
-                CurrentPlayer.TypeOfTile = TileType.White;
-            }
-            else
-            {
-                CurrentPlayer.TypeOfTile = TileType.Black;
-            }
-            SetOppositeColor(CurrentPlayer);
-        }
-
-        /// <summary>
-        /// Checks if a player can make a valid move
-        /// </summary>
-        /// <returns>True if there's a valid move, otherwise false</returns>
-        public bool CanPlayerMakeAMove()
-        {  
-            foreach (UCTile tile in BoardPieces)
-            {
-                if (IsPossibleMove(tile.Id))
-                {
-                   return true;
-                }
-            }
-            if (PlayerBlackScore + PlayerWhiteScore != 64)
-            {
-                MessageBox.Show($"The current player has no valid moves so the turn goes back.");
-            }            
-            return false;
-        }
-
-        /// <summary>
         /// Changes color value of OppositeColor
         /// </summary>
         /// <param name="CurrentPlayer">Player that is currently playing</param>
         /// <returns>The new color value of OppositeColor</returns>
         public TileType SetOppositeColor(UCTile CurrentPlayer)
         {
-            if(CurrentPlayer.TypeOfTile == TileType.Black)
+            if (CurrentPlayer.TypeOfTile == TileType.Black)
             {
                 oppositeColor = TileType.White;
             }
@@ -316,10 +130,108 @@ namespace Othello.ViewModels
         }
 
         /// <summary>
+        /// Counts black and white tiles/pieces on the gameboard
+        /// </summary>
+        public void UpdatePlayerScore()
+        {
+            PlayerBlackScore = BoardPieces.Count(x => x.TypeOfTile == TileType.Black);
+            PlayerWhiteScore = BoardPieces.Count(x => x.TypeOfTile == TileType.White);
+        }
+
+        /// <summary>
+        /// Changes the BoardPieceType to show where you can place your piece
+        /// </summary>
+        private void ShowPossibleMoves()
+        {
+            foreach (UCTile tile in BoardPieces)
+            {
+                int id = tile.Id;
+                if (IsPossibleMove(id) && tile.TypeOfTile == TileType.Empty)
+                {
+                    tile.TypeOfSquare = BoardPieceType.PossibleMoveMarker;
+                }
+                else
+                {
+                    tile.TypeOfSquare = BoardPieceType.NotPossibleMoveMarker;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks if there's a possible move for the clicked tile
+        /// </summary>
+        /// <param name="b">UCTile Id</param>
+        /// <returns>True if there's a possible move, else false</returns>
+        public bool IsPossibleMove(object b)
+        {
+            UCTile tile = BoardPieces.First(t => t.Id == (int)b);
+
+            if (IsDirectionSouthPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionNorthPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionEastPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionWestPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionNorthEastPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionNorthWestPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionSouthEastPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            else if (IsDirectionSouthWestPossible(b) && tile.TypeOfTile == TileType.Empty)
+            {
+                return true;
+            }
+            return false;
+
+        }
+
+        /// <summary>
+        /// Allows you to place a tile on the board depending on if there are possible moves or not
+        /// </summary>
+        /// <param name="b">Clicked position on board</param>
+        private void PlaceTile(object b)
+        {
+            ChangeClickedTile(b);
+            MakeAMove(b);
+            PlayClickSound();
+            UpdatePlayerScore();
+            ChangePlayerTurn();
+            IsGameOver();
+            ShowPossibleMoves();
+        }
+                
+        /// <summary>
+        /// Changes the clicked tile to the tiletype of the current player
+        /// </summary>
+        /// <param name="b">The clicked tile</param>
+        public void ChangeClickedTile(object b)
+        {
+            var tile = BoardPieces.First(t => t.Id == (int)b);
+            tile.TypeOfTile = CurrentPlayer.TypeOfTile;
+        }
+
+        /// <summary>
         /// Makes the move for the current player's placed piece
         /// </summary>
         /// <param name="b">UCTile Id</param>
-        public void MakeAMove (object b)
+        public void MakeAMove(object b)
         {
             if (IsDirectionSouthPossible(b))
             {
@@ -356,24 +268,7 @@ namespace Othello.ViewModels
             ChangeColorOfTiles();
         }
 
-        /// <summary>
-        /// Changes color of tiles within the list flankedTiles
-        /// </summary>
-        public void ChangeColorOfTiles()
-        {
-            foreach (var affectedCoordinates in flankedTiles)
-            {
-                foreach (UCTile tile in BoardPieces)
-                {
-                    if (tile.Coordinates.Item1 == affectedCoordinates.Item1 && tile.Coordinates.Item2 == affectedCoordinates.Item2)
-                    {
-                        tile.TypeOfTile = CurrentPlayer.TypeOfTile;
-                    }
-                }
-            }
-            flankedTiles.Clear();
-        }
-
+        #region DirectionMethods
         /// <summary>
         /// Checks if move is valid in the given direction
         /// </summary>
@@ -450,8 +345,8 @@ namespace Othello.ViewModels
             {
                 if (BoardPieces.Any(piece => piece.Coordinates == (x - 1, y + 1) && piece.TypeOfTile == oppositeColor))
                 {
-                var i = x - 2;
-                var j = y + 2;
+                    var i = x - 2;
+                    var j = y + 2;
 
                     while (i >= 0 && j <= GameBoardSize - 1)
                     {
@@ -904,50 +799,88 @@ namespace Othello.ViewModels
                 }
             }
         }
+        #endregion
 
         /// <summary>
-        /// Checks if there's a possible move
+        /// Changes color of tiles within the list flankedTiles
         /// </summary>
-        /// <param name="b">UCTile Id</param>
-        /// <returns>True if there's a possible move, else false</returns>
-        public bool IsPossibleMove(object b)
+        public void ChangeColorOfTiles()
         {
-            UCTile tile = BoardPieces.First(t => t.Id == (int)b);
+            foreach (var affectedCoordinates in flankedTiles)
+            {
+                foreach (UCTile tile in BoardPieces)
+                {
+                    if (tile.Coordinates.Item1 == affectedCoordinates.Item1 && tile.Coordinates.Item2 == affectedCoordinates.Item2)
+                    {
+                        tile.TypeOfTile = CurrentPlayer.TypeOfTile;
+                    }
+                }
+            }
+            flankedTiles.Clear();
+        }
 
-            if (IsDirectionSouthPossible(b) && tile.TypeOfTile == TileType.Empty)
+        /// <summary>
+        /// Changes turn
+        /// </summary>
+        public void ChangePlayerTurn()
+        {
+            if (CurrentPlayer.TypeOfTile == TileType.Black)
             {
-                return true;
+                CurrentPlayer.TypeOfTile = TileType.White;
             }
-            else if (IsDirectionNorthPossible(b) && tile.TypeOfTile == TileType.Empty)
+            else
             {
-                return true;
+                CurrentPlayer.TypeOfTile = TileType.Black;
             }
-            else if (IsDirectionEastPossible(b) && tile.TypeOfTile == TileType.Empty)
+            SetOppositeColor(CurrentPlayer);
+        }
+
+        /// <summary>
+        /// Checks whether the game is over or not
+        /// </summary>
+        /// <returns>True if there are no more valid moves, otherwise false</returns>
+        public bool IsGameOver()
+        {
+            if (CanPlayerMakeAMove())
+            {               
+                return false;
+            }
+            ChangePlayerTurn();
+            if (CanPlayerMakeAMove())
+            {                
+                return false;
+            }
+            SetGameResult();
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if a player can make a valid move
+        /// </summary>
+        /// <returns>True if there's a valid move, otherwise false</returns>
+        public bool CanPlayerMakeAMove()
+        {  
+            foreach (UCTile tile in BoardPieces)
             {
-                return true;
+                if (IsPossibleMove(tile.Id))
+                {
+                   return true;
+                }
             }
-            else if (IsDirectionWestPossible(b) && tile.TypeOfTile == TileType.Empty)
+            if (PlayerBlackScore + PlayerWhiteScore != 64)
             {
-                return true;
-            }
-            else if (IsDirectionNorthEastPossible(b) && tile.TypeOfTile == TileType.Empty)
-            {
-                return true;
-            }
-            else if (IsDirectionNorthWestPossible(b) && tile.TypeOfTile == TileType.Empty)
-            {
-                return true;
-            }
-            else if (IsDirectionSouthEastPossible(b) && tile.TypeOfTile == TileType.Empty)
-            {
-                return true;
-            }
-            else if (IsDirectionSouthWestPossible(b) && tile.TypeOfTile == TileType.Empty)
-            {
-                return true;
-            }
+                MessageBox.Show($"The current player has no valid moves so the turn goes back.");
+            }            
             return false;
+        }
 
+        /// <summary>
+        /// Set the game result
+        /// </summary>
+        public void SetGameResult()
+        {
+            SetWinner();
+            ShowWinner();            
         }
 
         /// <summary>
@@ -977,5 +910,67 @@ namespace Othello.ViewModels
             PlayWinSound(); 
             MainViewModel._instance.CurrentViewModel = new EndViewModel(Winner, PlayerBlackScore, PlayerWhiteScore);
         }
+
+        /// <summary>
+        /// Changes visibility of the Rules Scroll
+        /// </summary>
+        private void ChangeRulesScrollVisibility()
+        {
+            if (Rules == Visibility.Collapsed)
+            {
+                Rules = Visibility.Visible;
+            }
+            else
+            {
+                Rules = Visibility.Collapsed;
+            }
+        }
+
+        #region Sounds
+
+        /// <summary>
+        /// Turn sound off
+        /// </summary>
+        private void TurnSoundOff()
+        {
+            IsSoundOn = false;
+            SoundOff = Visibility.Collapsed;
+            SoundOn = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Turn sound on
+        /// </summary>
+        private void TurnSoundOn()
+        {
+            IsSoundOn = true;
+            SoundOn = Visibility.Collapsed;
+            SoundOff = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Plays click sound
+        /// </summary>
+        private void PlayClickSound()
+        {
+            if (IsSoundOn)
+            {
+                var clickSound = new SoundPlayer(Properties.Resources.clickSound);
+                clickSound.Play();
+            }
+        }
+
+        /// <summary>
+        /// Plays a win sound
+        /// </summary>
+        private void PlayWinSound()
+        {
+            if (IsSoundOn)
+            {
+                var winSound = new SoundPlayer(Properties.Resources.winSound);
+                winSound.Play();
+            }
+        }
+        #endregion
     }
 }

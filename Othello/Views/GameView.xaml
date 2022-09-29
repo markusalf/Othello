@@ -68,14 +68,6 @@
         </ItemsControl>
         <Ellipse Fill="Black" Width="40" Height="38" Margin="115,516,900,146"/>
         <Button x:Name="QuitBtn" BorderThickness="0,0,0,0" Command="{Binding StartPageCommand, Source={x:Static vm:MainViewModel.Instance}}" Margin="837,350,26,210">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
             <Button.Template>
                 <ControlTemplate>
                     <Image x:Name="Image" Source="/Images/ButtonQuit.png"/>
@@ -88,14 +80,6 @@
             </Button.Template>
         </Button>
         <Button x:Name="RulesBtn" BorderThickness="0,0,0,0" Command="{Binding RulesInGameCommand}" Margin="818,114,-27,381">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
             <Button.Template>
                 <ControlTemplate>
                     <Image x:Name="Image" Stretch="Fill" Source="/Images/RulesButton.png"/>
